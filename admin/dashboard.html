@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberShield Admin - Tableau de Bord</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <div class="admin-sidebar">
+            <div class="admin-sidebar-header">
+                <img src="../img/logo.png" alt="CyberShield Logo">
+                <h2>CyberShield Admin</h2>
+            </div>
+            
+            <div class="admin-sidebar-menu">
+                <ul>
+                    <li>
+                        <a href="/admin/dashboard" class="active">
+                            <i class="fas fa-tachometer-alt"></i> Tableau de bord
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/users">
+                            <i class="fas fa-users"></i> Utilisateurs
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/subscriptions">
+                            <i class="fas fa-credit-card"></i> Abonnements
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/scans">
+                            <i class="fas fa-shield-alt"></i> Scans
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/settings">
+                            <i class="fas fa-cog"></i> Paramètres
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="admin-main">
+            <!-- Header -->
+            <div class="admin-header">
+                <div class="admin-header-title">
+                    <h1>Tableau de Bord</h1>
+                </div>
+                
+                <div class="admin-header-actions">
+                    <div class="admin-user-menu">
+                        <div class="admin-user-menu-toggle" id="userMenuToggle">
+                            <img src="../img/avatar-placeholder.png" alt="Admin">
+                            <span>Admin</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        
+                        <div class="admin-user-menu-dropdown" id="userMenuDropdown">
+                            <a href="/admin/profile">
+                                <i class="fas fa-user"></i> Profil
+                            </a>
+                            <a href="/admin/logout">
+                                <i class="fas fa-sign-out-alt"></i> Déconnexion
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Content -->
+            <div class="admin-content">
+                <!-- Stats Cards -->
+                <div class="admin-d-flex admin-flex-wrap admin-gap-20 admin-mb-20">
+                    <!-- Users Card -->
+                    <div class="admin-card admin-stat-card">
+                        <div class="admin-stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="admin-stat-content">
+                            <h3>Utilisateurs</h3>
+                            <div class="admin-stat-number">144</div>
+                            <div class="admin-stat-trend admin-text-success">
+                                <i class="fas fa-arrow-up"></i> +12% ce mois
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Subscriptions Card -->
+                    <div class="admin-card admin-stat-card">
+                        <div class="admin-stat-icon" style="background-color: rgba(52, 152, 219, 0.1); color: #3498db;">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <div class="admin-stat-content">
+                            <h3>Abonnements Actifs</h3>
+                            <div class="admin-stat-number">102</div>
+                            <div class="admin-stat-trend admin-text-success">
+                                <i class="fas fa-arrow-up"></i> +8% ce mois
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Scans Card -->
+                    <div class="admin-card admin-stat-card">
+                        <div class="admin-stat-icon" style="background-color: rgba(46, 204, 113, 0.1); color: #2ecc71;">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="admin-stat-content">
+                            <h3>Scans Réalisés</h3>
+                            <div class="admin-stat-number">587</div>
+                            <div class="admin-stat-trend admin-text-success">
+                                <i class="fas fa-arrow-up"></i> +15% ce mois
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Revenue Card -->
+                    <div class="admin-card admin-stat-card">
+                        <div class="admin-stat-icon" style="background-color: rgba(155, 89, 182, 0.1); color: #9b59b2;">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <div class="admin-stat-content">
+                            <h3>Revenus</h3>
+                            <div class="admin-stat-number">5.2M DA</div>
+                            <div class="admin-stat-trend admin-text-success">
+                                <i class="fas fa-arrow-up"></i> +10% ce mois
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Charts Row -->
+                <div class="admin-d-flex admin-flex-wrap admin-gap-20 admin-mb-20">
+                    <!-- Subscriptions Chart -->
+                    <div class="admin-card" style="flex: 2; min-width: 400px;">
+                        <div class="admin-card-header">
+                            <h2>Évolution des Abonnements</h2>
+                            <div class="admin-d-flex admin-gap-10">
+                                <select id="subscriptionChartPeriod" class="admin-select-sm">
+                                    <option value="month">Ce mois</option>
+                                    <option value="quarter">Ce trimestre</option>
+                                    <option value="year" selected>Cette année</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="admin-card-body">
+                            <div id="subscriptionsChart" style="height: 300px; position: relative;">
+                                <!-- Canvas sera inséré ici par Chart.js -->
+                                <canvas id="subscriptionsChartCanvas"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Distribution Chart -->
+                    <div class="admin-card" style="flex: 1; min-width: 300px;">
+                        <div class="admin-card-header">
+                            <h2>Distribution des Offres</h2>
+                        </div>
+                        <div class="admin-card-body">
+                            <div id="distributionChart" style="height: 300px; position: relative;">
+                                <!-- Canvas sera inséré ici par Chart.js -->
+                                <canvas id="distributionChartCanvas"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recent Activity -->
+                <div class="admin-card">
+                    <div class="admin-card-header">
+                        <h2>Activité Récente</h2>
+                        <a href="/admin/activity" class="admin-btn admin-btn-outline admin-btn-sm">
+                            Voir tout <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="admin-card-body">
+                        <div class="admin-activity-list">
+                            <div class="admin-activity-item">
+                                <div class="admin-activity-icon">
+                                    <i class="fas fa-user-plus"></i>
+                                </div>
+                                <div class="admin-activity-content">
+                                    <div class="admin-activity-title">
+                                        Nouvel utilisateur inscrit
+                                    </div>
+                                    <div class="admin-activity-desc">
+                                        Amina Ferhat (amina.ferhat@example.com) a créé un compte.
+                                    </div>
+                                    <div class="admin-activity-time">
+                                        Il y a 2 heures
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="admin-activity-item">
+                                <div class="admin-activity-icon" style="background-color: rgba(52, 152, 219, 0.1); color: #3498db;">
+                                    <i class="fas fa-credit-card"></i>
+                                </div>
+                                <div class="admin-activity-content">
+                                    <div class="admin-activity-title">
+                                        Nouvel abonnement
+                                    </div>
+                                    <div class="admin-activity-desc">
+                                        Sofiane Benmoussa a souscrit à l'offre Pro (1 mois).
+                                    </div>
+                                    <div class="admin-activity-time">
+                                        Il y a 5 heures
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="admin-activity-item">
+                                <div class="admin-activity-icon" style="background-color: rgba(46, 204, 113, 0.1); color: #2ecc71;">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <div class="admin-activity-content">
+                                    <div class="admin-activity-title">
+                                        Scan terminé
+                                    </div>
+                                    <div class="admin-activity-desc">
+                                        Le scan de Youcef Khelil (IP: 192.168.1.10) s'est terminé avec un score de 7.5.
+                                    </div>
+                                    <div class="admin-activity-time">
+                                        Il y a 6 heures
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="admin-activity-item">
+                                <div class="admin-activity-icon" style="background-color: rgba(231, 76, 60, 0.1); color: #e74c3c;">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </div>
+                                <div class="admin-activity-content">
+                                    <div class="admin-activity-title">
+                                        Abonnement expiré
+                                    </div>
+                                    <div class="admin-activity-desc">
+                                        L'abonnement Pro de Karim Meziane a expiré.
+                                    </div>
+                                    <div class="admin-activity-time">
+                                        Il y a 12 heures
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="admin-activity-item">
+                                <div class="admin-activity-icon" style="background-color: rgba(155, 89, 182, 0.1); color: #9b59b2;">
+                                    <i class="fas fa-cog"></i>
+                                </div>
+                                <div class="admin-activity-content">
+                                    <div class="admin-activity-title">
+                                        Paramètres système modifiés
+                                    </div>
+                                    <div class="admin-activity-desc">
+                                        Admin a modifié les paramètres de quota pour l'offre Entreprise.
+                                    </div>
+                                    <div class="admin-activity-time">
+                                        Il y a 1 jour
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/app.js"></script>
+    <script src="js/admin.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Subscriptions Chart
+            const subscriptionsCtx = document.getElementById('subscriptionsChartCanvas').getContext('2d');
+            const subscriptionsChart = new Chart(subscriptionsCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Août', 'Sep', 'Oct', 'Nov', 'Déc'],
+                    datasets: [
+                        {
+                            label: 'Pro',
+                            data: [5, 8, 12, 15, 20, 25, 30, 35, 42, 50, 65, 78],
+                            borderColor: '#3498db',
+                            backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        },
+                        {
+                            label: 'Entreprise',
+                            data: [2, 3, 4, 6, 8, 10, 12, 15, 18, 20, 22, 24],
+                            borderColor: '#e67e22',
+                            backgroundColor: 'rgba(230, 126, 34, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Nombre d\'abonnements'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Distribution Chart
+            const distributionCtx = document.getElementById('distributionChartCanvas').getContext('2d');
+            const distributionChart = new Chart(distributionCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Gratuit', 'Pro', 'Entreprise'],
+                    datasets: [{
+                        data: [42, 78, 24],
+                        backgroundColor: [
+                            '#95a5a6',
+                            '#3498db',
+                            '#e67e22'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    },
+                    cutout: '70%'
+                }
+            });
+            
+            // Handle period change for subscriptions chart
+            document.getElementById('subscriptionChartPeriod').addEventListener('change', function() {
+                const period = this.value;
+                let labels, proData, enterpriseData;
+                
+                if (period === 'month') {
+                    labels = ['1', '5', '10', '15', '20', '25', '30'];
+                    proData = [2, 5, 8, 12, 15, 18, 20];
+                    enterpriseData = [1, 2, 3, 4, 5, 6, 8];
+                } else if (period === 'quarter') {
+                    labels = ['Jan', 'Fév', 'Mar'];
+                    proData = [50, 65, 78];
+                    enterpriseData = [20, 22, 24];
+                } else { // year
+                    labels = ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Août', 'Sep', 'Oct', 'Nov', 'Déc'];
+                    proData = [5, 8, 12, 15, 20, 25, 30, 35, 42, 50, 65, 78];
+                    enterpriseData = [2, 3, 4, 6, 8, 10, 12, 15, 18, 20, 22, 24];
+                }
+                
+                subscriptionsChart.data.labels = labels;
+                subscriptionsChart.data.datasets[0].data = proData;
+                subscriptionsChart.data.datasets[1].data = enterpriseData;
+                subscriptionsChart.update();
+            });
+        });
+    </script>
+</body>
+</html>

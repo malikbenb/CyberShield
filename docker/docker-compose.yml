@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: ../api
+      # Assurez-vous qu'un Dockerfile existe dans le dossier api/
+    ports:
+      - "8000:8000"
+    volumes:
+      - ../api:/app
+    # La commande peut nécessiter un ajustement selon le nom du fichier/objet principal de l'API
+    command: ["uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+    networks:
+      - pentest-net
+    depends_on:
+      - nmap
+      - metasploit
+      - sqlmap
+
+  nmap:
+    image: instrumentisto/nmap
+    # Maintient le conteneur actif pour des exécutions ponctuelles via docker exec
+    command: ["sleep", "infinity"]
+    networks:
+      - pentest-net
+
+  metasploit:
+    image: metasploitframework/metasploit-framework
+    command: ["sleep", "infinity"]
+    volumes:
+      - msf_data:/root/.msf4 # Persistance des données Metasploit
+    networks:
+      - pentest-net
+
+  sqlmap:
+    image: parrotsec/sqlmap
+    command: ["sleep", "infinity"]
+    networks:
+      - pentest-net
+
+volumes:
+  msf_data:
+
+networks:
+  pentest-net:
+

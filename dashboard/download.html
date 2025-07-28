@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Téléchargement - CyberShield Dashboard</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="../images/Logo.jpg" type="image/jpg">
+    <style>
+        .download-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .download-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .download-header h1 {
+            color: #005a87;
+            margin-bottom: 10px;
+        }
+        
+        .download-header p {
+            color: #666;
+            font-size: 18px;
+        }
+        
+        .download-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .download-title {
+            font-size: 24px;
+            color: #005a87;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .download-title i {
+            margin-right: 15px;
+            font-size: 28px;
+        }
+        
+        .download-info {
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .download-button {
+            background-color: #005a87;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .download-button i {
+            margin-right: 10px;
+        }
+        
+        .download-button:hover {
+            background-color: #004a70;
+        }
+        
+        .download-progress {
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background-color: #005a87;
+            width: 0%;
+            transition: width 0.3s;
+        }
+        
+        .progress-text {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .download-success {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #d4edda;
+            border-radius: 5px;
+            color: #155724;
+            display: none;
+        }
+        
+        .download-error {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8d7da;
+            border-radius: 5px;
+            color: #721c24;
+            display: none;
+        }
+        
+        .installation-steps {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+        
+        .installation-steps h3 {
+            margin-top: 0;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .installation-steps ol {
+            padding-left: 20px;
+        }
+        
+        .installation-steps li {
+            margin-bottom: 10px;
+        }
+        
+        .system-requirements {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f0f7fb;
+            border-radius: 5px;
+            border-left: 4px solid #005a87;
+        }
+        
+        .system-requirements h3 {
+            margin-top: 0;
+            color: #005a87;
+            margin-bottom: 15px;
+        }
+        
+        .system-requirements ul {
+            padding-left: 20px;
+        }
+        
+        .system-requirements li {
+            margin-bottom: 8px;
+        }
+        .dashboard-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 25%;
+            margin-top: 30px;
+            padding-left: 20px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 10px;
+            width: auto;
+            height: auto;
+        }
+        .logo img {
+            max-width: 60px;
+            height: 60px;
+            border-radius:50%;
+            object-fit: cover;
+        }
+        .dashboard-nav ul {
+            margin-top: 50px;
+            padding-left: 20px; /* Décalage vers la droite */
+        }
+
+        .dashboard-nav li {
+            list-style: none; /* Optionnel pour enlever les puces */
+        }
+        .dashboard-nav a {
+            color: var(--cyber-accent);         /* Couleur personnalisée */
+            font-size: 18px;                    /* Taille du texte */
+            font-weight: bold;                 /* Texte plus visible */
+            text-decoration: none;             /* Supprime le soulignement */
+            padding: 8px 12px;
+            display: inline-block;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+        /* ✨ Effet au survol */
+        .dashboard-nav a:hover {
+           background: rgba(255, 255, 255, 0.1); /* Léger fond au survol */
+           transform: translateX(4px);          /* Petit décalage animé */
+           border-radius: 6px;                  /* Coins arrondis au survol */
+        }
+        .plan-features li {
+           color: #1a1a1a; /* Texte gris foncé pour bon contraste */
+        }
+        .download-card {
+          background-color: #fff;
+          border-radius: 10px;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+          padding: 30px;
+          margin-bottom: 30px;
+          color: #000; /* ✅ Texte noir dans toute la carte */
+        }
+
+        .download-info {
+          margin-bottom: 30px;
+          line-height: 1.6;
+        }
+
+        .download-info p {
+          font-size: 16px;
+          font-weight: 500;
+          margin-bottom: 15px;
+          /* color: hérité de .download-card → donc noir ici */
+        }
+
+    </style>
+</head>
+<body class="dashboard-body">
+    <header class="dashboard-header">
+        <div class="logo">
+            <img src="../images/Logo.jpg" alt="CyberShield Logo">
+            <h1>CyberShield Pro</h1>
+        </div>
+        <nav class="dashboard-nav">
+            <ul>
+                <li><a href="index.html"><i class="fas fa-tachometer-alt"></i> Tableau de bord</a></li>
+                <li><a href="subscription.html"><i class="fas fa-credit-card"></i> Abonnement</a></li>
+                <li><a href="profile.html"><i class="fas fa-user"></i> Profil</a></li>
+                <li><a href="#" id="logout-link"><i class="fas fa-sign-out-alt"></i> Déconnexion</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="dashboard-main">
+        <div class="download-container">
+            <div class="download-header">
+                <h1>Téléchargement du Scanner Pro</h1>
+                <p>Votre outil de sécurité avancé est prêt à être téléchargé</p>
+            </div>
+            
+            <div class="download-card" id="download-card">
+                <div class="download-title" id="download-title">
+                    <i class="fas fa-download"></i> Scanner Pro pour <span id="os-name">votre système</span>
+                </div>
+                
+                <div class="download-info">
+                    <p>Merci d'avoir souscrit à CyberShield Pro. Votre scanner est prêt à être téléchargé. Cliquez sur le bouton ci-dessous pour commencer le téléchargement.</p>
+                </div>
+                
+                <button class="download-button" id="download-button">
+                    <i class="fas fa-download"></i> Télécharger maintenant
+                </button>
+                
+                <div class="download-progress" id="download-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                    <div class="progress-text" id="progress-text">Téléchargement en cours... 0%</div>
+                </div>
+                
+                <div class="download-success" id="download-success">
+                    <i class="fas fa-check-circle"></i> Téléchargement réussi ! Vous pouvez maintenant installer le scanner.
+                </div>
+                
+                <div class="download-error" id="download-error">
+                    <i class="fas fa-exclamation-circle"></i> Une erreur est survenue lors du téléchargement. Veuillez réessayer.
+                </div>
+                
+                <div class="installation-steps">
+                    <h3>Instructions d'installation</h3>
+                    <ol id="installation-steps">
+                        <!-- Les instructions seront ajoutées dynamiquement selon l'OS -->
+                    </ol>
+                </div>
+                
+                <div class="system-requirements">
+                    <h3>Configuration requise</h3>
+                    <ul id="system-requirements">
+                        <!-- Les exigences seront ajoutées dynamiquement selon l'OS -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Récupérer les paramètres de l'URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const os = urlParams.get('os') || sessionStorage.getItem('scanner_os') || 'windows';
+            
+            // Éléments DOM
+            const osNameElement = document.getElementById('os-name');
+            const downloadButton = document.getElementById('download-button');
+            const downloadProgress = document.getElementById('download-progress');
+            const progressFill = document.getElementById('progress-fill');
+            const progressText = document.getElementById('progress-text');
+            const downloadSuccess = document.getElementById('download-success');
+            const downloadError = document.getElementById('download-error');
+            const installationSteps = document.getElementById('installation-steps');
+            const systemRequirements = document.getElementById('system-requirements');
+            
+            // Configurer l'interface selon l'OS
+            let osName = '';
+            let osIcon = '';
+            let installSteps = [];
+            let sysReqs = [];
+            let scannerUrl = '';
+            
+            switch(os) {
+                case 'windows':
+                    osName = 'Windows';
+                    osIcon = 'windows';
+                    scannerUrl = '/scanners/windows/WindowsProScan.exe';
+                    installSteps = [
+                        'Téléchargez le fichier WindowsProScan.exe',
+                        'Double-cliquez sur le fichier téléchargé pour lancer l\'installation',
+                        'Suivez les instructions de l\'assistant d\'installation',
+                        'Une fois installé, lancez CyberShield Pro depuis votre menu Démarrer'
+                    ];
+                    sysReqs = [
+                        'Windows 10 ou supérieur',
+                        'Processeur 2 GHz ou plus rapide',
+                        '4 Go de RAM minimum',
+                        '500 Mo d\'espace disque disponible',
+                        'Connexion Internet pour les mises à jour'
+                    ];
+                    break;
+                case 'macos':
+                    osName = 'macOS';
+                    osIcon = 'apple';
+                    scannerUrl = '/scanners/macos/macos_scan_pro.sh';
+                    installSteps = [
+                        'Téléchargez le fichier macos_scan_pro.sh',
+                        'Ouvrez le Terminal',
+                        'Naviguez vers le dossier de téléchargement avec la commande cd',
+                        'Rendez le script exécutable avec la commande: chmod +x macos_scan_pro.sh',
+                        'Exécutez le script avec la commande: ./macos_scan_pro.sh'
+                    ];
+                    sysReqs = [
+                        'macOS 10.15 (Catalina) ou supérieur',
+                        'Processeur Intel ou Apple Silicon',
+                        '4 Go de RAM minimum',
+                        '500 Mo d\'espace disque disponible',
+                        'Connexion Internet pour les mises à jour'
+                    ];
+                    break;
+                case 'linux':
+                    osName = 'Linux';
+                    osIcon = 'linux';
+                    scannerUrl = '/scanners/linux/linux_scan_pro.sh';
+                    installSteps = [
+                        'Téléchargez le fichier linux_scan_pro.sh',
+                        'Ouvrez un terminal',
+                        'Naviguez vers le dossier de téléchargement avec la commande cd',
+                        'Rendez le script exécutable avec la commande: chmod +x linux_scan_pro.sh',
+                        'Exécutez le script avec la commande: sudo ./linux_scan_pro.sh'
+                    ];
+                    sysReqs = [
+                        'Distribution Linux récente (Ubuntu 20.04+, Debian 10+, Fedora 32+, etc.)',
+                        'Processeur 2 GHz ou plus rapide',
+                        '4 Go de RAM minimum',
+                        '500 Mo d\'espace disque disponible',
+                        'Connexion Internet pour les mises à jour',
+                        'Privilèges sudo pour l\'installation'
+                    ];
+                    break;
+            }
+            
+            // Mettre à jour l'interface
+            osNameElement.textContent = osName;
+            document.getElementById('download-title').innerHTML = `<i class="fab fa-${osIcon}"></i> Scanner Pro pour ${osName}`;
+            
+            // Ajouter les étapes d'installation
+            installSteps.forEach(step => {
+                const li = document.createElement('li');
+                li.textContent = step;
+                installationSteps.appendChild(li);
+            });
+            
+            // Ajouter les exigences système
+            sysReqs.forEach(req => {
+                const li = document.createElement('li');
+                li.textContent = req;
+                systemRequirements.appendChild(li);
+            });
+            
+            // Gérer le téléchargement
+            downloadButton.addEventListener('click', function() {
+                // Vérifier si l'utilisateur a un abonnement actif
+                const subscriptionActive = sessionStorage.getItem('subscription_active') === 'true';
+                
+                if (!subscriptionActive) {
+                    // Rediriger vers la page d'abonnement si l'utilisateur n'a pas d'abonnement actif
+                    window.location.href = 'subscription.html?os=' + os;
+                    return;
+                }
+                
+                // Simuler le téléchargement
+                downloadButton.disabled = true;
+                downloadProgress.style.display = 'block';
+                
+                let progress = 0;
+                const interval = setInterval(() => {
+                    progress += Math.random() * 10;
+                    if (progress >= 100) {
+                        progress = 100;
+                        clearInterval(interval);
+                        
+                        // Téléchargement terminé
+                        setTimeout(() => {
+                            downloadSuccess.style.display = 'block';
+                            
+                            // Déclencher le téléchargement réel
+                            const link = document.createElement('a');
+                            link.href = scannerUrl;
+                            link.download = scannerUrl.split('/').pop();
+                            document.body.appendChild(link);
+                            link.click();
+                            document.body.removeChild(link);
+                        }, 500);
+                    }
+                    
+                    progressFill.style.width = `${progress}%`;
+                    progressText.textContent = `Téléchargement en cours... ${Math.round(progress)}%`;
+                }, 300);
+            });
+            
+            // Déconnexion
+            document.getElementById('logout-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Appel à l'API de déconnexion
+                fetch('/api/auth/logout', {
+                    method: 'POST',
+                })
+                .then(response => {
+                    // Rediriger vers la page d'accueil
+                    window.location.href = '../index.html';
+                })
+                .catch(error => {
+                    console.error('Erreur:', error);
+                    // Rediriger quand même en cas d'erreur
+                    window.location.href = '../index.html';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

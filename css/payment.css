@@ -1,0 +1,352 @@
+/* Styles pour les pages de paiement */
+
+/* Styles généraux */
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2c3e50;
+    --success-color: #2ecc71;
+    --warning-color: #f39c12;
+    --danger-color: #e74c3c;
+    --light-color: #ecf0f1;
+    --dark-color: #2c3e50;
+    --border-radius: 8px;
+    --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    padding-top: 80px;
+    color: #333;
+    background-color: #f8f9fa;
+}
+
+/* Header de la section d'abonnement */
+.subscription-header {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 60px 0 40px;
+    margin-bottom: 40px;
+}
+
+.subscription-header h1 {
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* Cartes de plans */
+.plan-card {
+    border: none;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.plan-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.plan-title {
+    font-weight: 700;
+    margin: 0;
+}
+
+.plan-price {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.price {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.currency {
+    font-size: 1.2rem;
+    font-weight: 600;
+    vertical-align: super;
+}
+
+.period {
+    font-size: 1rem;
+    color: #6c757d;
+}
+
+.plan-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px;
+}
+
+.plan-features li {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.plan-features li:last-child {
+    border-bottom: none;
+}
+
+.plan-popular {
+    position: relative;
+    transform: scale(1.05);
+    z-index: 1;
+}
+
+.popular-badge {
+    position: absolute;
+    top: 10px;
+    right: -30px;
+    background-color: var(--warning-color);
+    color: white;
+    padding: 5px 30px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transform: rotate(45deg);
+    z-index: 2;
+}
+
+/* Progression des étapes */
+.subscription-progress {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 40px auto 0;
+    max-width: 600px;
+}
+
+.progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #e9ecef;
+    color: #6c757d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    margin-bottom: 8px;
+    transition: all 0.3s ease;
+}
+
+.progress-step.active .step-number {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.step-label {
+    font-size: 0.9rem;
+    color: #6c757d;
+    transition: all 0.3s ease;
+}
+
+.progress-step.active .step-label {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.progress-line {
+    flex-grow: 1;
+    height: 3px;
+    background-color: #e9ecef;
+    position: relative;
+    z-index: 0;
+}
+
+/* Durée d'abonnement */
+.plan-summary {
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.duration-card {
+    border: 2px solid transparent;
+    border-radius: var(--border-radius);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.duration-card:hover {
+    border-color: var(--primary-color);
+    background-color: rgba(52, 152, 219, 0.05);
+}
+
+.duration-card .form-check {
+    padding: 0;
+}
+
+.duration-card .form-check-input {
+    margin-top: 12px;
+}
+
+.duration-card .form-check-label {
+    padding: 15px;
+    cursor: pointer;
+}
+
+.popular-duration {
+    position: relative;
+    border-color: var(--primary-color);
+}
+
+/* Formulaire de paiement */
+.payment-card, .order-summary-card {
+    border: none;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-bottom: 30px;
+}
+
+.payment-card .card-title, .order-summary-card .card-title {
+    color: var(--secondary-color);
+    font-weight: 700;
+}
+
+.order-item {
+    padding: 8px 0;
+}
+
+.order-total {
+    font-size: 1.2rem;
+    padding: 10px 0;
+}
+
+.order-features {
+    background-color: rgba(52, 152, 219, 0.05);
+    padding: 15px;
+    border-radius: var(--border-radius);
+}
+
+.order-features h5 {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+/* Page de confirmation */
+.confirmation-card {
+    border: none;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 20px;
+}
+
+.confirmation-icon {
+    font-size: 5rem;
+    color: var(--success-color);
+}
+
+.detail-item {
+    background-color: rgba(52, 152, 219, 0.05);
+    padding: 15px;
+    border-radius: var(--border-radius);
+    height: 100%;
+}
+
+.detail-item h5 {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-bottom: 5px;
+}
+
+.detail-item p {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.step-card {
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 20px;
+    text-align: center;
+    height: 100%;
+}
+
+.step-icon {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.step-card h5 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.step-card p {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-bottom: 0;
+}
+
+.confirmation-actions {
+    margin-top: 30px;
+}
+
+/* FAQ Section */
+.subscription-faq {
+    padding: 60px 0;
+}
+
+.accordion-item {
+    border: none;
+    margin-bottom: 15px;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+}
+
+.accordion-button {
+    font-weight: 600;
+    padding: 20px;
+}
+
+.accordion-button:not(.collapsed) {
+    color: var(--primary-color);
+    background-color: rgba(52, 152, 219, 0.05);
+}
+
+.accordion-body {
+    padding: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .subscription-progress {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .progress-step {
+        flex-direction: row;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+    
+    .step-number {
+        margin-right: 15px;
+        margin-bottom: 0;
+    }
+    
+    .progress-line {
+        width: 3px;
+        height: 20px;
+        margin-left: 18px;
+    }
+    
+    .plan-popular {
+        transform: none;
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+}

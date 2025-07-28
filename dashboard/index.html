@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de Bord - CyberShield Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="icon" href="../images/Logo.jpg" type="image/jpg">
+</head>
+<body>
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="../images/Logo.jpg" alt="CyberShield Logo" class="sidebar-logo">
+                <h2 class="sidebar-title">CyberShield Pro</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="index.html" class="active"><i class="fas fa-tachometer-alt"></i> Tableau de Bord</a></li>
+                    <li><a href="download.html"><i class="fas fa-download"></i> Téléchargements</a></li>
+                    <li><a href="history.html"><i class="fas fa-history"></i> Historique</a></li>
+                    <!-- <li><a href="reports.html"><i class="fas fa-file-alt"></i> Rapports</a></li> --> <!-- Maybe integrated in history -->
+                    <li><a href="profile.html"><i class="fas fa-user-cog"></i> Profil</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar" id="user-avatar"></div>
+                    <div class="user-details">
+                        <span class="user-name" id="user-name">Chargement...</span>
+                        <span class="user-email" id="user-email"></span>
+                    </div>
+                </div>
+                <button id="logout-btn" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Déconnexion</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="page-header">
+                <h1>Tableau de Bord</h1>
+            </header>
+
+            <!-- Dashboard Widgets -->
+            <section class="dashboard-grid">
+                <div class="info-card">
+                    <div class="info-card-icon"><i class="fas fa-shield-alt"></i></div>
+                    <div class="info-card-content">
+                        <h3>Scans Réalisés (Total)</h3>
+                        <p id="total-scans">0</p>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                    <div class="info-card-content">
+                        <h3>Score Moyen Vulnérabilités</h3>
+                        <p id="average-score">N/A</p>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-icon"><i class="fas fa-calendar-alt"></i></div>
+                    <div class="info-card-content">
+                        <h3>Dernier Scan</h3>
+                        <p id="last-scan-date">Jamais</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recent Scans Table -->
+            <section class="recent-scans">
+                <h2>Scans Récents</h2>
+                <div class="data-table-container">
+                    <table class="data-table" id="recent-scans-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Cible</th>
+                                <th>Statut</th>
+                                <th>Score</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Les lignes seront ajoutées par JavaScript -->
+                            <tr>
+                                <td colspan="5" style="text-align: center;">Chargement de l'historique...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="text-align: right; margin-top: 15px;">
+                    <a href="history.html" class="btn cyber-btn btn-outline">Voir tout l'historique</a>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Modal pour afficher les détails du rapport -->
+    <div id="report-modal" class="modal" style="display: none;">
+        <div class="modal-content report-modal-content"> <!-- Add specific class -->
+            <div class="modal-header">
+                <h2 id="report-modal-title">Détails du Rapport</h2>
+                <span class="close-modal" id="close-report-modal">&times;</span>
+            </div>
+            <div class="modal-body" id="report-modal-body">
+                <!-- Le contenu du rapport sera chargé ici -->
+                <p>Chargement du rapport...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/dashboard.js"></script>
+</body>
+</html>
+

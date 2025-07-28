@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberShield - Paiement</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/payment.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="../index.html">
+                    <img src="../assets/images/logo.png" alt="CyberShield Logo" class="logo">
+                    CyberShield
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html">Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="index.html">Abonnements</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../dashboard/login.html">Connexion</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <section class="subscription-header">
+            <div class="container">
+                <div class="row justify-content-center text-center">
+                    <div class="col-lg-8">
+                        <h1>Finaliser votre abonnement</h1>
+                        <p class="lead">Saisissez vos informations de paiement en toute sécurité</p>
+                        <div class="subscription-progress">
+                            <div class="progress-step active">
+                                <div class="step-number">1</div>
+                                <div class="step-label">Plan</div>
+                            </div>
+                            <div class="progress-line"></div>
+                            <div class="progress-step active">
+                                <div class="step-number">2</div>
+                                <div class="step-label">Durée</div>
+                            </div>
+                            <div class="progress-line"></div>
+                            <div class="progress-step active">
+                                <div class="step-number">3</div>
+                                <div class="step-label">Paiement</div>
+                            </div>
+                            <div class="progress-line"></div>
+                            <div class="progress-step">
+                                <div class="step-number">4</div>
+                                <div class="step-label">Confirmation</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="payment-form-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="row">
+                            <!-- Payment Form -->
+                            <div class="col-md-7">
+                                <div class="card payment-card">
+                                    <div class="card-body">
+                                        <h3 class="card-title mb-4">Informations de paiement</h3>
+                                        
+                                        <form id="payment-form">
+                                            <!-- Personal Information -->
+                                            <div class="mb-4">
+                                                <h5>Informations personnelles</h5>
+                                                <div class="mb-3">
+                                                    <label for="full-name" class="form-label">Nom complet</label>
+                                                    <input type="text" class="form-control" id="full-name" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="email" class="form-label">Email</label>
+                                                    <input type="email" class="form-control" id="email" required>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Card Information -->
+                                            <div class="mb-4">
+                                                <h5>Informations de carte</h5>
+                                                <div class="mb-3">
+                                                    <label for="card-number" class="form-label">Numéro de carte</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" id="card-number" placeholder="1234 5678 9012 3456" required>
+                                                        <span class="input-group-text">
+                                                            <i class="fab fa-cc-visa me-1"></i>
+                                                            <i class="fab fa-cc-mastercard me-1"></i>
+                                                            <i class="fab fa-cc-amex"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6 mb-3">
+                                                        <label for="expiry-date" class="form-label">Date d'expiration</label>
+                                                        <input type="text" class="form-control" id="expiry-date" placeholder="MM/AA" required>
+                                                    </div>
+                                                    <div class="col-md-6 mb-3">
+                                                        <label for="cvv" class="form-label">CVV</label>
+                                                        <input type="text" class="form-control" id="cvv" placeholder="123" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Billing Address -->
+                                            <div class="mb-4">
+                                                <h5>Adresse de facturation</h5>
+                                                <div class="mb-3">
+                                                    <label for="address" class="form-label">Adresse</label>
+                                                    <input type="text" class="form-control" id="address" required>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6 mb-3">
+                                                        <label for="city" class="form-label">Ville</label>
+                                                        <input type="text" class="form-control" id="city" required>
+                                                    </div>
+                                                    <div class="col-md-6 mb-3">
+                                                        <label for="postal-code" class="form-label">Code postal</label>
+                                                        <input type="text" class="form-control" id="postal-code" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-check mb-4">
+                                                <input class="form-check-input" type="checkbox" id="terms-checkbox" required>
+                                                <label class="form-check-label" for="terms-checkbox">
+                                                    J'accepte les <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">conditions générales</a> et la <a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal">politique de confidentialité</a>
+                                                </label>
+                                            </div>
+                                            
+                                            <div class="d-grid">
+                                                <button type="submit" class="btn btn-primary btn-lg" id="submit-payment">
+                                                    <i class="fas fa-lock me-2"></i>Payer maintenant
+                                                </button>
+                                            </div>
+                                            
+                                            <div class="text-center mt-3">
+                                                <small class="text-muted">
+                                                    <i class="fas fa-shield-alt me-1"></i>Paiement sécurisé - Vos données sont chiffrées
+                                                </small>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Order Summary -->
+                            <div class="col-md-5">
+                                <div class="card order-summary-card">
+                                    <div class="card-body">
+                                        <h3 class="card-title mb-4">Récapitulatif</h3>
+                                        
+                                        <div class="order-item d-flex justify-content-between mb-2">
+                                            <span>Plan</span>
+                                            <span id="summary-plan">Pro</span>
+                                        </div>
+                                        <div class="order-item d-flex justify-content-between mb-2">
+                                            <span>Durée</span>
+                                            <span id="summary-duration">1 mois</span>
+                                        </div>
+                                        <div class="order-item d-flex justify-content-between mb-2">
+                                            <span>Prix unitaire</span>
+                                            <span id="summary-unit-price">40 000 DA/mois</span>
+                                        </div>
+                                        
+                                        <hr>
+                                        
+                                        <div class="order-total d-flex justify-content-between mb-3">
+                                            <span class="fw-bold">Total</span>
+                                            <span class="fw-bold" id="summary-total">40 000 DA</span>
+                                        </div>
+                                        
+                                        <div class="text-center mb-3">
+                                            <a href="select-duration.html" class="btn btn-outline-secondary btn-sm">
+                                                <i class="fas fa-edit me-1"></i>Modifier
+                                            </a>
+                                        </div>
+                                        
+                                        <div class="order-features">
+                                            <h5>Votre abonnement inclut :</h5>
+                                            <ul class="list-unstyled">
+                                                <li><i class="fas fa-check text-success me-2"></i>Scan avancé</li>
+                                                <li><i class="fas fa-check text-success me-2"></i>1 adresse IP</li>
+                                                <li><i class="fas fa-check text-success me-2"></i>Rapport détaillé</li>
+                                                <li><i class="fas fa-check text-success me-2"></i>Score de vulnérabilité</li>
+                                                <li><i class="fas fa-check text-success me-2"></i>Solutions recommandées</li>
+                                                <li><i class="fas fa-check text-success me-2"></i>Historique des scans</li>
+                                                <li><i class="fas fa-check text-success me-2"></i>Support par email</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Payment Processing Modal -->
+    <div class="modal fade" id="paymentProcessingModal" tabindex="-1" aria-labelledby="paymentProcessingModalLabel" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center p-5">
+                    <div class="spinner-border text-primary mb-4" role="status" style="width: 3rem; height: 3rem;">
+                        <span class="visually-hidden">Chargement...</span>
+                    </div>
+                    <h4 id="processing-message">Traitement de votre paiement...</h4>
+                    <p class="text-muted">Veuillez ne pas fermer cette fenêtre.</p>
+                    <div class="progress mt-4">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%" id="payment-progress"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms Modal -->
+    <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="termsModalLabel">Conditions générales</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h6>1. Acceptation des conditions</h6>
+                    <p>En utilisant les services de CyberShield, vous acceptez d'être lié par les présentes conditions générales. Si vous n'acceptez pas ces conditions, veuillez ne pas utiliser nos services.</p>
+                    
+                    <h6>2. Description du service</h6>
+                    <p>CyberShield fournit des services de scan de sécurité pour identifier les vulnérabilités potentielles dans votre infrastructure informatique. Nos services sont fournis "tels quels" et nous ne garantissons pas que tous les problèmes de sécurité seront identifiés.</p>
+                    
+                    <h6>3. Abonnements et paiements</h6>
+                    <p>Les abonnements sont facturés à l'avance selon la période choisie (mensuelle, trimestrielle ou annuelle). Les abonnements se renouvellent automatiquement à la fin de chaque période, sauf annulation préalable.</p>
+                    
+                    <h6>4. Annulation et remboursement</h6>
+                    <p>Vous pouvez annuler votre abonnement à tout moment depuis votre espace client. L'abonnement restera actif jusqu'à la fin de la période payée. Aucun remboursement ne sera effectué pour les périodes partiellement utilisées.</p>
+                    
+                    <h6>5. Utilisation du service</h6>
+                    <p>Vous vous engagez à n'utiliser nos services que sur des systèmes pour lesquels vous avez l'autorisation légale de réaliser des tests de sécurité. Toute utilisation abusive ou illégale entraînera la résiliation immédiate de votre compte sans remboursement.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Privacy Modal -->
+    <div class="modal fade" id="privacyModal" tabindex="-1" aria-labelledby="privacyModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="privacyModalLabel">Politique de confidentialité</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h6>1. Collecte des données</h6>
+                    <p>Nous collectons les informations que vous nous fournissez lors de votre inscription et de l'utilisation de nos services, y compris vos coordonnées, informations de paiement et données relatives aux scans effectués.</p>
+                    
+                    <h6>2. Utilisation des données</h6>
+                    <p>Nous utilisons vos données pour fournir et améliorer nos services, traiter les paiements, communiquer avec vous et vous envoyer des informations importantes concernant votre compte et nos services.</p>
+                    
+                    <h6>3. Protection des données</h6>
+                    <p>Nous mettons en œuvre des mesures de sécurité techniques et organisationnelles pour protéger vos données contre tout accès non autorisé, modification, divulgation ou destruction.</p>
+                    
+                    <h6>4. Partage des données</h6>
+                    <p>Nous ne vendons pas vos données personnelles à des tiers. Nous pouvons partager vos données avec des prestataires de services qui nous aident à fournir nos services, mais uniquement dans la mesure nécessaire.</p>
+                    
+                    <h6>5. Vos droits</h6>
+                    <p>Vous avez le droit d'accéder à vos données, de les rectifier, de les supprimer ou d'en limiter le traitement. Pour exercer ces droits, contactez-nous à privacy@cybershield-algeria.com.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h4>CyberShield</h4>
+                    <p>Votre partenaire en sécurité informatique</p>
+                </div>
+                <div class="col-md-4">
+                    <h4>Liens rapides</h4>
+                    <ul class="footer-links">
+                        <li><a href="../index.html">Accueil</a></li>
+                        <li><a href="index.html">Abonnements</a></li>
+                        <li><a href="../dashboard/login.html">Connexion</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h4>Contact</h4>
+                    <p>Email: contact@cybershield-algeria.com</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12 text-center">
+                    <p class="copyright">© 2025 CyberShield. Tous droits réservés.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/payment.js"></script>
+</body>
+</html>

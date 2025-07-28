@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Utilisateur - CyberShield Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="icon" href="../images/Logo.jpg" type="image/jpg">
+</head>
+<body>
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="../images/Logo.jpg" alt="CyberShield Logo" class="sidebar-logo">
+                <h2 class="sidebar-title">CyberShield Pro</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-tachometer-alt"></i> Tableau de Bord</a></li>
+                    <li><a href="download.html"><i class="fas fa-download"></i> Téléchargements</a></li>
+                    <li><a href="history.html"><i class="fas fa-history"></i> Historique</a></li>
+                    <li><a href="profile.html" class="active"><i class="fas fa-user-cog"></i> Profil</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar" id="user-avatar"></div>
+                    <div class="user-details">
+                        <span class="user-name" id="user-name">Chargement...</span>
+                        <span class="user-email" id="user-email"></span>
+                    </div>
+                </div>
+                <button id="logout-btn" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Déconnexion</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="page-header">
+                <h1>Gestion du Profil</h1>
+            </header>
+
+            <section class="profile-management">
+                <form id="profile-form" class="profile-form">
+                    <h2>Informations Personnelles</h2>
+                    <div id="profile-error-message" class="error-message" style="display: none;"></div>
+                    <div id="profile-success-message" class="success-message" style="display: none;"></div>
+                    
+                    <div class="form-group">
+                        <label for="profile-firstName">Prénom</label>
+                        <input type="text" id="profile-firstName" name="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="profile-lastName">Nom</label>
+                        <input type="text" id="profile-lastName" name="lastName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="profile-email">Email</label>
+                        <input type="email" id="profile-email" name="email" required>
+                    </div>
+                    <button type="submit" class="btn cyber-btn">Mettre à jour les informations</button>
+                </form>
+
+                <form id="password-form" class="profile-form" style="margin-top: 40px;">
+                    <h2>Changer le mot de passe</h2>
+                     <div id="password-error-message" class="error-message" style="display: none;"></div>
+                    <div id="password-success-message" class="success-message" style="display: none;"></div>
+                    <div class="form-group">
+                        <label for="newPassword">Nouveau mot de passe</label>
+                        <input type="password" id="newPassword" name="newPassword" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmNewPassword">Confirmer le nouveau mot de passe</label>
+                        <input type="password" id="confirmNewPassword" name="confirmNewPassword" required>
+                    </div>
+                    <button type="submit" class="btn cyber-btn">Changer le mot de passe</button>
+                </form>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="../js/dashboard.js"></script> <!-- Script partagé pour la logique du dashboard -->
+</body>
+</html>
+

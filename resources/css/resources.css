@@ -1,0 +1,340 @@
+/* Styles pour la documentation */
+.doc-hero {
+    background-color: var(--cyber-dark);
+    padding: 150px 0 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.doc-hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(rgba(100, 255, 218, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(100, 255, 218, 0.05) 1px, transparent 1px);
+    background-size: 30px 30px;
+    z-index: 0;
+}
+
+.doc-hero .container {
+    position: relative;
+    z-index: 1;
+}
+
+.doc-hero h1 {
+    font-size: 3rem;
+    color: var(--cyber-accent);
+    margin-bottom: 20px;
+}
+
+.doc-hero p {
+    font-size: 1.2rem;
+    color: var(--cyber-gray);
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.doc-content {
+    padding: 60px 0;
+}
+
+.doc-content .container {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 40px;
+}
+
+.doc-sidebar {
+    position: sticky;
+    top: calc(var(--header-height) + 20px);
+    height: calc(100vh - var(--header-height) - 40px);
+    overflow-y: auto;
+    padding-right: 20px;
+}
+
+.doc-search {
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.doc-search input {
+    flex: 1;
+    padding: 12px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(100, 255, 218, 0.2);
+    border-radius: 4px 0 0 4px;
+    color: var(--cyber-text);
+    font-family: 'Roboto', sans-serif;
+}
+
+.doc-search button {
+    padding: 12px 15px;
+    background-color: var(--cyber-accent);
+    color: var(--cyber-dark);
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+}
+
+.doc-nav h3 {
+    font-size: 1.2rem;
+    color: var(--cyber-accent);
+    margin: 25px 0 15px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(100, 255, 218, 0.2);
+}
+
+.doc-nav ul {
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.doc-nav li {
+    margin-bottom: 8px;
+}
+
+.doc-nav a {
+    color: var(--cyber-gray);
+    text-decoration: none;
+    display: block;
+    padding: 8px 15px;
+    border-left: 3px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.doc-nav a:hover {
+    color: var(--cyber-accent);
+    background-color: rgba(100, 255, 218, 0.05);
+    border-left-color: rgba(100, 255, 218, 0.5);
+    padding-left: 20px;
+}
+
+.doc-nav a.active {
+    background-color: rgba(100, 255, 218, 0.1);
+    border-left-color: var(--cyber-accent);
+    color: var(--cyber-accent);
+    padding-left: 20px;
+}
+
+.doc-main {
+    background-color: rgba(10, 25, 47, 0.3);
+    border-radius: 8px;
+    padding: 40px;
+    border: 1px solid rgba(100, 255, 218, 0.1);
+    min-height: 800px;
+}
+
+/* Correction pour éviter la superposition */
+.doc-section {
+    display: none;
+    position: relative;
+    z-index: 1;
+    background-color: rgba(10, 25, 47, 0.7);
+    border-radius: 8px;
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.doc-section.active {
+    display: block;
+}
+
+.doc-section h2 {
+    font-size: 2.2rem;
+    color: var(--cyber-accent);
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(100, 255, 218, 0.2);
+}
+
+.doc-card {
+    display: flex;
+    gap: 25px;
+    background-color: rgba(10, 25, 47, 0.5);
+    border: 1px solid rgba(100, 255, 218, 0.1);
+    border-radius: 8px;
+    padding: 30px;
+    margin-bottom: 30px;
+    transition: all 0.3s ease;
+}
+
+.doc-card:hover {
+    border-color: rgba(100, 255, 218, 0.3);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.doc-card-icon {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    background-color: rgba(100, 255, 218, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: var(--cyber-accent);
+}
+
+.doc-card-content {
+    flex: 1;
+}
+
+.doc-card-content h3 {
+    font-size: 1.5rem;
+    color: var(--cyber-text);
+    margin-bottom: 15px;
+}
+
+.doc-card-content h4 {
+    font-size: 1.2rem;
+    color: var(--cyber-accent);
+    margin: 20px 0 10px;
+}
+
+.doc-card-content p {
+    margin-bottom: 15px;
+    line-height: 1.7;
+}
+
+.doc-card-content ul, .doc-card-content ol {
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.doc-card-content li {
+    margin-bottom: 8px;
+}
+
+.doc-card-content a {
+    color: var(--cyber-accent);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.doc-card-content a:hover {
+    text-decoration: underline;
+}
+
+.doc-table-container {
+    overflow-x: auto;
+    margin: 20px 0;
+}
+
+.doc-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.doc-table th, .doc-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+}
+
+.doc-table th {
+    background-color: rgba(10, 25, 47, 0.8);
+    color: var(--cyber-accent);
+    font-weight: 600;
+}
+
+.doc-table tr:nth-child(even) {
+    background-color: rgba(10, 25, 47, 0.3);
+}
+
+.doc-table tr:hover {
+    background-color: rgba(100, 255, 218, 0.05);
+}
+
+.doc-code {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    padding: 20px;
+    margin: 20px 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    overflow-x: auto;
+    border-left: 3px solid var(--cyber-accent);
+}
+
+.doc-note {
+    background-color: rgba(0, 168, 255, 0.1);
+    border-left: 3px solid var(--cyber-info);
+    padding: 15px 20px;
+    margin: 20px 0;
+    border-radius: 4px;
+}
+
+.doc-warning {
+    background-color: rgba(255, 204, 0, 0.1);
+    border-left: 3px solid var(--cyber-warning);
+    padding: 15px 20px;
+    margin: 20px 0;
+    border-radius: 4px;
+}
+
+.doc-danger {
+    background-color: rgba(255, 85, 85, 0.1);
+    border-left: 3px solid var(--cyber-alert);
+    padding: 15px 20px;
+    margin: 20px 0;
+    border-radius: 4px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .doc-content .container {
+        grid-template-columns: 250px 1fr;
+        gap: 30px;
+    }
+    
+    .doc-main {
+        padding: 30px;
+    }
+    
+    .doc-card {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .doc-card-icon {
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .doc-content .container {
+        grid-template-columns: 1fr;
+    }
+    
+    .doc-sidebar {
+        position: relative;
+        top: 0;
+        height: auto;
+        margin-bottom: 30px;
+        padding-right: 0;
+    }
+    
+    .doc-main {
+        padding: 20px;
+    }
+    
+    .doc-section h2 {
+        font-size: 1.8rem;
+    }
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.doc-section.active {
+    animation: fadeIn 0.5s ease forwards;
+}

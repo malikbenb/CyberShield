@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberShield Admin - Édition Utilisateur</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <div class="admin-sidebar">
+            <div class="admin-sidebar-header">
+                <img src="../img/logo.png" alt="CyberShield Logo">
+                <h2>CyberShield Admin</h2>
+            </div>
+            
+            <div class="admin-sidebar-menu">
+                <ul>
+                    <li>
+                        <a href="/admin/dashboard">
+                            <i class="fas fa-tachometer-alt"></i> Tableau de bord
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/users" class="active">
+                            <i class="fas fa-users"></i> Utilisateurs
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/subscriptions">
+                            <i class="fas fa-credit-card"></i> Abonnements
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/scans">
+                            <i class="fas fa-shield-alt"></i> Scans
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/settings">
+                            <i class="fas fa-cog"></i> Paramètres
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="admin-main">
+            <!-- Header -->
+            <div class="admin-header">
+                <div class="admin-header-title">
+                    <h1>Édition Utilisateur</h1>
+                </div>
+                
+                <div class="admin-header-actions">
+                    <div class="admin-user-menu">
+                        <div class="admin-user-menu-toggle" id="userMenuToggle">
+                            <img src="../img/avatar-placeholder.png" alt="Admin">
+                            <span>Admin</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        
+                        <div class="admin-user-menu-dropdown" id="userMenuDropdown">
+                            <a href="/admin/profile">
+                                <i class="fas fa-user"></i> Profil
+                            </a>
+                            <a href="/admin/logout">
+                                <i class="fas fa-sign-out-alt"></i> Déconnexion
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Content -->
+            <div class="admin-content">
+                <!-- Breadcrumb -->
+                <div class="admin-mb-20">
+                    <a href="/admin/users" class="admin-btn admin-btn-outline admin-btn-sm">
+                        <i class="fas fa-arrow-left"></i> Retour à la liste
+                    </a>
+                </div>
+                
+                <!-- User Edit Form -->
+                <div class="admin-card">
+                    <div class="admin-card-header">
+                        <h2>Informations Utilisateur</h2>
+                        <div>
+                            <span class="admin-badge admin-badge-primary">Pro</span>
+                            <span class="admin-badge admin-badge-success">Actif</span>
+                        </div>
+                    </div>
+                    <div class="admin-card-body">
+                        <!-- Flash Messages -->
+                        <div class="admin-alert admin-alert-success admin-mb-20">
+                            <i class="fas fa-check-circle"></i>
+                            <div>Les informations de l'utilisateur ont été mises à jour avec succès.</div>
+                        </div>
+                        
+                        <form action="/admin/users/1" method="POST">
+                            <!-- Personal Information -->
+                            <h3 class="admin-mb-10">Informations Personnelles</h3>
+                            <div class="admin-form-row">
+                                <div class="admin-form-group">
+                                    <label for="first_name">Prénom</label>
+                                    <input type="text" id="first_name" name="first_name" value="Ahmed">
+                                </div>
+                                <div class="admin-form-group">
+                                    <label for="last_name">Nom</label>
+                                    <input type="text" id="last_name" name="last_name" value="Benali">
+                                </div>
+                            </div>
+                            
+                            <div class="admin-form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" value="ahmed.benali@example.com">
+                            </div>
+                            
+                            <!-- Subscription Information -->
+                            <h3 class="admin-mb-10 admin-mt-20">Informations d'Abonnement</h3>
+                            <div class="admin-form-row">
+                                <div class="admin-form-group">
+                                    <label for="offer_type">Type d'Offre</label>
+                                    <select id="offer_type" name="offer_type">
+                                        <option value="free">Gratuit</option>
+                                        <option value="pro" selected>Pro</option>
+                                        <option value="enterprise">Entreprise</option>
+                                    </select>
+                                </div>
+                                <div class="admin-form-group">
+                                    <label for="subscription_start_date">Date de Début</label>
+                                    <input type="date" id="subscription_start_date" name="subscription_start_date" value="2025-01-15">
+                                </div>
+                                <div class="admin-form-group">
+                                    <label for="subscription_end_date">Date de Fin</label>
+                                    <input type="date" id="subscription_end_date" name="subscription_end_date" value="2025-06-15">
+                                </div>
+                            </div>
+                            
+                            <!-- Quota Information -->
+                            <h3 class="admin-mb-10 admin-mt-20">Informations de Quota</h3>
+                            <div class="admin-form-row">
+                                <div class="admin-form-group">
+                                    <label for="scan_quota_limit">Limite de Quota</label>
+                                    <input type="number" id="scan_quota_limit" name="scan_quota_limit" value="10">
+                                </div>
+                                <div class="admin-form-group">
+                                    <label for="scan_quota_used">Quota Utilisé</label>
+                                    <input type="number" id="scan_quota_used" name="scan_quota_used" value="3">
+                                </div>
+                                <div class="admin-form-group">
+                                    <label for="quota_period_start">Début de Période</label>
+                                    <input type="date" id="quota_period_start" name="quota_period_start" value="2025-05-15">
+                                </div>
+                            </div>
+                            
+                            <!-- Admin Status -->
+                            <div class="admin-form-group admin-mt-20">
+                                <label class="admin-d-flex admin-align-center admin-gap-10">
+                                    <input type="checkbox" id="is_admin" name="is_admin">
+                                    <span>Administrateur</span>
+                                </label>
+                                <p class="admin-text-danger" style="font-size: 0.9rem; margin-top: 5px;">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    Attention : Accorde tous les droits d'administration à cet utilisateur.
+                                </p>
+                            </div>
+                            
+                            <!-- Submit Buttons -->
+                            <div class="admin-d-flex admin-gap-10 admin-mt-20">
+                                <button type="submit" class="admin-btn admin-btn-primary">
+                                    <i class="fas fa-save"></i> Enregistrer les modifications
+                                </button>
+                                <a href="/admin/users" class="admin-btn admin-btn-outline">
+                                    <i class="fas fa-times"></i> Annuler
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- User Scans -->
+                <div class="admin-card admin-mt-20">
+                    <div class="admin-card-header">
+                        <h2>Historique des Scans</h2>
+                    </div>
+                    <div class="admin-card-body">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Type</th>
+                                    <th>Cible</th>
+                                    <th>Score</th>
+                                    <th>Date</th>
+                                    <th>Statut</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>101</td>
+                                    <td>Pro</td>
+                                    <td>192.168.1.10</td>
+                                    <td>7.5</td>
+                                    <td>26/05/2025</td>
+                                    <td>
+                                        <span class="admin-badge admin-badge-success">Terminé</span>
+                                    </td>
+                                    <td>
+                                        <a href="/admin/scans/101" class="admin-btn admin-btn-outline admin-btn-sm">
+                                            <i class="fas fa-eye"></i> Voir
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>95</td>
+                                    <td>Pro</td>
+                                    <td>10.0.0.5</td>
+                                    <td>3.2</td>
+                                    <td>20/05/2025</td>
+                                    <td>
+                                        <span class="admin-badge admin-badge-success">Terminé</span>
+                                    </td>
+                                    <td>
+                                        <a href="/admin/scans/95" class="admin-btn admin-btn-outline admin-btn-sm">
+                                            <i class="fas fa-eye"></i> Voir
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>82</td>
+                                    <td>Pro</td>
+                                    <td>172.16.0.15</td>
+                                    <td>5.8</td>
+                                    <td>15/05/2025</td>
+                                    <td>
+                                        <span class="admin-badge admin-badge-success">Terminé</span>
+                                    </td>
+                                    <td>
+                                        <a href="/admin/scans/82" class="admin-btn admin-btn-outline admin-btn-sm">
+                                            <i class="fas fa-eye"></i> Voir
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Danger Zone -->
+                <div class="admin-card admin-mt-20">
+                    <div class="admin-card-header">
+                        <h2 class="admin-text-danger">Zone de Danger</h2>
+                    </div>
+                    <div class="admin-card-body">
+                        <div class="admin-d-flex admin-justify-between admin-align-center admin-flex-wrap admin-gap-20">
+                            <div>
+                                <h3 class="admin-mb-0">Réinitialiser le mot de passe</h3>
+                                <p class="admin-mb-0">Envoie un email à l'utilisateur avec un lien de réinitialisation.</p>
+                            </div>
+                            <button class="admin-btn admin-btn-outline">
+                                <i class="fas fa-key"></i> Réinitialiser
+                            </button>
+                        </div>
+                        
+                        <hr style="margin: 20px 0; border: none; border-top: 1px solid var(--admin-border);">
+                        
+                        <div class="admin-d-flex admin-justify-between admin-align-center admin-flex-wrap admin-gap-20">
+                            <div>
+                                <h3 class="admin-mb-0">Désactiver le compte</h3>
+                                <p class="admin-mb-0">L'utilisateur ne pourra plus se connecter mais ses données seront conservées.</p>
+                            </div>
+                            <button class="admin-btn admin-btn-warning">
+                                <i class="fas fa-user-slash"></i> Désactiver
+                            </button>
+                        </div>
+                        
+                        <hr style="margin: 20px 0; border: none; border-top: 1px solid var(--admin-border);">
+                        
+                        <div class="admin-d-flex admin-justify-between admin-align-center admin-flex-wrap admin-gap-20">
+                            <div>
+                                <h3 class="admin-mb-0">Supprimer le compte</h3>
+                                <p class="admin-mb-0">Cette action est irréversible. Toutes les données seront définitivement supprimées.</p>
+                            </div>
+                            <button class="admin-btn admin-btn-danger">
+                                <i class="fas fa-trash"></i> Supprimer
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/app.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

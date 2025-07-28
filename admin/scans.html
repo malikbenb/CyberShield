@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberShield Admin - Scans</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="admin-sidebar">
+        <div class="sidebar-header">
+            <img src="../assets/images/logo.png" alt="CyberShield Logo" class="sidebar-logo">
+            <h4 class="mt-2">CyberShield Admin</h4>
+        </div>
+        <div class="sidebar-menu">
+            <a href="index.html" class="sidebar-menu-item">
+                <i class="fas fa-tachometer-alt"></i> Tableau de bord
+            </a>
+            <a href="users.html" class="sidebar-menu-item">
+                <i class="fas fa-users"></i> Utilisateurs
+            </a>
+            <a href="subscriptions.html" class="sidebar-menu-item">
+                <i class="fas fa-credit-card"></i> Abonnements
+            </a>
+            <a href="scans.html" class="sidebar-menu-item active">
+                <i class="fas fa-shield-alt"></i> Scans
+            </a>
+            <a href="settings.html" class="sidebar-menu-item">
+                <i class="fas fa-cog"></i> Paramètres
+            </a>
+            <a href="#" id="logout-btn" class="sidebar-menu-item mt-5">
+                <i class="fas fa-sign-out-alt"></i> Déconnexion
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="admin-main-content">
+        <div class="admin-header">
+            <button class="btn d-lg-none" id="toggle-sidebar">
+                <i class="fas fa-bars"></i>
+            </button>
+            <h1 class="admin-title">Gestion des scans</h1>
+            <div class="admin-user-info">
+                <span class="me-2">Admin</span>
+                <i class="fas fa-user-circle fa-lg"></i>
+            </div>
+        </div>
+
+        <!-- Scan Statistics -->
+        <div class="row">
+            <div class="col-md-6 col-lg-3">
+                <div class="admin-stat-card">
+                    <div class="admin-stat-icon admin-stat-primary">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="admin-stat-content">
+                        <h3 id="total-scans-count">0</h3>
+                        <p>Scans totaux</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="admin-stat-card">
+                    <div class="admin-stat-icon admin-stat-success">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="admin-stat-content">
+                        <h3 id="completed-scans">0</h3>
+                        <p>Scans terminés</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="admin-stat-card">
+                    <div class="admin-stat-icon admin-stat-warning">
+                        <i class="fas fa-spinner"></i>
+                    </div>
+                    <div class="admin-stat-content">
+                        <h3 id="pending-scans">0</h3>
+                        <p>Scans en cours</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="admin-stat-card">
+                    <div class="admin-stat-icon admin-stat-danger">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="admin-stat-content">
+                        <h3 id="failed-scans">0</h3>
+                        <p>Scans échoués</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scans Management -->
+        <div class="admin-card mt-4">
+            <div class="admin-card-header">
+                <h2 class="admin-card-title">Liste des scans</h2>
+                <div>
+                    <button class="btn btn-outline-secondary me-2" id="refresh-scans-btn">
+                        <i class="fas fa-sync-alt"></i> Actualiser
+                    </button>
+                </div>
+            </div>
+            <div class="admin-card-body">
+                <!-- Search and Filter -->
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-search"></i></span>
+                            <input type="text" class="form-control" id="search-scans" placeholder="Rechercher un scan...">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex justify-content-md-end">
+                            <select class="form-select me-2" id="filter-scan-type" style="max-width: 200px;">
+                                <option value="all">Tous les types</option>
+                                <option value="pro">Pro</option>
+                                <option value="enterprise">Entreprise</option>
+                            </select>
+                            <select class="form-select" id="filter-scan-status" style="max-width: 200px;">
+                                <option value="all">Tous les statuts</option>
+                                <option value="completed">Terminé</option>
+                                <option value="pending">En cours</option>
+                                <option value="failed">Échoué</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Scans Table -->
+                <div class="table-responsive">
+                    <table class="table admin-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Utilisateur</th>
+                                <th>Type</th>
+                                <th>Adresse IP</th>
+                                <th>Date de début</th>
+                                <th>Date de fin</th>
+                                <th>Score</th>
+                                <th>Statut</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="scans-table-body">
+                            <!-- Sera rempli par JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                <div class="d-flex justify-content-between align-items-center mt-4">
+                    <div>
+                        <span id="showing-scans">Affichage de 0 à 0 sur 0 entrées</span>
+                    </div>
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination" id="scans-pagination">
+                            <!-- Sera rempli par JavaScript -->
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scan Details Modal -->
+    <div class="modal fade" id="scan-details-modal" tabindex="-1" aria-labelledby="scanDetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="scanDetailsModalLabel">Détails du scan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <h6>Informations générales</h6>
+                            <table class="table table-sm">
+                                <tr>
+                                    <th>ID du scan:</th>
+                                    <td id="scan-detail-id"></td>
+                                </tr>
+                                <tr>
+                                    <th>Utilisateur:</th>
+                                    <td id="scan-detail-user"></td>
+                                </tr>
+                                <tr>
+                                    <th>Type:</th>
+                                    <td id="scan-detail-type"></td>
+                                </tr>
+                                <tr>
+                                    <th>Adresse IP:</th>
+                                    <td id="scan-detail-ip"></td>
+                                </tr>
+                                <tr>
+                                    <th>Date de début:</th>
+                                    <td id="scan-detail-start"></td>
+                                </tr>
+                                <tr>
+                                    <th>Date de fin:</th>
+                                    <td id="scan-detail-end"></td>
+                                </tr>
+                                <tr>
+                                    <th>Durée:</th>
+                                    <td id="scan-detail-duration"></td>
+                                </tr>
+                                <tr>
+                                    <th>Statut:</th>
+                                    <td id="scan-detail-status"></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Résultats</h6>
+                            <div class="text-center mb-3">
+                                <div class="position-relative d-inline-block">
+                                    <canvas id="scan-score-chart" width="150" height="150"></canvas>
+                                    <div class="position-absolute top-50 start-50 translate-middle">
+                                        <h2 id="scan-detail-score" class="mb-0">0.0</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <table class="table table-sm">
+                                <tr>
+                                    <th>Vulnérabilités critiques:</th>
+                                    <td id="scan-detail-critical" class="text-danger">0</td>
+                                </tr>
+                                <tr>
+                                    <th>Vulnérabilités élevées:</th>
+                                    <td id="scan-detail-high" class="text-warning">0</td>
+                                </tr>
+                                <tr>
+                                    <th>Vulnérabilités moyennes:</th>
+                                    <td id="scan-detail-medium" class="text-primary">0</td>
+                                </tr>
+                                <tr>
+                                    <th>Vulnérabilités faibles:</th>
+                                    <td id="scan-detail-low" class="text-success">0</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <ul class="nav nav-tabs" id="scanDetailTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="vulnerabilities-tab" data-bs-toggle="tab" data-bs-target="#vulnerabilities" type="button" role="tab" aria-controls="vulnerabilities" aria-selected="true">Vulnérabilités</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="ports-tab" data-bs-toggle="tab" data-bs-target="#ports" type="button" role="tab" aria-controls="ports" aria-selected="false">Ports & Services</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="raw-tab" data-bs-toggle="tab" data-bs-target="#raw" type="button" role="tab" aria-controls="raw" aria-selected="false">Rapport brut</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content p-3 border border-top-0 rounded-bottom" id="scanDetailTabsContent">
+                        <div class="tab-pane fade show active" id="vulnerabilities" role="tabpanel" aria-labelledby="vulnerabilities-tab">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>CVE</th>
+                                            <th>Description</th>
+                                            <th>Score CVSS</th>
+                                            <th>Sévérité</th>
+                                            <th>Solutions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="vulnerabilities-table">
+                                        <!-- Sera rempli par JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="ports" role="tabpanel" aria-labelledby="ports-tab">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Port</th>
+                                            <th>Protocole</th>
+                                            <th>Service</th>
+                                            <th>Version</th>
+                                            <th>État</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="ports-table">
+                                        <!-- Sera rempli par JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="raw" role="tabpanel" aria-labelledby="raw-tab">
+                            <pre id="raw-report" class="bg-light p-3 rounded" style="max-height: 400px; overflow-y: auto;"></pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                    <button type="button" class="btn btn-primary" id="download-report-btn">
+                        <i class="fas fa-download"></i> Télécharger le rapport
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

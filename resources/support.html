@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support - CyberShield Algeria</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/resources.css">
+    <link rel="icon" href="../images/Logo.jpg" type="image/jpg">
+    <style>
+        /* Styles spécifiques pour corriger les problèmes de support.html */
+        .support-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 60px;
+            padding: 60px 0;
+        }
+        
+        .support-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .support-card {
+            background-color: rgba(10, 25, 47, 0.5);
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            border-radius: 12px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            height: 100%;
+        }
+        
+        .support-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: var(--cyber-accent);
+        }
+        
+        .support-card-icon {
+            font-size: 3rem;
+            color: var(--cyber-accent);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .support-card-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .support-card-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--cyber-accent);
+            text-align: center;
+        }
+        
+        .support-card-content p {
+            margin-bottom: 25px;
+            line-height: 1.7;
+            flex-grow: 1;
+        }
+        
+        .support-card-content .btn {
+            align-self: center;
+            margin-top: auto;
+        }
+        
+        .support-contact-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .support-contact-header h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            color: var(--cyber-accent);
+        }
+        
+        .support-contact-header p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        .support-contact-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .support-contact-card {
+            background-color: rgba(10, 25, 47, 0.5);
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .support-contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: var(--cyber-accent);
+        }
+        
+        .support-contact-icon {
+            font-size: 2.5rem;
+            color: var(--cyber-accent);
+            margin-bottom: 20px;
+        }
+        
+        .support-contact-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--cyber-accent);
+        }
+        
+        .support-contact-card p {
+            margin-bottom: 20px;
+            line-height: 1.7;
+            flex-grow: 1;
+        }
+        
+        .support-contact-link {
+            color: var(--cyber-accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            display: inline-block;
+            margin-top: auto;
+        }
+        
+        .support-contact-link:hover {
+            color: #4dffff;
+            text-decoration: underline;
+        }
+        
+        .support-contact-card .btn {
+            margin-top: auto;
+            width: 100%;
+        }
+        
+        .support-form {
+            background-color: rgba(10, 25, 47, 0.5);
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .support-form h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--cyber-accent);
+            text-align: center;
+        }
+        
+        .support-form p {
+            text-align: center;
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+        
+        .support-form .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .support-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--cyber-text);
+        }
+        
+        .support-form input,
+        .support-form select,
+        .support-form textarea {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            border-radius: 8px;
+            color: var(--cyber-text);
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .support-form input:focus,
+        .support-form select:focus,
+        .support-form textarea:focus {
+            border-color: var(--cyber-accent);
+            outline: none;
+        }
+        
+        .support-form .form-checkbox {
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .support-form .form-checkbox input {
+            width: auto;
+            margin-right: 10px;
+            margin-top: 5px;
+        }
+        
+        .support-form .form-checkbox label {
+            margin-bottom: 0;
+            font-weight: 400;
+        }
+        
+        .support-form .btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .support-faq {
+            margin-top: 20px;
+        }
+        
+        .support-faq h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: var(--cyber-accent);
+            text-align: center;
+        }
+        
+        .support-faq-list {
+            margin-bottom: 40px;
+        }
+        
+        .support-faq-item {
+            background-color: rgba(10, 25, 47, 0.5);
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            border-radius: 12px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            transition: box-shadow 0.3s ease;
+        }
+        
+        .support-faq-item:hover {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .support-faq-question {
+            padding: 20px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+        
+        .support-faq-question h3 {
+            font-size: 1.2rem;
+            margin: 0;
+            color: var(--cyber-text);
+            transition: color 0.3s ease;
+        }
+        
+        .support-faq-toggle {
+            color: var(--cyber-accent);
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .support-faq-item.active .support-faq-question {
+            background-color: rgba(100, 255, 218, 0.1);
+        }
+        
+        .support-faq-item.active .support-faq-question h3 {
+            color: var(--cyber-accent);
+        }
+        
+        .support-faq-item.active .support-faq-toggle {
+            transform: rotate(180deg);
+        }
+        
+        .support-faq-answer {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, padding 0.5s ease;
+        }
+        
+        .support-faq-item.active .support-faq-answer {
+            padding: 0 25px 25px;
+            max-height: 1000px;
+        }
+        
+        .support-faq-answer p {
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+        
+        .support-faq-answer ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+        
+        .support-faq-answer li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        
+        .support-faq .btn {
+            display: block;
+            margin: 0 auto;
+        }
+        
+        /* Responsive design */
+        @media (min-width: 992px) {
+            .support-grid {
+                grid-template-columns: 1fr;
+                gap: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="cyber-header">
+        <div class="container">
+            <div class="logo-container">
+                <a href="../index.html">
+                    <img src="../images/Logo.jpg" alt="CyberShield Logo" class="logo">
+                </a>
+                <h1>CyberShield Algeria</h1>
+            </div>
+            <nav class="cyber-nav">
+                <ul>
+                    <li><a href="../index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                    <li><a href="../index.html#features"><i class="fas fa-shield-alt"></i> Fonctionnalités</a></li>
+                    <li><a href="../index.html#scanners"><i class="fas fa-download"></i> Scanners</a></li>
+                    <li><a href="../index.html#pricing"><i class="fas fa-tags"></i> Tarifs</a></li>
+                    <li><a href="../index.html#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="doc-hero">
+            <div class="container">
+                <h1>Support Technique</h1>
+                <p>Nous sommes là pour vous aider à résoudre tous vos problèmes techniques</p>
+            </div>
+        </section>
+
+        <section class="support-content">
+            <div class="container">
+                <div class="support-grid">
+                    <div class="support-options">
+                        <div class="support-card">
+                            <div class="support-card-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div class="support-card-content">
+                                <h3>Base de connaissances</h3>
+                                <p>Consultez notre documentation complète pour trouver des réponses à vos questions techniques.</p>
+                                <a href="documentation.html" class="btn btn-outline">Consulter la documentation</a>
+                            </div>
+                        </div>
+                        
+                        <div class="support-card">
+                            <div class="support-card-icon">
+                                <i class="fas fa-question-circle"></i>
+                            </div>
+                            <div class="support-card-content">
+                                <h3>FAQ</h3>
+                                <p>Trouvez des réponses aux questions les plus fréquemment posées par nos utilisateurs.</p>
+                                <a href="faq.html" class="btn btn-outline">Consulter la FAQ</a>
+                            </div>
+                        </div>
+                        
+                        <div class="support-card">
+                            <div class="support-card-icon">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <div class="support-card-content">
+                                <h3>Forum communautaire</h3>
+                                <p>Échangez avec d'autres utilisateurs et partagez vos expériences sur notre forum.</p>
+                                <a href="#" class="btn btn-outline">Accéder au forum</a>
+                            </div>
+                        </div>
+                        
+                        <div class="support-card">
+                            <div class="support-card-icon">
+                                <i class="fas fa-video"></i>
+                            </div>
+                            <div class="support-card-content">
+                                <h3>Tutoriels vidéo</h3>
+                                <p>Apprenez à utiliser nos scanners efficacement grâce à nos tutoriels vidéo détaillés.</p>
+                                <a href="#" class="btn btn-outline">Voir les tutoriels</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="support-contact">
+                        <div class="support-contact-header">
+                            <h2>Contacter le support technique</h2>
+                            <p>Vous n'avez pas trouvé de réponse à votre question ? Notre équipe de support technique est là pour vous aider.</p>
+                        </div>
+                        
+                        <div class="support-contact-options">
+                            <div class="support-contact-card">
+                                <div class="support-contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <h3>Email</h3>
+                                <p>Envoyez-nous un email et nous vous répondrons dans les 24 heures ouvrables.</p>
+                                <a href="mailto:support@cybershield-algeria.dz" class="support-contact-link">support@cybershield-algeria.dz</a>
+                            </div>
+                            
+                            <div class="support-contact-card">
+                                <div class="support-contact-icon">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <h3>Téléphone</h3>
+                                <p>Disponible du dimanche au jeudi, de 9h à 17h (heure algérienne).</p>
+                                <a href="tel:+213123456789" class="support-contact-link">+213 12 345 67 89</a>
+                            </div>
+                            
+                            <div class="support-contact-card">
+                                <div class="support-contact-icon">
+                                    <i class="fas fa-comment-dots"></i>
+                                </div>
+                                <h3>Chat en direct</h3>
+                                <p>Discutez en temps réel avec un membre de notre équipe de support.</p>
+                                <button class="btn btn-primary">Démarrer un chat</button>
+                            </div>
+                            
+                            <div class="support-contact-card">
+                                <div class="support-contact-icon">
+                                    <i class="fas fa-ticket-alt"></i>
+                                </div>
+                                <h3>Ticket de support</h3>
+                                <p>Créez un ticket pour suivre la résolution de votre problème.</p>
+                                <button class="btn btn-primary">Créer un ticket</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="support-form">
+                        <h2>Formulaire de contact</h2>
+                        <p>Remplissez ce formulaire pour nous faire part de votre problème ou de votre question.</p>
+                        
+                        <form id="supportForm">
+                            <div class="form-group">
+                                <label for="name">Nom complet</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="product">Produit concerné</label>
+                                <select id="product" name="product" required>
+                                    <option value="">Sélectionnez un produit</option>
+                                    <option value="windows">Scanner Windows</option>
+                                    <option value="linux">Scanner Linux</option>
+                                    <option value="macos">Scanner macOS</option>
+                                    <option value="api">API</option>
+                                    <option value="other">Autre</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="version">Version</label>
+                                <select id="version" name="version" required>
+                                    <option value="">Sélectionnez une version</option>
+                                    <option value="free">Version Gratuite</option>
+                                    <option value="pro">Version Pro</option>
+                                    <option value="enterprise">Version Entreprise</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="subject">Sujet</label>
+                                <input type="text" id="subject" name="subject" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Description détaillée du problème</label>
+                                <textarea id="message" name="message" rows="6" required></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="file">Pièces jointes (captures d'écran, logs, etc.)</label>
+                                <input type="file" id="file" name="file" multiple>
+                            </div>
+                            
+                            <div class="form-group form-checkbox">
+                                <input type="checkbox" id="terms" name="terms" required>
+                                <label for="terms">J'accepte que mes données soient traitées conformément à la <a href="politique-confidentialite.html">politique de confidentialité</a>.</label>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">Envoyer</button>
+                        </form>
+                    </div>
+                    
+                    <div class="support-faq">
+                        <h2>Questions fréquentes</h2>
+                        <div class="support-faq-list">
+                            <div class="support-faq-item">
+                                <div class="support-faq-question">
+                                    <h3>Comment installer le scanner sur Windows ?</h3>
+                                    <span class="support-faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                                </div>
+                                <div class="support-faq-answer">
+                                    <p>Pour installer le scanner sur Windows, téléchargez le fichier d'installation depuis notre site, double-cliquez dessus et suivez les instructions à l'écran. Pour des instructions détaillées, consultez notre <a href="documentation.html#installation">guide d'installation</a>.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="support-faq-item">
+                                <div class="support-faq-question">
+                                    <h3>Comment activer ma licence Pro ?</h3>
+                                    <span class="support-faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                                </div>
+                                <div class="support-faq-answer">
+                                    <p>Pour activer votre licence Pro, lancez l'application, cliquez sur "Activer la licence" dans le menu principal, puis entrez la clé de licence que vous avez reçue par email lors de votre achat.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="support-faq-item">
+                                <div class="support-faq-question">
+                                    <h3>Comment résoudre les problèmes de connexion au serveur Docker ?</h3>
+                                    <span class="support-faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                                </div>
+                                <div class="support-faq-answer">
+                                    <p>Si vous rencontrez des problèmes de connexion au serveur Docker avec la version Pro, vérifiez les points suivants :</p>
+                                    <ul>
+                                        <li>Assurez-vous que votre connexion Internet est active</li>
+                                        <li>Vérifiez que les ports 9090 et 9443 ne sont pas bloqués par votre pare-feu</li>
+                                        <li>Redémarrez l'application et réessayez</li>
+                                        <li>Si le problème persiste, contactez notre support technique</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="support-faq-item">
+                                <div class="support-faq-question">
+                                    <h3>Comment interpréter les résultats de scan ?</h3>
+                                    <span class="support-faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                                </div>
+                                <div class="support-faq-answer">
+                                    <p>Les résultats de scan sont classés par niveau de gravité (Critique, Élevé, Moyen, Faible). Chaque vulnérabilité détectée est accompagnée d'une description, d'une évaluation du risque et de recommandations pour la corriger. Pour plus d'informations, consultez notre <a href="documentation.html#reports">guide d'interprétation des rapports</a>.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <a href="faq.html" class="btn btn-outline">Voir toutes les questions</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="cyber-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <img src="../images/Logo.jpg" alt="CyberShield Logo" class="footer-logo">
+                    <h3>CyberShield Algeria</h3>
+                    <p>Votre partenaire de confiance en cybersécurité. Nous protégeons vos systèmes contre les menaces numériques avec des solutions innovantes et adaptées.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Liens rapides</h3>
+                    <ul>
+                        <li><a href="../index.html">Accueil</a></li>
+                        <li><a href="../index.html#features">Fonctionnalités</a></li>
+                        <li><a href="../index.html#scanners">Scanners</a></li>
+                        <li><a href="../index.html#pricing">Tarifs</a></li>
+                        <li><a href="../index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Ressources</h3>
+                    <ul>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="documentation.html">Documentation</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="support.html">Support</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Légal</h3>
+                    <ul>
+                        <li><a href="mentions-legales.html">Mentions légales</a></li>
+                        <li><a href="politique-confidentialite.html">Politique de confidentialité</a></li>
+                        <li><a href="conditions-utilisation.html">Conditions d'utilisation</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Rue des Développeurs, Alger, Algérie</p>
+                    <p><i class="fas fa-phone"></i> +213 XX XX XX XX</p>
+                    <p><i class="fas fa-envelope"></i> contact@cybershield-algeria.dz</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 CyberShield Algeria. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+    <script>
+        // Script pour améliorer l'interaction avec les FAQ
+        document.addEventListener('DOMContentLoaded', function() {
+            // Gestion des questions/réponses FAQ
+            const faqItems = document.querySelectorAll('.support-faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.support-faq-question');
+                
+                question.addEventListener('click', () => {
+                    // Fermer toutes les autres questions
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item && otherItem.classList.contains('active')) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Basculer l'état actif de la question cliquée
+                    item.classList.toggle('active');
+                });
+            });
+            
+            // Animation des cartes de support
+            const supportCards = document.querySelectorAll('.support-card, .support-contact-card');
+            supportCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 100 + (index * 100));
+            });
+            
+            // Gestion du formulaire
+            const supportForm = document.getElementById('supportForm');
+            if (supportForm) {
+                supportForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Votre demande a été envoyée avec succès. Notre équipe vous contactera dans les plus brefs délais.');
+                    supportForm.reset();
+                });
+            }
+        });
+    </main>
+
+    <footer class="cyber-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <img src="../images/Logo.jpg" alt="CyberShield Logo" class="footer-logo">
+                    <h3>CyberShield Algeria</h3>
+                    <p>Votre partenaire de confiance en cybersécurité. Nous protégeons vos systèmes contre les menaces numériques avec des solutions innovantes et adaptées.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Liens rapides</h3>
+                    <ul>
+                        <li><a href="../index.html">Accueil</a></li>
+                        <li><a href="../index.html#features">Fonctionnalités</a></li>
+                        <li><a href="../index.html#scanners">Scanners</a></li>
+                        <li><a href="../index.html#pricing">Tarifs</a></li>
+                        <li><a href="../index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Ressources</h3>
+                    <ul>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="documentation.html">Documentation</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="support.html">Support</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Légal</h3>
+                    <ul>
+                        <li><a href="mentions-legales.html">Mentions légales</a></li>
+                        <li><a href="politique-confidentialite.html">Politique de confidentialité</a></li>
+                        <li><a href="conditions-utilisation.html">Conditions d'utilisation</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Rue des Développeurs, Alger, Algérie</p>
+                    <p><i class="fas fa-phone"></i> +213 XX XX XX XX</p>
+                    <p><i class="fas fa-envelope"></i> contact@cybershield-algeria.dz</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 CyberShield Algeria. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+    <script src="../js/resources.js"></script>
+    <script src="js/support.js"></script>
+</body>
+</html>l>x.html#features">Fonctionnalités</a></li>
+                        <li><a href="../index.html#scanners">Scanners</a></li>
+                        <li><a href="../index.html#pricing">Tarifs</a></li>
+                        <li><a href="../index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Ressources</h3>
+                    <ul>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="documentation.html">Documentation</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="support.html">Support</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Légal</h3>
+                    <ul>
+                        <li><a href="mentions-legales.html">Mentions légales</a></li>
+                        <li><a href="politique-confidentialite.html">Politique de confidentialité</a></li>
+                        <li><a href="conditions-utilisation.html">Conditions d'utilisation</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-social">
+                    <h3>Suivez-nous</h3>
+                    <div class="social-icons">
+                        <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 CyberShield Algeria. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/resources.js"></script>
+</body>
+</html>

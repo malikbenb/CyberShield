@@ -1,0 +1,737 @@
+/* Fichier : frontend/css/dashboard.css */
+
+/* Styles généraux pour les pages d'authentification et du dashboard */
+.dashboard-body {
+    background-color: var(--cyber-darker);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Conteneur pour les formulaires d'authentification */
+.auth-container {
+    width: 100%;
+    max-width: 450px;
+    padding: 20px;
+}
+
+.auth-box {
+    background-color: var(--cyber-dark);
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid rgba(100, 255, 218, 0.2);
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.auth-logo {
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    gap: 10px; 
+}
+
+.auth-logo img {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    border: 2px solid var(--cyber-accent);
+}
+
+.auth-logo h2 {
+    color: var(--cyber-accent);
+    font-size: 1.4rem; 
+    margin: 0; 
+}
+
+.auth-box h3 {
+    color: var(--cyber-text);
+    margin-bottom: 20px;
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+
+.auth-box .form-group {
+    margin-bottom: 18px;
+    text-align: left;
+}
+
+.auth-box label {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--cyber-gray);
+    font-weight: 500;
+    font-size: 0.85rem;
+}
+
+.auth-box input[type="text"],
+.auth-box input[type="email"],
+.auth-box input[type="password"] {
+    width: 100%;
+    padding: 10px 12px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(100, 255, 218, 0.2);
+    border-radius: 4px;
+    color: var(--cyber-text);
+    font-size: 0.95rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.auth-box input:focus {
+    outline: none;
+    border-color: var(--cyber-accent);
+    box-shadow: 0 0 8px rgba(100, 255, 218, 0.3);
+}
+
+.auth-btn {
+    width: 100%;
+    padding: 11px;
+    margin-top: 8px;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Amélioration des messages d'erreur/succès */
+.message-box {
+    padding: 12px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    text-align: center;
+    border: 1px solid transparent;
+    display: none; /* Caché par défaut */
+}
+
+.error-message {
+    color: var(--cyber-alert);
+    background-color: rgba(255, 85, 85, 0.1);
+    border-color: var(--cyber-alert);
+}
+
+.success-message {
+    color: var(--cyber-success);
+    background-color: rgba(0, 204, 102, 0.1);
+    border-color: var(--cyber-success);
+}
+
+.auth-switch {
+    margin-top: 20px;
+    color: var(--cyber-gray);
+    font-size: 0.85rem;
+}
+
+.auth-switch a {
+    color: var(--cyber-accent);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.auth-switch a:hover {
+    color: #fff;
+}
+
+/* Styles pour le layout principal du dashboard */
+.dashboard-layout {
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--cyber-darker);
+}
+
+.sidebar {
+    width: 260px;
+    background-color: var(--cyber-dark);
+    padding: 25px 15px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid rgba(100, 255, 218, 0.1);
+    position: fixed; 
+    height: 100%;
+    overflow-y: auto;
+    transition: width 0.3s ease; /* Ajout transition pour potentiel menu rétractable */
+}
+
+.sidebar-header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.sidebar-logo {
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    border: 3px solid var(--cyber-accent);
+    margin-bottom: 12px;
+}
+
+.sidebar-title {
+    color: var(--cyber-accent);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1; 
+}
+
+.sidebar-nav li a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 18px;
+    color: var(--cyber-gray);
+    text-decoration: none;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    font-size: 0.95rem;
+    white-space: nowrap; /* Empêche le texte de passer à la ligne */
+    overflow: hidden; /* Cache le texte qui dépasse */
+    text-overflow: ellipsis; /* Ajoute ... si le texte dépasse */
+}
+
+.sidebar-nav li a i {
+    width: 18px; 
+    text-align: center;
+    font-size: 1rem;
+    flex-shrink: 0; /* Empêche l'icône de rétrécir */
+}
+
+.sidebar-nav li a:hover,
+.sidebar-nav li a.active {
+    background-color: rgba(100, 255, 218, 0.1);
+    color: var(--cyber-accent);
+}
+
+.sidebar-footer {
+    margin-top: auto; 
+    padding-top: 15px;
+    border-top: 1px solid rgba(100, 255, 218, 0.1);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    overflow: hidden; /* Pour gérer le dépassement */
+}
+
+.user-avatar {
+    width: 35px;
+    height: 35px;
+    background-color: var(--cyber-accent);
+    color: var(--cyber-dark);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.user-details {
+     overflow: hidden; /* Cache le texte qui dépasse */
+}
+
+.user-details span {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.user-name {
+    color: var(--cyber-text);
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.user-email {
+    color: var(--cyber-gray);
+    font-size: 0.8rem;
+}
+
+.logout-btn {
+    display: flex; /* Utiliser flex pour aligner icône et texte */
+    align-items: center;
+    justify-content: center; /* Centrer contenu */
+    gap: 8px; /* Espace entre icône et texte */
+    width: 100%;
+    padding: 9px;
+    background-color: rgba(255, 85, 85, 0.1);
+    color: var(--cyber-alert);
+    border: 1px solid var(--cyber-alert);
+    border-radius: 4px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.logout-btn i {
+    font-size: 1rem; /* Ajuster taille icône */
+}
+
+.logout-btn:hover {
+    background-color: var(--cyber-alert);
+    color: var(--cyber-dark);
+}
+
+.main-content {
+    flex: 1;
+    padding: 30px;
+    margin-left: 260px; 
+    overflow-y: auto; 
+    transition: margin-left 0.3s ease;
+}
+
+.page-header {
+    margin-bottom: 25px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+}
+
+.page-header h1 {
+    color: var(--cyber-text);
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+/* Styles pour les cartes/widgets du dashboard */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Ajusté minmax */
+    gap: 25px;
+    margin-bottom: 35px;
+}
+
+.info-card {
+    background-color: var(--cyber-dark);
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid rgba(100, 255, 218, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.info-card-icon {
+    font-size: 2.2rem;
+    color: var(--cyber-accent);
+    background-color: rgba(100, 255, 218, 0.1);
+    padding: 12px;
+    border-radius: 50%;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.info-card-content h3 {
+    color: var(--cyber-gray);
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.info-card-content p {
+    color: var(--cyber-text);
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+/* Styles pour les tableaux - Amélioration responsivité */
+.data-table-container {
+    background-color: var(--cyber-dark);
+    border-radius: 8px;
+    border: 1px solid rgba(100, 255, 218, 0.1);
+    overflow-x: auto; /* Permettre le scroll horizontal sur petit écran */
+}
+
+table.data-table {
+    width: 100%;
+    min-width: 600px; /* Largeur minimale pour éviter compression excessive */
+    border-collapse: collapse;
+    color: var(--cyber-text);
+}
+
+table.data-table th,
+table.data-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+    white-space: nowrap; /* Empêcher le retour à la ligne dans les cellules */
+}
+
+table.data-table th {
+    background-color: rgba(10, 25, 47, 0.7);
+    color: var(--cyber-accent);
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+table.data-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+table.data-table tbody tr:hover {
+    background-color: rgba(100, 255, 218, 0.05);
+}
+
+table.data-table .status {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-align: center;
+    display: inline-block;
+}
+
+/* Statuts (pas de changement) */
+.status-completed { background-color: rgba(0, 204, 102, 0.2); color: var(--cyber-success); }
+.status-running { background-color: rgba(0, 168, 255, 0.2); color: var(--cyber-info); }
+.status-queued { background-color: rgba(255, 165, 0, 0.2); color: var(--cyber-warning); } /* Ajout statut queued */
+.status-pending { background-color: rgba(255, 204, 0, 0.2); color: var(--cyber-warning); }
+.status-failed { background-color: rgba(255, 85, 85, 0.2); color: var(--cyber-alert); }
+.status-completed_with_errors { background-color: rgba(255, 165, 0, 0.2); color: var(--cyber-warning); } /* Ajout statut */
+.status-failed_reporting { background-color: rgba(255, 85, 85, 0.3); color: var(--cyber-alert); } /* Ajout statut */
+
+table.data-table .action-btn {
+    color: var(--cyber-accent);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    font-size: 1rem;
+    transition: color 0.2s ease;
+    vertical-align: middle; /* Mieux aligner les icônes */
+}
+
+table.data-table .action-btn:hover {
+    color: #fff;
+}
+
+/* Styles pour la page de profil */
+.profile-form {
+    max-width: 600px;
+    background-color: var(--cyber-dark);
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid rgba(100, 255, 218, 0.1);
+}
+
+.profile-form h2 {
+    color: var(--cyber-accent);
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+    border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+    padding-bottom: 10px;
+}
+
+.profile-form .form-group {
+    margin-bottom: 20px;
+}
+
+.profile-form label {
+    color: var(--cyber-gray);
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.profile-form input {
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(100, 255, 218, 0.2);
+    color: var(--cyber-text);
+    padding: 10px 12px;
+    font-size: 0.95rem;
+}
+
+.profile-form input:focus {
+    border-color: var(--cyber-accent);
+    box-shadow: 0 0 8px rgba(100, 255, 218, 0.3);
+}
+
+.profile-form button {
+    width: auto;
+    padding: 10px 25px;
+}
+
+/* Styles pour la page de rapport (dans le modal) */
+.report-modal-content {
+    max-width: 800px; /* Limiter largeur du modal */
+    background-color: var(--cyber-dark);
+    border: 1px solid rgba(100, 255, 218, 0.2);
+}
+
+.report-modal-content .modal-header h2 {
+     color: var(--cyber-accent);
+}
+
+.report-modal-content .modal-body {
+    max-height: 70vh; /* Limiter hauteur */
+    overflow-y: auto;
+}
+
+.report-content {
+    color: var(--cyber-text);
+    line-height: 1.6;
+    white-space: pre-wrap; 
+    font-family: 'JetBrains Mono', monospace; 
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 0.85rem; /* Réduire un peu la taille pour plus de contenu */
+}
+
+/* Styles pour la page de téléchargement */
+.scanners-section-dashboard {
+    /* Pas de changement majeur nécessaire ici pour l'instant */
+}
+.scanners-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+.scanner-card {
+    background-color: var(--cyber-dark);
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid rgba(100, 255, 218, 0.1);
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.scanner-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+.scanner-icon {
+    font-size: 3rem;
+    color: var(--cyber-accent);
+    margin-bottom: 15px;
+}
+.scanner-card h3 {
+    color: var(--cyber-text);
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+.scanner-card p {
+    color: var(--cyber-gray);
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+.scanner-buttons button {
+    width: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) { /* Point de rupture pour tablette */
+    .sidebar {
+        width: 70px; /* Réduire la sidebar */
+        overflow: hidden; /* Cacher le texte */
+    }
+    .sidebar:hover {
+        width: 260px; /* Élargir au survol */
+    }
+    .sidebar-title, .user-details, .sidebar-nav li a span {
+        /* Cacher le texte quand la sidebar est réduite (ou utiliser display:none) */
+        /* Une approche plus complexe utiliserait JS pour ajouter/retirer une classe */
+    }
+    .main-content {
+        margin-left: 70px;
+    }
+    .sidebar:hover + .main-content {
+        margin-left: 260px; /* Ajuster la marge quand la sidebar est élargie */
+    }
+}
+
+@media (max-width: 768px) { /* Point de rupture pour mobile */
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative; 
+        border-right: none;
+        border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+        overflow: visible; /* Rétablir l'overflow */
+    }
+    .sidebar:hover {
+        width: 100%; /* Pas d'élargissement au survol en mobile */
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 20px;
+    }
+     .sidebar:hover + .main-content {
+        margin-left: 0; /* Pas d'ajustement de marge */
+    }
+
+    .sidebar-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 15px;
+    }
+    .sidebar-logo {
+        height: 40px;
+        width: 40px;
+        margin-bottom: 0;
+    }
+    .sidebar-title {
+        font-size: 1.2rem;
+    }
+
+    .sidebar-nav ul {
+        display: flex;
+        overflow-x: auto; 
+        padding-bottom: 10px;
+        margin-bottom: 0;
+        scrollbar-width: thin; /* Style de la scrollbar */
+        scrollbar-color: var(--cyber-accent) var(--cyber-dark);
+    }
+    .sidebar-nav ul::-webkit-scrollbar {
+        height: 5px;
+    }
+    .sidebar-nav ul::-webkit-scrollbar-track {
+        background: var(--cyber-dark);
+    }
+    .sidebar-nav ul::-webkit-scrollbar-thumb {
+        background-color: var(--cyber-accent);
+        border-radius: 10px;
+    }
+
+    .sidebar-nav li {
+        flex-shrink: 0; /* Empêcher les items de rétrécir */
+    }
+    .sidebar-nav li a {
+        padding: 10px 12px;
+        margin-bottom: 0;
+        margin-right: 5px; 
+        white-space: nowrap;
+        font-size: 0.9rem;
+    }
+    .sidebar-nav li a i {
+        font-size: 0.9rem;
+        margin-right: 5px; /* Espace icone/texte réduit */
+        gap: 8px;
+    }
+
+    .sidebar-footer {
+        display: none; /* Cacher le footer en mobile */
+    }
+
+    .page-header h1 {
+        font-size: 1.6rem;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr; /* Une seule colonne en mobile */
+        gap: 15px;
+        margin-bottom: 25px;
+    }
+    .info-card {
+        padding: 15px;
+    }
+    .info-card-icon {
+        font-size: 1.8rem;
+        padding: 10px;
+    }
+    .info-card-content h3 {
+        font-size: 0.8rem;
+    }
+    .info-card-content p {
+        font-size: 1.4rem;
+    }
+
+    table.data-table th,
+    table.data-table td {
+        padding: 8px 10px;
+        font-size: 0.85rem;
+    }
+    table.data-table {
+        min-width: 500px; /* Ajuster si nécessaire */
+    }
+
+    .auth-box {
+        padding: 20px;
+    }
+    .profile-form {
+        padding: 20px;
+    }
+}
+
+/* Styles pour le modal générique (utilisé pour le rapport) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1000; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+  padding-top: 60px; /* Location of the box */
+}
+
+.modal-content {
+  background-color: var(--cyber-dark); /* Match dashboard theme */
+  margin: auto;
+  padding: 20px;
+  border: 1px solid rgba(100, 255, 218, 0.2);
+  width: 80%; /* Could be more or less, depending on screen size */
+  max-width: 600px; /* Default max width */
+  border-radius: 8px;
+  position: relative;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+.modal-header {
+  padding: 10px 15px;
+  border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h2 {
+  margin: 0;
+  color: var(--cyber-text);
+  font-size: 1.4rem;
+}
+
+.close-modal {
+  color: var(--cyber-gray);
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.close-modal:hover,
+.close-modal:focus {
+  color: var(--cyber-accent);
+  text-decoration: none;
+}
+
+.modal-body {
+    padding: 15px;
+    color: var(--cyber-text);
+}
+
+

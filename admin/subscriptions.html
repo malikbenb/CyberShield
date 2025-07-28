@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberShield Admin - Abonnements</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="admin-sidebar">
+        <div class="sidebar-header">
+            <img src="../assets/images/logo.png" alt="CyberShield Logo" class="sidebar-logo">
+            <h4 class="mt-2">CyberShield Admin</h4>
+        </div>
+        <div class="sidebar-menu">
+            <a href="index.html" class="sidebar-menu-item">
+                <i class="fas fa-tachometer-alt"></i> Tableau de bord
+            </a>
+            <a href="users.html" class="sidebar-menu-item">
+                <i class="fas fa-users"></i> Utilisateurs
+            </a>
+            <a href="subscriptions.html" class="sidebar-menu-item active">
+                <i class="fas fa-credit-card"></i> Abonnements
+            </a>
+            <a href="scans.html" class="sidebar-menu-item">
+                <i class="fas fa-shield-alt"></i> Scans
+            </a>
+            <a href="settings.html" class="sidebar-menu-item">
+                <i class="fas fa-cog"></i> Paramètres
+            </a>
+            <a href="#" id="logout-btn" class="sidebar-menu-item mt-5">
+                <i class="fas fa-sign-out-alt"></i> Déconnexion
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="admin-main-content">
+        <div class="admin-header">
+            <button class="btn d-lg-none" id="toggle-sidebar">
+                <i class="fas fa-bars"></i>
+            </button>
+            <h1 class="admin-title">Gestion des abonnements</h1>
+            <div class="admin-user-info">
+                <span class="me-2">Admin</span>
+                <i class="fas fa-user-circle fa-lg"></i>
+            </div>
+        </div>
+
+        <!-- Subscription Plans -->
+        <div class="admin-card mb-4">
+            <div class="admin-card-header">
+                <h2 class="admin-card-title">Plans d'abonnement</h2>
+                <button class="btn btn-primary" id="add-plan-btn">
+                    <i class="fas fa-plus-circle"></i> Ajouter un plan
+                </button>
+            </div>
+            <div class="admin-card-body">
+                <div class="row" id="subscription-plans">
+                    <!-- Pro Plan -->
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="card h-100">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="card-title mb-0">Pro</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-center mb-3">
+                                    <h3 class="mb-0">40 000 DA</h3>
+                                    <span class="text-muted align-self-end ms-2">/mois</span>
+                                </div>
+                                <ul class="list-group list-group-flush mb-4">
+                                    <li class="list-group-item"><i class="fas fa-check text-success me-2"></i> 1 adresse IP</li>
+                                    <li class="list-group-item"><i class="fas fa-check text-success me-2"></i> Rapport détaillé</li>
+                                    <li class="list-group-item"><i class="fas fa-check text-success me-2"></i> Score de vulnérabilité</li>
+                                    <li class="list-group-item"><i class="fas fa-check text-success me-2"></i> Solutions recommandées</li>
+                                </ul>
+                                <div class="d-grid">
+                                    <button class="btn btn-outline-primary edit-plan-btn" data-plan-id="pro">
+                                        <i class="fas fa-edit"></i> Modifier
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Enterprise Plan -->
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="card h-100">
+                            <div class="card-header bg-dark text-white">
+                                <h5 class="card-title mb-0">Entreprise</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-center mb-3">
+                                    <h3 class="mb-0">100 000 DA</h3>
+                                    <span class="text-muted align-self-end ms-2">/mois</span>
+                                </div>
+                                <ul class="list-group list-group-flush mb-4">
+                                    <li class="list-group-item"><i class="fas fa-check text-success me-2"></i> 20 adresses IP</li>
+                                    <li class="list-group-item"><i class="fas fa-check text-success me-2"></i> Rapport détaillé</li>
+                                    <li class="list-group-item"><i class="fas fa-check text-success me-2"></i> Score de vulnérabilité</li>
+                                    <li class="list-group-item"><i class="fas fa-check text-success me-2"></i> Solutions recommandées</li>
+                                    <li class="list-group-item"><i class="fas fa-check text-success me-2"></i> Support prioritaire</li>
+                                </ul>
+                                <div class="d-grid">
+                                    <button class="btn btn-outline-dark edit-plan-btn" data-plan-id="enterprise">
+                                        <i class="fas fa-edit"></i> Modifier
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Active Subscriptions -->
+        <div class="admin-card">
+            <div class="admin-card-header">
+                <h2 class="admin-card-title">Abonnements actifs</h2>
+                <div>
+                    <button class="btn btn-outline-secondary me-2" id="refresh-subscriptions-btn">
+                        <i class="fas fa-sync-alt"></i> Actualiser
+                    </button>
+                    <button class="btn btn-primary" id="add-subscription-btn">
+                        <i class="fas fa-plus-circle"></i> Ajouter un abonnement
+                    </button>
+                </div>
+            </div>
+            <div class="admin-card-body">
+                <!-- Search and Filter -->
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-search"></i></span>
+                            <input type="text" class="form-control" id="search-subscriptions" placeholder="Rechercher un abonnement...">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex justify-content-md-end">
+                            <select class="form-select me-2" id="filter-plan" style="max-width: 200px;">
+                                <option value="all">Tous les plans</option>
+                                <option value="pro">Pro</option>
+                                <option value="enterprise">Entreprise</option>
+                            </select>
+                            <select class="form-select" id="filter-duration" style="max-width: 200px;">
+                                <option value="all">Toutes les durées</option>
+                                <option value="1">1 mois</option>
+                                <option value="3">3 mois</option>
+                                <option value="12">1 an</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Subscriptions Table -->
+                <div class="table-responsive">
+                    <table class="table admin-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Utilisateur</th>
+                                <th>Plan</th>
+                                <th>Date de début</th>
+                                <th>Date d'expiration</th>
+                                <th>Scans restants</th>
+                                <th>Statut</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="subscriptions-table-body">
+                            <!-- Sera rempli par JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                <div class="d-flex justify-content-between align-items-center mt-4">
+                    <div>
+                        <span id="showing-subscriptions">Affichage de 0 à 0 sur 0 entrées</span>
+                    </div>
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination" id="subscriptions-pagination">
+                            <!-- Sera rempli par JavaScript -->
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Subscription Edit Modal -->
+    <div class="modal fade" id="subscription-edit-modal" tabindex="-1" aria-labelledby="subscriptionEditModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="subscriptionEditModalLabel">Modifier l'abonnement</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="subscription-edit-form">
+                        <input type="hidden" id="edit-subscription-id">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="edit-subscription-user" class="form-label">Utilisateur</label>
+                                <select class="form-select" id="edit-subscription-user" required>
+                                    <!-- Options remplies par JavaScript -->
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="edit-subscription-plan" class="form-label">Plan</label>
+                                <select class="form-select" id="edit-subscription-plan" required>
+                                    <option value="pro">Pro</option>
+                                    <option value="enterprise">Entreprise</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="edit-subscription-duration" class="form-label">Durée</label>
+                                <select class="form-select" id="edit-subscription-duration" required>
+                                    <option value="1">1 mois</option>
+                                    <option value="3">3 mois</option>
+                                    <option value="12">1 an</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="edit-subscription-scans" class="form-label">Scans restants</label>
+                                <input type="number" class="form-control" id="edit-subscription-scans" min="0" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="edit-subscription-start-date" class="form-label">Date de début</label>
+                                <input type="date" class="form-control" id="edit-subscription-start-date" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="edit-subscription-end-date" class="form-label">Date d'expiration</label>
+                                <input type="date" class="form-control" id="edit-subscription-end-date" required>
+                            </div>
+                        </div>
+                        <div class="form-check form-switch mt-3">
+                            <input class="form-check-input" type="checkbox" id="edit-subscription-active">
+                            <label class="form-check-label" for="edit-subscription-active">Abonnement actif</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-danger me-auto" id="delete-subscription-btn">Supprimer</button>
+                    <button type="button" class="btn btn-primary" id="save-subscription-btn">Enregistrer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Plan Edit Modal -->
+    <div class="modal fade" id="plan-edit-modal" tabindex="-1" aria-labelledby="planEditModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="planEditModalLabel">Modifier le plan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="plan-edit-form">
+                        <input type="hidden" id="edit-plan-id">
+                        <div class="mb-3">
+                            <label for="edit-plan-name" class="form-label">Nom du plan</label>
+                            <input type="text" class="form-control" id="edit-plan-name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-plan-price-monthly" class="form-label">Prix mensuel (DA)</label>
+                            <input type="number" class="form-control" id="edit-plan-price-monthly" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-plan-price-quarterly" class="form-label">Prix trimestriel (DA)</label>
+                            <input type="number" class="form-control" id="edit-plan-price-quarterly" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-plan-price-yearly" class="form-label">Prix annuel (DA)</label>
+                            <input type="number" class="form-control" id="edit-plan-price-yearly" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-plan-max-ips" class="form-label">Nombre max d'adresses IP</label>
+                            <input type="number" class="form-control" id="edit-plan-max-ips" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-plan-features" class="form-label">Caractéristiques (une par ligne)</label>
+                            <textarea class="form-control" id="edit-plan-features" rows="5" required></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-primary" id="save-plan-btn">Enregistrer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

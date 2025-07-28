@@ -1,0 +1,34 @@
+// Fonction pour télécharger les scanners
+function downloadScanner(os, version) {
+    const baseUrl = 'scanners';
+    let scannerUrl = '';
+    
+    if (os === 'windows') {
+        // Utiliser les nouveaux scanners HTML au lieu des scanners Python
+        scannerUrl = version === 'free' 
+            ? `${baseUrl}/windows/cybershield_scanner_windows_free_html.zip` 
+            : `${baseUrl}/windows/cybershield_scanner_windows_pro_html.zip`;
+    } else if (os === 'macos') {
+        scannerUrl = version === 'free' 
+            ? `${baseUrl}/macos/cybershield_scanner_macos_free.zip` 
+            : `${baseUrl}/macos/cybershield_scanner_macos_pro.zip`;
+    } else if (os === 'linux') {
+        scannerUrl = version === 'free' 
+            ? `${baseUrl}/linux/cybershield_scanner_linux_free.zip` 
+            : `${baseUrl}/linux/cybershield_scanner_linux_pro.zip`;
+    }
+    
+    if (scannerUrl) {
+        const link = document.createElement('a');
+        link.href = scannerUrl;
+        link.download = scannerUrl.split('/').pop();
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        // Afficher un message de confirmation
+        const osName = os.charAt(0).toUpperCase() + os.slice(1);
+        const versionName = version === 'free' ? 'gratuit' : 'pro';
+        showNotification(`Téléchargement du scanner ${versionName} pour ${osName} démarré.`, 'success');
+    }
+}

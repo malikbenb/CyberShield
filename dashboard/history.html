@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historique des Scans - CyberShield Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="icon" href="../images/Logo.jpg" type="image/jpg">
+</head>
+<body>
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="../images/Logo.jpg" alt="CyberShield Logo" class="sidebar-logo">
+                <h2 class="sidebar-title">CyberShield Pro</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-tachometer-alt"></i> Tableau de Bord</a></li>
+                    <li><a href="download.html"><i class="fas fa-download"></i> Téléchargements</a></li>
+                    <li><a href="history.html" class="active"><i class="fas fa-history"></i> Historique</a></li>
+                    <li><a href="profile.html"><i class="fas fa-user-cog"></i> Profil</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar" id="user-avatar"></div>
+                    <div class="user-details">
+                        <span class="user-name" id="user-name">Chargement...</span>
+                        <span class="user-email" id="user-email"></span>
+                    </div>
+                </div>
+                <button id="logout-btn" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Déconnexion</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="page-header">
+                <h1>Historique des Scans Pro</h1>
+            </header>
+
+            <section class="scan-history-full">
+                <div class="data-table-container">
+                    <table class="data-table" id="full-history-table">
+                        <thead>
+                            <tr>
+                                <th>Date de Début</th>
+                                <th>Date de Fin</th>
+                                <th>Cible</th>
+                                <th>Statut</th>
+                                <th>Score</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Les lignes seront ajoutées par JavaScript -->
+                            <tr>
+                                <td colspan="6" style="text-align: center;">Chargement de l'historique complet...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Ajouter une pagination si nécessaire -->
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Modal pour afficher les détails du rapport (identique à index.html) -->
+    <div id="report-modal" class="modal" style="display: none;">
+        <div class="modal-content report-modal-content">
+            <div class="modal-header">
+                <h2 id="report-modal-title">Détails du Rapport</h2>
+                <span class="close-modal" id="close-report-modal">&times;</span>
+            </div>
+            <div class="modal-body" id="report-modal-body">
+                <p>Chargement du rapport...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/dashboard.js"></script> <!-- Script partagé pour la logique du dashboard -->
+</body>
+</html>
+

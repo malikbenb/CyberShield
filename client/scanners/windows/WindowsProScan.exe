@@ -1,0 +1,6 @@
+# Scanner Pro pour Windows
+# Ce fichier est un placeholder pour le scanner Pro Windows
+echo 'Scanner Pro pour CyberShield Algeria - Windows'
+echo 'Connexion au serveur Docker...'
+echo 'Scan en cours...'
+echo 'Scan terminé.'

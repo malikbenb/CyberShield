@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abonnement - CyberShield Dashboard</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="../images/Logo.jpg" type="image/jpg">
+    <style>
+        .subscription-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .subscription-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .subscription-header h1 {
+            color: #005a87;
+            margin-bottom: 10px;
+        }
+        
+        .subscription-header p {
+            color: #666;
+            font-size: 18px;
+        }
+        
+        .subscription-plans {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .plan-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 300px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .plan-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .plan-card.selected {
+            border: 3px solid #005a87;
+            transform: translateY(-5px);
+        }
+        
+        .plan-header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .plan-name {
+            color: #005a87;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .plan-price {
+            font-size: 36px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .plan-price .currency {
+            font-size: 20px;
+            vertical-align: super;
+        }
+        
+        .plan-price .period {
+            font-size: 16px;
+            color: #888;
+            font-weight: 400;
+        }
+        
+        .plan-features {
+            margin-bottom: 30px;
+        }
+        
+        .plan-features ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .plan-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid #f5f5f5;
+            display: flex;
+            align-items: center;
+        }
+        
+        .plan-features li i {
+            color: #005a87;
+            margin-right: 10px;
+        }
+        
+        .plan-cta {
+            text-align: center;
+        }
+        
+        .plan-button {
+            background-color: #005a87;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+        
+        .plan-button:hover {
+            background-color: #004a70;
+        }
+        
+        .plan-button.selected {
+            background-color: #28a745;
+        }
+        
+        .popular-badge {
+            position: absolute;
+            top: 15px;
+            right: -30px;
+            background-color: #ff6b6b;
+            color: white;
+            padding: 5px 30px;
+            font-size: 14px;
+            font-weight: 600;
+            transform: rotate(45deg);
+        }
+        
+        .payment-section {
+            max-width: 600px;
+            margin: 40px auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            display: none;
+        }
+        
+        .payment-section.active {
+            display: block;
+        }
+        
+        .payment-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .payment-form .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .payment-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .payment-form input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .payment-form .card-row {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .payment-form .card-row .form-group {
+            flex: 1;
+        }
+        
+        .payment-submit {
+            background-color: #005a87;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        
+        .payment-submit:hover {
+            background-color: #004a70;
+        }
+        
+        .payment-summary {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        
+        .payment-summary h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .summary-total {
+            font-weight: 700;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+        
+        .back-button {
+            background-color: transparent;
+            border: 1px solid #005a87;
+            color: #005a87;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-right: 10px;
+        }
+        
+        .back-button:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .payment-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        .notifications-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+        }
+        
+        .notification {
+            background-color: #fff;
+            border-left: 4px solid #005a87;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 20px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            animation: slideIn 0.3s forwards;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .notification.success {
+            border-left-color: #28a745;
+        }
+        
+        .notification.error {
+            border-left-color: #dc3545;
+        }
+        
+        .notification i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        
+        .notification.success i {
+            color: #28a745;
+        }
+        
+        .notification.error i {
+            color: #dc3545;
+        }
+        .dashboard-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 25%;
+            margin-top: 30px;
+            padding-left: 20px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 10px;
+            width: auto;
+            height: auto;
+        }
+        .logo img {
+            max-width: 60px;
+            height: 60px;
+            border-radius:50%;
+            object-fit: cover;
+        }
+        .dashboard-nav ul {
+            margin-top: 50px;
+            padding-left: 20px; /* Décalage vers la droite */
+        }
+
+        .dashboard-nav li {
+            list-style: none; /* Optionnel pour enlever les puces */
+        }
+        .dashboard-nav a {
+            color: var(--cyber-accent);         /* Couleur personnalisée */
+            font-size: 18px;                    /* Taille du texte */
+            font-weight: bold;                 /* Texte plus visible */
+            text-decoration: none;             /* Supprime le soulignement */
+            padding: 8px 12px;
+            display: inline-block;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+        /* ✨ Effet au survol */
+        .dashboard-nav a:hover {
+           background: rgba(255, 255, 255, 0.1); /* Léger fond au survol */
+           transform: translateX(4px);          /* Petit décalage animé */
+           border-radius: 6px;                  /* Coins arrondis au survol */
+        }
+        .plan-features li {
+           color: #1a1a1a; /* Texte gris foncé pour bon contraste */
+        }
+        .payment-section {
+          max-width: 600px;
+          margin: 40px auto;
+          background-color: #fff;
+          border-radius: 10px;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+          padding: 30px;
+          display: block;        /* ou "none" si caché par défaut */
+          color: #000;           /* ✅ Tout le texte en noir */
+        }
+
+        .payment-summary {
+          background-color: #f9f9f9;
+          padding: 20px;
+          border-radius: 5px;
+          margin-bottom: 30px;
+        }
+
+        .summary-item {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 10px;
+        }
+
+        .summary-total {
+          font-weight: 700;
+          border-top: 1px solid #ddd;
+          padding-top: 10px;
+          margin-top: 10px;
+          /* couleur héritée de .payment-section → noir */
+        }
+
+        #summary-price {
+          /* pas nécessaire de redéfinir ici si le texte hérite bien du parent */
+        }
+    </style>
+</head>
+<body class="dashboard-body">
+    <header class="dashboard-header">
+        <div class="logo">
+            <img src="../images/Logo.jpg" alt="CyberShield Logo">
+            <h1>CyberShield Pro</h1>
+        </div>
+        <nav class="dashboard-nav">
+            <ul>
+                <li><a href="index.html"><i class="fas fa-tachometer-alt"></i> Tableau de bord</a></li>
+                <li><a href="#" class="active"><i class="fas fa-credit-card"></i> Abonnement</a></li>
+                <li><a href="profile.html"><i class="fas fa-user"></i> Profil</a></li>
+                <li><a href="#" id="logout-link"><i class="fas fa-sign-out-alt"></i> Déconnexion</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="dashboard-main">
+        <div class="subscription-container">
+            <div class="subscription-header">
+                <h1>Choisissez votre formule d'abonnement</h1>
+                <p>Accédez à notre scanner Pro et protégez votre infrastructure numérique</p>
+            </div>
+            
+            <div class="subscription-plans">
+                <div class="plan-card" data-plan="monthly" data-duration="1" data-price="50000">
+                    <div class="plan-header">
+                        <div class="plan-name">Mensuel</div>
+                        <div class="plan-price"><span class="currency">DA</span>50.000<span class="period">/mois</span></div>
+                    </div>
+                    <div class="plan-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Accès au scanner Pro</li>
+                            <li><i class="fas fa-check"></i> Scan complet (1 adresse IP)</li>
+                            <li><i class="fas fa-check"></i> Détection avancée des vulnérabilités</li>
+                            <li><i class="fas fa-check"></i> Analyse approfondie des failles</li>
+                            <li><i class="fas fa-check"></i> Rapports détaillés</li>
+                            <li><i class="fas fa-check"></i> Support par email sous 24h</li>
+                        </ul>
+                    </div>
+                    <div class="plan-cta">
+                        <button class="plan-button" data-plan="monthly">Sélectionner</button>
+                    </div>
+                </div>
+                
+                <div class="plan-card" data-plan="quarterly" data-duration="3" data-price="135000">
+                    <div class="popular-badge">Populaire</div>
+                    <div class="plan-header">
+                        <div class="plan-name">Trimestriel</div>
+                        <div class="plan-price"><span class="currency">DA</span>135.000<span class="period">/3 mois</span></div>
+                    </div>
+                    <div class="plan-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> 45.000 DA/mois (soit -10%)</li>
+                            <li><i class="fas fa-check"></i> Accès au scanner Pro</li>
+                            <li><i class="fas fa-check"></i> Scan complet (1 adresse IP)</li>
+                            <li><i class="fas fa-check"></i> Détection avancée des vulnérabilités</li>
+                            <li><i class="fas fa-check"></i> Analyse approfondie des failles</li>
+                            <li><i class="fas fa-check"></i> Rapports détaillés</li>
+                            <li><i class="fas fa-check"></i> Support par email sous 24h</li>
+                        </ul>
+                    </div>
+                    <div class="plan-cta">
+                        <button class="plan-button" data-plan="quarterly">Sélectionner</button>
+                    </div>
+                </div>
+                
+                <div class="plan-card" data-plan="yearly" data-duration="12" data-price="510000">
+                    <div class="plan-header">
+                        <div class="plan-name">Annuel</div>
+                        <div class="plan-price"><span class="currency">DA</span>510.000<span class="period">/an</span></div>
+                    </div>
+                    <div class="plan-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> 42.500 DA/mois (soit -15%)</li>
+                            <li><i class="fas fa-check"></i> Accès au scanner Pro</li>
+                            <li><i class="fas fa-check"></i> Scan complet (1 adresse IP)</li>
+                            <li><i class="fas fa-check"></i> Détection avancée des vulnérabilités</li>
+                            <li><i class="fas fa-check"></i> Analyse approfondie des failles</li>
+                            <li><i class="fas fa-check"></i> Rapports détaillés</li>
+                            <li><i class="fas fa-check"></i> Support par email sous 24h</li>
+                        </ul>
+                    </div>
+                    <div class="plan-cta">
+                        <button class="plan-button" data-plan="yearly">Sélectionner</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="payment-section" id="payment-section">
+                <div class="payment-header">
+                    <h2>Finaliser votre abonnement</h2>
+                </div>
+                
+                <div class="payment-summary">
+                    <h3>Récapitulatif</h3>
+                    <div class="summary-item">
+                        <span>Formule</span>
+                        <span id="summary-plan">-</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Durée</span>
+                        <span id="summary-duration">-</span>
+                    </div>
+                    <div class="summary-item summary-total">
+                        <span>Total</span>
+                        <span id="summary-price">-</span>
+                    </div>
+                </div>
+                
+                <form class="payment-form" id="payment-form">
+                    <div class="form-group">
+                        <label for="card-name">Nom sur la carte</label>
+                        <input type="text" id="card-name" required placeholder="John Doe">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="card-number">Numéro de carte</label>
+                        <input type="text" id="card-number" required placeholder="1234 5678 9012 3456">
+                    </div>
+                    
+                    <div class="card-row">
+                        <div class="form-group">
+                            <label for="card-expiry">Date d'expiration (MM/YY)</label>
+                            <input type="text" id="card-expiry" required placeholder="MM/YY">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="card-cvv">CVV</label>
+                            <input type="text" id="card-cvv" required placeholder="123">
+                        </div>
+                    </div>
+                    
+                    <div class="payment-actions">
+                        <button type="button" class="back-button" id="back-button">Retour</button>
+                        <button type="submit" class="payment-submit">Confirmer le paiement</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    
+    <div class="notifications-container" id="notifications-container"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Récupérer les paramètres de l'URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const scannerOs = urlParams.get('os');
+            
+            // Stocker l'OS pour l'utiliser après le paiement
+            if (scannerOs) {
+                sessionStorage.setItem('scanner_os', scannerOs);
+            }
+            
+            // Sélection du plan
+            const planButtons = document.querySelectorAll('.plan-button');
+            const planCards = document.querySelectorAll('.plan-card');
+            const paymentSection = document.getElementById('payment-section');
+            
+            // Éléments du récapitulatif
+            const summaryPlan = document.getElementById('summary-plan');
+            const summaryDuration = document.getElementById('summary-duration');
+            const summaryPrice = document.getElementById('summary-price');
+            
+            // Bouton retour
+            const backButton = document.getElementById('back-button');
+            
+            // Variables pour stocker les détails du plan sélectionné
+            let selectedPlan = null;
+            let selectedDuration = null;
+            let selectedPrice = null;
+            
+            // Fonction pour sélectionner un plan
+            function selectPlan(planCard) {
+                // Réinitialiser toutes les cartes
+                planCards.forEach(card => {
+                    card.classList.remove('selected');
+                    card.querySelector('.plan-button').classList.remove('selected');
+                    card.querySelector('.plan-button').textContent = 'Sélectionner';
+                });
+                
+                // Sélectionner la carte cliquée
+                planCard.classList.add('selected');
+                planCard.querySelector('.plan-button').classList.add('selected');
+                planCard.querySelector('.plan-button').textContent = 'Sélectionné';
+                
+                // Mettre à jour les variables
+                selectedPlan = planCard.getAttribute('data-plan');
+                selectedDuration = planCard.getAttribute('data-duration');
+                selectedPrice = planCard.getAttribute('data-price');
+                
+                // Mettre à jour le récapitulatif
+                let planName = '';
+                let durationText = '';
+                
+                switch(selectedPlan) {
+                    case 'monthly':
+                        planName = 'Mensuel';
+                        durationText = '1 mois';
+                        break;
+                    case 'quarterly':
+                        planName = 'Trimestriel';
+                        durationText = '3 mois';
+                        break;
+                    case 'yearly':
+                        planName = 'Annuel';
+                        durationText = '12 mois';
+                        break;
+                }
+                
+                summaryPlan.textContent = planName;
+                summaryDuration.textContent = durationText;
+                summaryPrice.textContent = `${selectedPrice} DA`;
+                
+                // Afficher la section de paiement
+                paymentSection.classList.add('active');
+                
+                // Faire défiler jusqu'à la section de paiement
+                paymentSection.scrollIntoView({ behavior: 'smooth' });
+            }
+            
+            // Ajouter les écouteurs d'événements aux boutons de plan
+            planButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const planCard = this.closest('.plan-card');
+                    selectPlan(planCard);
+                });
+            });
+            
+            // Bouton retour
+            backButton.addEventListener('click', function() {
+                paymentSection.classList.remove('active');
+                
+                // Réinitialiser la sélection
+                planCards.forEach(card => {
+                    card.classList.remove('selected');
+                    card.querySelector('.plan-button').classList.remove('selected');
+                    card.querySelector('.plan-button').textContent = 'Sélectionner';
+                });
+                
+                // Faire défiler jusqu'aux plans
+                document.querySelector('.subscription-plans').scrollIntoView({ behavior: 'smooth' });
+            });
+            
+            // Formulaire de paiement
+            const paymentForm = document.getElementById('payment-form');
+            
+            paymentForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Récupérer les valeurs du formulaire
+                const cardName = document.getElementById('card-name').value;
+                const cardNumber = document.getElementById('card-number').value;
+                const cardExpiry = document.getElementById('card-expiry').value;
+                const cardCvv = document.getElementById('card-cvv').value;
+                
+                // Validation simple
+                if (!cardName || !cardNumber || !cardExpiry || !cardCvv) {
+                    showNotification('Veuillez remplir tous les champs', 'error');
+                    return;
+                }
+                
+                // Simuler un paiement en cours
+                showNotification('Traitement du paiement en cours...', 'info');
+                
+                // Préparer les données pour l'API
+                const paymentData = {
+                    plan: selectedPlan,
+                    duration: parseInt(selectedDuration),
+                    amount: parseFloat(selectedPrice),
+                    currency: 'EUR',
+                    email: 'user@example.com', // Normalement récupéré du profil utilisateur
+                    name: cardName,
+                    card_number: cardNumber.replace(/\s/g, ''),
+                    expiry_date: cardExpiry,
+                    cvv: cardCvv,
+                    address: '',
+                    city: '',
+                    postal_code: ''
+                };
+                
+                // Appel à l'API de paiement
+                fetch('/api/payments/process', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(paymentData),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Paiement réussi
+                        showNotification('Paiement réussi ! Redirection vers le téléchargement...', 'success');
+                        
+                        // Stocker les informations d'abonnement dans sessionStorage
+                        sessionStorage.setItem('subscription_active', 'true');
+                        sessionStorage.setItem('subscription_plan', selectedPlan);
+                        
+                        // Récupérer l'OS pour le téléchargement
+                        const os = sessionStorage.getItem('scanner_os');
+                        
+                        // Rediriger vers le téléchargement après un délai
+                        setTimeout(() => {
+                            // Afficher le modal de réglementation avant le téléchargement
+                            // Nous utilisons la fonction showConsentModal définie dans consent-modal.js
+                            if (typeof window.showConsentModal === 'function') {
+                                window.showConsentModal(os, 'pro', function(os, version) {
+                                    // Après acceptation, rediriger vers le téléchargement
+                                    window.location.href = `download.html?os=${os}`;
+                                });
+                            } else {
+                                // Fallback si la fonction n'est pas disponible
+                                window.location.href = `download.html?os=${os}`;
+                            }
+                        }, 2000);
+                    } else {
+                        // Paiement échoué
+                        showNotification(`Erreur de paiement: ${data.message}`, 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Erreur:', error);
+                    showNotification('Erreur de connexion au serveur', 'error');
+                    
+                    // Pour la démo, simuler un paiement réussi
+                    showNotification('Simulation: Paiement réussi ! Redirection vers le téléchargement...', 'success');
+                    
+                    // Stocker les informations d'abonnement dans sessionStorage
+                    sessionStorage.setItem('subscription_active', 'true');
+                    sessionStorage.setItem('subscription_plan', selectedPlan);
+                    
+                    // Récupérer l'OS pour le téléchargement
+                    const os = sessionStorage.getItem('scanner_os');
+                    
+                    // Rediriger vers le téléchargement après un délai
+                    setTimeout(() => {
+                        // Charger le script consent-modal.js dynamiquement
+                        const script = document.createElement('script');
+                        script.src = '../js/consent-modal.js';
+                        document.head.appendChild(script);
+                        
+                        script.onload = function() {
+                            // Une fois le script chargé, afficher le modal
+                            if (typeof window.showConsentModal === 'function') {
+                                window.showConsentModal(os, 'pro', function(os, version) {
+                                    // Après acceptation, rediriger vers le téléchargement
+                                    window.location.href = `download.html?os=${os}`;
+                                });
+                            } else {
+                                // Fallback si la fonction n'est pas disponible
+                                window.location.href = `download.html?os=${os}`;
+                            }
+                        };
+                    }, 2000);
+                });
+            });
+            
+            // Fonction pour afficher les notifications
+            function showNotification(message, type = 'info') {
+                const container = document.getElementById('notifications-container');
+                const notification = document.createElement('div');
+                notification.className = `notification ${type}`;
+                
+                let icon = 'info-circle';
+                if (type === 'success') icon = 'check-circle';
+                if (type === 'error') icon = 'exclamation-circle';
+                
+                notification.innerHTML = `
+                    <i class="fas fa-${icon}"></i>
+                    <span>${message}</span>
+                `;
+                
+                container.appendChild(notification);
+                
+                // Supprimer la notification après 5 secondes
+                setTimeout(() => {
+                    notification.style.opacity = '0';
+                    setTimeout(() => {
+                        notification.remove();
+                    }, 300);
+                }, 5000);
+            }
+            
+            // Déconnexion
+            document.getElementById('logout-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Appel à l'API de déconnexion
+                fetch('/api/auth/logout', {
+                    method: 'POST',
+                })
+                .then(response => {
+                    // Rediriger vers la page d'accueil
+                    window.location.href = '../index.html';
+                })
+                .catch(error => {
+                    console.error('Erreur:', error);
+                    // Rediriger quand même en cas d'erreur
+                    window.location.href = '../index.html';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

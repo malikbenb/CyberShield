@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - CyberShield Dashboard</title>
+    <link rel="stylesheet" href="../css/main.css"> <!-- Réutiliser le CSS principal -->
+    <link rel="stylesheet" href="../css/dashboard.css"> <!-- CSS spécifique au dashboard -->
+    <link rel="icon" href="../images/Logo.jpg" type="image/jpg">
+    <style>
+    #pro-message {
+      display: block;
+      margin-bottom: 15px;
+      padding: 10px;
+      background-color: rgb(232, 244, 248);
+      border-left: 4px solid rgb(23, 162, 184);
+      border-radius: 4px;
+      color: #000; /* ✅ Texte noir */
+    }
+
+    #pro-message p {
+      margin: 0;
+      color: inherit;
+    }
+  </style>
+</head>
+<body class="dashboard-body">
+
+    <div class="auth-container">
+        <div class="auth-box">
+            <div class="auth-logo">
+                <img src="../images/Logo.jpg" alt="CyberShield Logo">
+                <h2>CyberShield Pro/Entreprise</h2>
+            </div>
+            <h3>Connexion</h3>
+            <div id="pro-message" class="info-message" style="display: none; margin-bottom: 15px; padding: 10px; background-color: #e8f4f8; border-left: 4px solid #17a2b8; border-radius: 4px;">
+                <p style="margin: 0;">Connectez-vous ou créez un compte pour accéder aux scanners Pro/Entreprise</p>
+            </div>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div id="error-message" class="error-message" style="display: none;"></div>
+                <button type="submit" class="btn cyber-btn auth-btn">Se connecter</button>
+            </form>
+            <p class="auth-switch">Pas encore de compte ? <a href="register.html" id="register-link">Inscrivez-vous</a></p>
+            <p class="auth-switch"><a href="../index.html">Retour à l'accueil</a></p>
+        </div>
+    </div>
+
+    <script src="../js/auth.js"></script> <!-- JS pour la logique d'authentification -->
+    <script>
+        // Récupérer les paramètres de l'URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const redirect = urlParams.get('redirect');
+        const os = urlParams.get('os');
+        
+        // Si l'utilisateur vient pour télécharger le scanner Pro
+        if (redirect === 'pro' && os) {
+            // Afficher un message spécifique
+            const proMessage = document.getElementById('pro-message');
+            if (proMessage) {
+                proMessage.style.display = 'block';
+            }
+            
+            // Stocker les paramètres dans sessionStorage pour les récupérer après connexion
+            sessionStorage.setItem('redirect_after_login', 'pro');
+            sessionStorage.setItem('scanner_os', os);
+            
+            // Modifier le lien d'inscription pour conserver les paramètres
+            const registerLink = document.getElementById('register-link');
+            if (registerLink) {
+                registerLink.href = `register.html?redirect=pro&os=${os}`;
+            }
+        }
+    </script>
+</body>
+</html>
+

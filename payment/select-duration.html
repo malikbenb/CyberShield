@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberShield - Sélection de la durée</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/payment.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="../index.html">
+                    <img src="../assets/images/logo.png" alt="CyberShield Logo" class="logo">
+                    CyberShield
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html">Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="index.html">Abonnements</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../dashboard/login.html">Connexion</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <section class="subscription-header">
+            <div class="container">
+                <div class="row justify-content-center text-center">
+                    <div class="col-lg-8">
+                        <h1>Choisissez la durée de votre abonnement</h1>
+                        <p class="lead">Plus la durée est longue, plus vous économisez</p>
+                        <div class="subscription-progress">
+                            <div class="progress-step active">
+                                <div class="step-number">1</div>
+                                <div class="step-label">Plan</div>
+                            </div>
+                            <div class="progress-line"></div>
+                            <div class="progress-step active">
+                                <div class="step-number">2</div>
+                                <div class="step-label">Durée</div>
+                            </div>
+                            <div class="progress-line"></div>
+                            <div class="progress-step">
+                                <div class="step-number">3</div>
+                                <div class="step-label">Paiement</div>
+                            </div>
+                            <div class="progress-line"></div>
+                            <div class="progress-step">
+                                <div class="step-number">4</div>
+                                <div class="step-label">Confirmation</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="subscription-duration">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="plan-summary mb-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h3 class="card-title">Votre sélection</h3>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h4 id="selected-plan-name">Plan Pro</h4>
+                                            <p class="text-muted mb-0" id="selected-plan-features">1 adresse IP, scan avancé, rapport détaillé</p>
+                                        </div>
+                                        <a href="index.html" class="btn btn-outline-secondary btn-sm">Modifier</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="duration-options">
+                            <!-- Monthly Option -->
+                            <div class="card duration-card mb-3" data-duration="1">
+                                <div class="card-body">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="duration" id="duration-monthly" value="1" checked>
+                                        <label class="form-check-label w-100" for="duration-monthly">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div>
+                                                    <h4 class="mb-0">Mensuel</h4>
+                                                    <p class="text-muted mb-0">Facturé chaque mois</p>
+                                                </div>
+                                                <div class="text-end">
+                                                    <h4 class="mb-0" id="monthly-price">40 000 DA</h4>
+                                                    <p class="text-muted mb-0">par mois</p>
+                                                </div>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Quarterly Option -->
+                            <div class="card duration-card mb-3" data-duration="3">
+                                <div class="card-body">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="duration" id="duration-quarterly" value="3">
+                                        <label class="form-check-label w-100" for="duration-quarterly">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div>
+                                                    <h4 class="mb-0">Trimestriel</h4>
+                                                    <p class="text-muted mb-0">Facturé tous les 3 mois</p>
+                                                    <span class="badge bg-success">Économisez 10%</span>
+                                                </div>
+                                                <div class="text-end">
+                                                    <h4 class="mb-0" id="quarterly-price">108 000 DA</h4>
+                                                    <p class="text-muted mb-0">36 000 DA par mois</p>
+                                                </div>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Annual Option -->
+                            <div class="card duration-card mb-3 popular-duration" data-duration="12">
+                                <div class="popular-badge">Meilleure offre</div>
+                                <div class="card-body">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="duration" id="duration-annual" value="12">
+                                        <label class="form-check-label w-100" for="duration-annual">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div>
+                                                    <h4 class="mb-0">Annuel</h4>
+                                                    <p class="text-muted mb-0">Facturé une fois par an</p>
+                                                    <span class="badge bg-success">Économisez 20%</span>
+                                                </div>
+                                                <div class="text-end">
+                                                    <h4 class="mb-0" id="annual-price">384 000 DA</h4>
+                                                    <p class="text-muted mb-0">32 000 DA par mois</p>
+                                                </div>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center mt-4">
+                            <a href="payment-form.html" id="continue-to-payment" class="btn btn-primary btn-lg">Continuer vers le paiement</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h4>CyberShield</h4>
+                    <p>Votre partenaire en sécurité informatique</p>
+                </div>
+                <div class="col-md-4">
+                    <h4>Liens rapides</h4>
+                    <ul class="footer-links">
+                        <li><a href="../index.html">Accueil</a></li>
+                        <li><a href="index.html">Abonnements</a></li>
+                        <li><a href="../dashboard/login.html">Connexion</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h4>Contact</h4>
+                    <p>Email: contact@cybershield-algeria.com</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12 text-center">
+                    <p class="copyright">© 2025 CyberShield. Tous droits réservés.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/payment.js"></script>
+</body>
+</html>

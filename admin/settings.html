@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberShield Admin - Paramètres</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="admin-sidebar">
+        <div class="sidebar-header">
+            <img src="../assets/images/logo.png" alt="CyberShield Logo" class="sidebar-logo">
+            <h4 class="mt-2">CyberShield Admin</h4>
+        </div>
+        <div class="sidebar-menu">
+            <a href="index.html" class="sidebar-menu-item">
+                <i class="fas fa-tachometer-alt"></i> Tableau de bord
+            </a>
+            <a href="users.html" class="sidebar-menu-item">
+                <i class="fas fa-users"></i> Utilisateurs
+            </a>
+            <a href="subscriptions.html" class="sidebar-menu-item">
+                <i class="fas fa-credit-card"></i> Abonnements
+            </a>
+            <a href="scans.html" class="sidebar-menu-item">
+                <i class="fas fa-shield-alt"></i> Scans
+            </a>
+            <a href="settings.html" class="sidebar-menu-item active">
+                <i class="fas fa-cog"></i> Paramètres
+            </a>
+            <a href="#" id="logout-btn" class="sidebar-menu-item mt-5">
+                <i class="fas fa-sign-out-alt"></i> Déconnexion
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="admin-main-content">
+        <div class="admin-header">
+            <button class="btn d-lg-none" id="toggle-sidebar">
+                <i class="fas fa-bars"></i>
+            </button>
+            <h1 class="admin-title">Paramètres</h1>
+            <div class="admin-user-info">
+                <span class="me-2">Admin</span>
+                <i class="fas fa-user-circle fa-lg"></i>
+            </div>
+        </div>
+
+        <!-- Settings Tabs -->
+        <div class="admin-card">
+            <div class="admin-card-body p-0">
+                <ul class="nav nav-tabs" id="settingsTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="general-tab" data-bs-toggle="tab" data-bs-target="#general" type="button" role="tab" aria-controls="general" aria-selected="true">Général</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="security-tab" data-bs-toggle="tab" data-bs-target="#security" type="button" role="tab" aria-controls="security" aria-selected="false">Sécurité</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="scan-tab" data-bs-toggle="tab" data-bs-target="#scan" type="button" role="tab" aria-controls="scan" aria-selected="false">Configuration des scans</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="monitoring-tab" data-bs-toggle="tab" data-bs-target="#monitoring" type="button" role="tab" aria-controls="monitoring" aria-selected="false">Monitoring</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="admin-tab" data-bs-toggle="tab" data-bs-target="#admin" type="button" role="tab" aria-controls="admin" aria-selected="false">Administrateurs</button>
+                    </li>
+                </ul>
+                <div class="tab-content p-4" id="settingsTabsContent">
+                    <!-- General Settings -->
+                    <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="general-tab">
+                        <h4 class="mb-4">Paramètres généraux</h4>
+                        <form id="general-settings-form">
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="site-name" class="form-label">Nom du site</label>
+                                        <input type="text" class="form-control" id="site-name" value="CyberShield">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="site-description" class="form-label">Description</label>
+                                        <textarea class="form-control" id="site-description" rows="3">Plateforme de pentesting et d'analyse de vulnérabilités</textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="contact-email" class="form-label">Email de contact</label>
+                                        <input type="email" class="form-control" id="contact-email" value="contact@cybershield-algeria.com">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="logo-upload" class="form-label">Logo du site</label>
+                                        <input class="form-control" type="file" id="logo-upload">
+                                        <div class="mt-2">
+                                            <img src="../assets/images/logo.png" alt="Logo actuel" style="max-height: 100px;">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="maintenance-mode" class="form-label">Mode maintenance</label>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="maintenance-mode">
+                                            <label class="form-check-label" for="maintenance-mode">Activer le mode maintenance</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+                        </form>
+                    </div>
+
+                    <!-- Security Settings -->
+                    <div class="tab-pane fade" id="security" role="tabpanel" aria-labelledby="security-tab">
+                        <h4 class="mb-4">Paramètres de sécurité</h4>
+                        <form id="security-settings-form">
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="admin-api-key" class="form-label">Clé API Admin</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="admin-api-key" value="••••••••••••••••••••••" readonly>
+                                            <button class="btn btn-outline-secondary" type="button" id="generate-api-key">Régénérer</button>
+                                            <button class="btn btn-outline-secondary" type="button" id="show-api-key">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                        </div>
+                                        <small class="text-muted">Utilisée pour l'authentification des requêtes API administratives.</small>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="session-timeout" class="form-label">Délai d'expiration de session (minutes)</label>
+                                        <input type="number" class="form-control" id="session-timeout" value="30" min="5">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="password-policy" class="form-label">Politique de mot de passe</label>
+                                        <select class="form-select" id="password-policy">
+                                            <option value="standard">Standard (8 caractères min.)</option>
+                                            <option value="strong" selected>Fort (10 caractères, majuscules, chiffres)</option>
+                                            <option value="very-strong">Très fort (12 caractères, majuscules, chiffres, symboles)</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="login-attempts" class="form-label">Tentatives de connexion max.</label>
+                                        <input type="number" class="form-control" id="login-attempts" value="5" min="1">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Sécurité supplémentaire</label>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="enable-2fa" checked>
+                                            <label class="form-check-label" for="enable-2fa">
+                                                Activer l'authentification à deux facteurs pour les administrateurs
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="force-https" checked>
+                                            <label class="form-check-label" for="force-https">
+                                                Forcer HTTPS
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+                        </form>
+                    </div>
+
+                    <!-- Scan Configuration -->
+                    <div class="tab-pane fade" id="scan" role="tabpanel" aria-labelledby="scan-tab">
+                        <h4 class="mb-4">Configuration des scans</h4>
+                        <form id="scan-settings-form">
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <h5 class="mb-3">Paramètres GVM</h5>
+                                    <div class="mb-3">
+                                        <label for="gvm-scan-config" class="form-label">Configuration de scan par défaut</label>
+                                        <select class="form-select" id="gvm-scan-config">
+                                            <option value="full-and-fast" selected>Full and Fast</option>
+                                            <option value="full-and-fast-ultimate">Full and Fast Ultimate</option>
+                                            <option value="full-and-very-deep">Full and Very Deep</option>
+                                            <option value="system-discovery">System Discovery</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="gvm-resources" class="form-label">Allocation de ressources GVM</label>
+                                        <select class="form-select" id="gvm-resources">
+                                            <option value="low">Basse (économie de ressources)</option>
+                                            <option value="medium" selected>Moyenne (équilibrée)</option>
+                                            <option value="high">Haute (performance maximale)</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="gvm-update-interval" class="form-label">Intervalle de mise à jour des flux (heures)</label>
+                                        <input type="number" class="form-control" id="gvm-update-interval" value="24" min="1">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5 class="mb-3">Paramètres Nmap et autres outils</h5>
+                                    <div class="mb-3">
+                                        <label for="nmap-timing" class="form-label">Timing Nmap</label>
+                                        <select class="form-select" id="nmap-timing">
+                                            <option value="3">Normal (T3)</option>
+                                            <option value="4" selected>Agressif (T4)</option>
+                                            <option value="5">Très agressif (T5)</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="scan-timeout" class="form-label">Délai d'expiration des scans (minutes)</label>
+                                        <input type="number" class="form-control" id="scan-timeout" value="120" min="10">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Outils activés</label>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="enable-nmap" checked>
+                                            <label class="form-check-label" for="enable-nmap">Nmap</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="enable-nikto" checked>
+                                            <label class="form-check-label" for="enable-nikto">Nikto</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="enable-gobuster" checked>
+                                            <label class="form-check-label" for="enable-gobuster">Gobuster</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="enable-sqlmap">
+                                            <label class="form-check-label" for="enable-sqlmap">SQLMap</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+                        </form>
+                    </div>
+
+                    <!-- Monitoring Settings -->
+                    <div class="tab-pane fade" id="monitoring" role="tabpanel" aria-labelledby="monitoring-tab">
+                        <h4 class="mb-4">Paramètres de monitoring</h4>
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <div class="admin-card mb-4">
+                                    <div class="admin-card-header">
+                                        <h5 class="admin-card-title">Prometheus</h5>
+                                    </div>
+                                    <div class="admin-card-body">
+                                        <div class="mb-3">
+                                            <label class="form-label">Statut</label>
+                                            <div class="d-flex align-items-center">
+                                                <span class="badge bg-success me-2">Actif</span>
+                                                <span>Port: 9090</span>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="prometheus-scrape-interval" class="form-label">Intervalle de scraping (secondes)</label>
+                                            <input type="number" class="form-control" id="prometheus-scrape-interval" value="15" min="5">
+                                        </div>
+                                        <div class="d-grid gap-2">
+                                            <a href="http://localhost:9090" target="_blank" class="btn btn-outline-primary">
+                                                <i class="fas fa-external-link-alt"></i> Ouvrir Prometheus
+                                            </a>
+                                            <button class="btn btn-outline-secondary" id="restart-prometheus-btn">
+                                                <i class="fas fa-sync-alt"></i> Redémarrer Prometheus
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="admin-card mb-4">
+                                    <div class="admin-card-header">
+                                        <h5 class="admin-card-title">Grafana</h5>
+                                    </div>
+                                    <div class="admin-card-body">
+                                        <div class="mb-3">
+                                            <label class="form-label">Statut</label>
+                                            <div class="d-flex align-items-center">
+                                                <span class="badge bg-warning me-2">Non configuré</span>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <p>Grafana n'est pas encore configuré. Cliquez sur le bouton ci-dessous pour l'installer et le configurer.</p>
+                                        </div>
+                                        <div class="d-grid">
+                                            <button class="btn btn-primary" id="setup-grafana-btn">
+                                                <i class="fas fa-cog"></i> Configurer Grafana
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="admin-card">
+                            <div class="admin-card-header">
+                                <h5 class="admin-card-title">Alertes</h5>
+                            </div>
+                            <div class="admin-card-body">
+                                <form id="alerts-settings-form">
+                                    <div class="mb-3">
+                                        <label for="alert-email" class="form-label">Email pour les alertes</label>
+                                        <input type="email" class="form-control" id="alert-email" value="admin@cybershield-algeria.com">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Alertes activées</label>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="alert-high-cpu" checked>
+                                            <label class="form-check-label" for="alert-high-cpu">
+                                                Utilisation CPU élevée (>80%)
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="alert-high-memory" checked>
+                                            <label class="form-check-label" for="alert-high-memory">
+                                                Utilisation mémoire élevée (>80%)
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="alert-api-errors" checked>
+                                            <label class="form-check-label" for="alert-api-errors">
+                                                Taux d'erreurs API élevé (>5%)
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="alert-scan-failures" checked>
+                                            <label class="form-check-label" for="alert-scan-failures">
+                                                Échecs de scans consécutifs (>3)
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Enregistrer les alertes</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Admin Users -->
+                    <div class="tab-pane fade" id="admin" role="tabpanel" aria-labelledby="admin-tab">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h4>Administrateurs</h4>
+                            <button class="btn btn-primary" id="add-admin-btn">
+                                <i class="fas fa-user-plus"></i> Ajouter un administrateur
+                            </button>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nom</th>
+                                        <th>Email</th>
+                                        <th>Rôle</th>
+                                        <th>Dernière connexion</th>
+                                        <th>Statut</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="admins-table-body">
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Admin Principal</td>
+                                        <td>admin@cybershield-algeria.com</td>
+                                        <td>Super Admin</td>
+                                        <td>26/05/2025 15:30</td>
+                                        <td><span class="badge bg-success">Actif</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-primary edit-admin-btn" data-admin-id="1">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Edit Modal -->
+    <div class="modal fade" id="admin-edit-modal" tabindex="-1" aria-labelledby="adminEditModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="adminEditModalLabel">Modifier l'administrateur</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="admin-edit-form">
+                        <input type="hidden" id="edit-admin-id">
+                        <div class="mb-3">
+                            <label for="edit-admin-name" class="form-label">Nom</label>
+                            <input type="text" class="form-control" id="edit-admin-name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-admin-email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="edit-admin-email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-admin-role" class="form-label">Rôle</label>
+                            <select class="form-select" id="edit-admin-role">
+                                <option value="admin">Admin</option>
+                                <option value="super-admin">Super Admin</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-admin-password" class="form-label">Nouveau mot de passe (laisser vide pour ne pas changer)</label>
+                            <input type="password" class="form-control" id="edit-admin-password">
+                        </div>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="edit-admin-active">
+                            <label class="form-check-label" for="edit-admin-active">Compte actif</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-danger me-auto" id="delete-admin-btn">Supprimer</button>
+                    <button type="button" class="btn btn-primary" id="save-admin-btn">Enregistrer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

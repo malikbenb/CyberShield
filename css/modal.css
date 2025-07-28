@@ -1,0 +1,140 @@
+/* Styles pour le modal de consentement */
+.consent-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+}
+
+.consent-modal {
+    background-color: var(--cyber-dark);
+    border: 1px solid var(--cyber-accent);
+    border-radius: 8px;
+    width: 90%;
+    max-width: 900px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 30px rgba(100, 255, 218, 0.3);
+    animation: modal-appear 0.3s ease-out;
+}
+
+@keyframes modal-appear {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.consent-modal-header {
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--cyber-accent);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.consent-modal-header h2 {
+    margin: 0;
+    color: var(--cyber-accent);
+    font-size: 1.5rem;
+}
+
+.consent-modal-close {
+    background: none;
+    border: none;
+    color: var(--cyber-gray);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.consent-modal-close:hover {
+    color: var(--cyber-accent);
+}
+
+.consent-modal-body {
+    padding: 0;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+.consent-modal-body iframe {
+    width: 100%;
+    height: 60vh;
+    border: none;
+}
+
+.consent-modal-footer {
+    padding: 15px 20px;
+    border-top: 1px solid rgba(100, 255, 218, 0.2);
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+}
+
+.consent-modal-footer button {
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.consent-decline {
+    background-color: transparent;
+    color: var(--cyber-gray);
+    border: 1px solid var(--cyber-gray);
+}
+
+.consent-decline:hover {
+    color: var(--cyber-alert);
+    border-color: var(--cyber-alert);
+}
+
+.consent-agree {
+    background-color: var(--cyber-accent);
+    color: var(--cyber-dark);
+    border: none;
+}
+
+.consent-agree:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(100, 255, 218, 0.3);
+}
+
+.consent-agree:disabled {
+    background-color: var(--cyber-gray);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.consent-checkbox-container {
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+}
+
+.consent-checkbox {
+    margin-right: 10px;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--cyber-accent);
+}
+
+.consent-checkbox-label {
+    color: var(--cyber-text);
+    font-size: 0.9rem;
+}

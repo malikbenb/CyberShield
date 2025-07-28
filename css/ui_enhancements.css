@@ -1,0 +1,389 @@
+/* --- UI Enhancements for Index Page --- */
+
+/* General Body and Layout */
+body {
+    /* Add a subtle gradient background */
+    background: linear-gradient(180deg, var(--cyber-darker) 0%, var(--cyber-dark) 30%, var(--cyber-dark) 70%, var(--cyber-darker) 100%);
+}
+
+section {
+    padding: 80px 0; /* Slightly reduced padding for a tighter feel */
+    border-bottom: 1px solid rgba(100, 255, 218, 0.08); /* Subtle separator between sections */
+    position: relative; /* For potential pseudo-elements */
+}
+
+section:last-of-type {
+    border-bottom: none; /* No border for the last section before footer */
+}
+
+.container {
+    max-width: 1140px; /* Slightly narrower container for better focus */
+}
+
+/* Section Titles */
+.section-title {
+    margin-bottom: 25px; /* Increased space below title */
+    font-weight: 700; /* Ensure title weight */
+    position: relative;
+    padding-bottom: 15px; /* Space for the underline */
+}
+
+/* Add a subtle underline effect to titles */
+.section-title::after {
+    content: ";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: var(--cyber-accent);
+    border-radius: 2px;
+}
+
+.section-subtitle {
+    margin-bottom: 60px; /* Increased space below subtitle */
+    max-width: 700px; /* Limit width for readability */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Card Enhancements (Features, Scanners, Pricing) */
+.feature-card, .scanner-card, .pricing-card {
+    background-color: rgba(10, 25, 47, 0.7); /* Slightly more opaque background */
+    backdrop-filter: blur(5px); /* Add subtle blur effect */
+    border: 1px solid rgba(100, 255, 218, 0.15); /* Slightly more visible border */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Smoother transition */
+}
+
+.feature-card:hover, .scanner-card:hover, .pricing-card:hover {
+    transform: translateY(-12px) scale(1.02); /* Enhanced hover effect */
+    box-shadow: 0 15px 35px rgba(100, 255, 218, 0.15); /* Stronger shadow on hover */
+    border-color: rgba(100, 255, 218, 0.5);
+}
+
+.pricing-card.featured {
+    border-color: var(--cyber-accent);
+    box-shadow: 0 0 25px rgba(100, 255, 218, 0.2); /* Initial shadow for featured */
+}
+
+.pricing-card.featured:hover {
+    transform: translateY(-12px) scale(1.07); /* More pronounced hover for featured */
+    box-shadow: 0 20px 40px rgba(100, 255, 218, 0.3); /* Stronger shadow for featured */
+}
+
+/* Icon Styling */
+.feature-icon, .scanner-icon {
+    margin-bottom: 25px; /* More space below icon */
+    display: inline-block; /* Allows transform */
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover .feature-icon,
+.scanner-card:hover .scanner-icon {
+    transform: scale(1.1); /* Subtle icon scale on hover */
+}
+
+/* Button Enhancements */
+.cyber-btn {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add subtle shadow to buttons */
+}
+
+.cyber-btn:hover {
+    box-shadow: 0 8px 15px rgba(100, 255, 218, 0.3); /* Enhance shadow on hover */
+}
+
+/* Hero Section Adjustments */
+.hero-section {
+    padding-top: calc(var(--header-height) + 60px); /* Ensure enough space below header */
+    padding-bottom: 60px;
+}
+
+.hero-content h2 {
+    font-size: 3.2rem; /* Slightly larger hero title */
+}
+
+.hero-buttons {
+    margin-top: 30px; /* Space above hero buttons */
+}
+
+/* Terminal Window Enhancement */
+.terminal-window {
+    border: 1px solid rgba(100, 255, 218, 0.5); /* Make border slightly stronger */
+}
+
+/* --- End UI Enhancements --- */
+
+
+/* Styles pour le bloc de réglementations */
+.regulations-container {
+    margin: 30px 0;
+    background-color: rgba(10, 25, 47, 0.7);
+    border: 1px solid rgba(100, 255, 218, 0.3);
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.regulations-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(100, 255, 218, 0.2);
+    padding-bottom: 10px;
+}
+
+.regulations-header i {
+    font-size: 1.8rem;
+    color: var(--cyber-warning);
+    margin-right: 15px;
+}
+
+.regulations-header h3 {
+    font-size: 1.5rem;
+    color: var(--cyber-accent);
+    margin: 0;
+}
+
+.regulations-content {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.regulations-content p {
+    margin-bottom: 15px;
+}
+
+.regulations-footer {
+    margin-top: 15px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.regulations-footer a {
+    color: var(--cyber-accent);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.regulations-footer a:hover {
+    transform: translateX(5px);
+}
+
+/* Responsive pour le bloc de réglementations */
+@media (max-width: 768px) {
+    .regulations-container {
+        padding: 15px;
+    }
+    
+    .regulations-header i {
+        font-size: 1.5rem;
+    }
+    
+    .regulations-header h3 {
+        font-size: 1.3rem;
+    }
+}
+
+/* Styles pour les cartes de tarifs améliorées */
+.pricing-card {
+    position: relative;
+    background-color: rgba(10, 25, 47, 0.5);
+    border: 1px solid rgba(100, 255, 218, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.pricing-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(100, 255, 218, 0.1);
+}
+
+.pricing-card.featured {
+    border-color: var(--cyber-accent);
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(100, 255, 218, 0.2);
+}
+
+.pricing-card.featured:hover {
+    transform: scale(1.05) translateY(-10px);
+}
+
+.pricing-icon {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pricing-icon img {
+    max-width: 100%;
+    height: auto;
+    filter: drop-shadow(0 0 8px rgba(100, 255, 218, 0.3));
+    transition: all 0.3s ease;
+}
+
+.pricing-card:hover .pricing-icon img {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 15px rgba(100, 255, 218, 0.5));
+}
+
+.pricing-header {
+    padding: 30px 30px 20px;
+    text-align: center;
+    border-bottom: 1px solid rgba(100, 255, 218, 0.2);
+}
+
+.pricing-header h3 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.pricing-description {
+    font-size: 0.95rem;
+    color: var(--cyber-gray);
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.pricing-price {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.price {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--cyber-accent);
+    margin-bottom: 5px;
+    display: flex;
+    align-items: baseline;
+}
+
+.currency {
+    font-size: 1.2rem;
+    margin-left: 5px;
+}
+
+.period {
+    font-size: 1rem;
+    color: var(--cyber-gray);
+}
+
+.pricing-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: var(--cyber-accent);
+    color: var(--cyber-dark);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 5px 15px rgba(100, 255, 218, 0.3);
+}
+
+.pricing-features {
+    padding: 30px;
+    flex-grow: 1;
+}
+
+.pricing-features ul {
+    list-style: none;
+}
+
+.pricing-features li {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.pricing-features i {
+    font-size: 1.2rem;
+    margin-top: 2px;
+}
+
+.pricing-features .fa-check {
+    color: var(--cyber-success);
+}
+
+.pricing-features .fa-times {
+    color: var(--cyber-alert);
+}
+
+.pricing-footer {
+    padding: 0 30px 30px;
+    text-align: center;
+}
+
+.pricing-highlight {
+    background-color: rgba(100, 255, 218, 0.1);
+    padding: 8px 12px;
+    border-radius: 4px;
+    margin-top: 5px;
+    font-size: 0.9rem;
+    color: var(--cyber-accent);
+}
+
+/* Responsive pour les cartes de tarifs */
+@media (max-width: 768px) {
+    .pricing-card.featured {
+        transform: none;
+    }
+    
+    .pricing-card.featured:hover {
+        transform: translateY(-10px);
+    }
+    
+    .pricing-icon {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .pricing-header {
+        padding: 20px 20px 15px;
+    }
+    
+    .pricing-header h3 {
+        font-size: 1.5rem;
+    }
+    
+    .price {
+        font-size: 2.5rem;
+    }
+    
+    .pricing-features, .pricing-footer {
+        padding: 20px;
+    }
+}
+/* Agrandissement spécifique des icônes de tarification */
+.pricing-icon i.fas {
+    font-size: 3rem; /* Taille augmentée (48px) */
+    color: var(--cyber-accent); /* Utilise la couleur d'accent du thème */
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* Effet au survol */
+.pricing-card:hover .pricing-icon i.fas {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 8px rgba(100, 255, 218, 0.5));
+}
+
+/* Ajustement pour l'alignement */
+.pricing-header {
+    padding-top: 25px; /* Réduit légèrement l'espace au-dessus */
+}

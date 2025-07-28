@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - CyberShield Algeria</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/resources.css">
+    <link rel="icon" href="../images/Logo.jpg" type="image/jpg">
+    <style>
+        /* Styles spécifiques pour corriger la superposition des contenus */
+        .doc-section {
+            display: none; /* Masquer toutes les sections par défaut */
+        }
+        .doc-section.active {
+            display: block; /* Afficher uniquement la section active */
+        }
+        .doc-nav a.active {
+            background-color: rgba(100, 255, 218, 0.1);
+            border-left-color: var(--cyber-accent);
+            color: var(--cyber-accent);
+            padding-left: 22px;
+        }
+        /* Amélioration de l'espacement */
+        .doc-card {
+            margin-bottom: 50px;
+        }
+        .doc-card-content h3 {
+            margin-top: 0;
+        }
+        .doc-card-content p, .doc-card-content ul, .doc-card-content ol {
+            margin-bottom: 25px;
+        }
+        .doc-section h2 {
+            margin-top: 0;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header class="cyber-header">
+        <div class="container">
+            <div class="logo-container">
+                <a href="../index.html">
+                    <img src="../images/Logo.jpg" alt="CyberShield Logo" class="logo">
+                </a>
+                <h1>CyberShield Algeria</h1>
+            </div>
+            <nav class="cyber-nav">
+                <ul>
+                    <li><a href="../index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                    <li><a href="../index.html#features"><i class="fas fa-shield-alt"></i> Fonctionnalités</a></li>
+                    <li><a href="../index.html#scanners"><i class="fas fa-download"></i> Scanners</a></li>
+                    <li><a href="../index.html#pricing"><i class="fas fa-tags"></i> Tarifs</a></li>
+                    <li><a href="../index.html#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="doc-hero">
+            <div class="container">
+                <h1>Documentation</h1>
+                <p>Guides complets et ressources techniques pour nos scanners et outils</p>
+            </div>
+        </section>
+
+        <section class="doc-content">
+            <div class="container">
+                <div class="doc-sidebar">
+                    <div class="doc-search">
+                        <input type="text" placeholder="Rechercher dans la documentation...">
+                        <button><i class="fas fa-search"></i></button>
+                    </div>
+                    <nav class="doc-nav">
+                        <h3>Guides d'utilisation</h3>
+                        <ul>
+                            <li><a href="#getting-started" class="active">Premiers pas</a></li>
+                            <li><a href="#installation">Installation</a></li>
+                            <li><a href="#configuration">Configuration</a></li>
+                            <li><a href="#scanning">Réaliser un scan</a></li>
+                            <li><a href="#reports">Comprendre les rapports</a></li>
+                            <li><a href="#remediation">Correction des vulnérabilités</a></li>
+                        </ul>
+                        
+                        <h3>Scanners</h3>
+                        <ul>
+                            <li><a href="#windows-scanner">Scanner Windows</a></li>
+                            <li><a href="#linux-scanner">Scanner Linux</a></li>
+                            <li><a href="#macos-scanner">Scanner macOS</a></li>
+                        </ul>
+                        
+                        <h3>Versions</h3>
+                        <ul>
+                            <li><a href="#free-version">Version gratuite</a></li>
+                            <li><a href="#pro-version">Version Pro</a></li>
+                            <li><a href="#enterprise-version">Version Entreprise</a></li>
+                        </ul>
+                        
+                        <h3>API & Intégration</h3>
+                        <ul>
+                            <li><a href="#api-reference">Référence API</a></li>
+                            <li><a href="#docker-integration">Intégration Docker</a></li>
+                            <li><a href="#ci-cd">Intégration CI/CD</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="doc-main">
+                    <div id="getting-started" class="doc-section">
+                        <h2>Premiers pas avec CyberShield</h2>
+                        
+                        <div class="doc-card">
+                            <div class="doc-card-icon">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <div class="doc-card-content">
+                                <h3>Bienvenue dans la documentation CyberShield</h3>
+                                <p>CyberShield est une plateforme de pentesting innovante qui vous permet d'évaluer la sécurité de vos systèmes informatiques de manière autonome, sans nécessiter d'expertise technique approfondie.</p>
+                                
+                                <p>Notre approche "Do Your Own Assessment" vous donne le contrôle total sur vos tests de sécurité, vous permettant de :</p>
+                                <ul>
+                                    <li>Identifier les vulnérabilités dans vos systèmes</li>
+                                    <li>Comprendre les risques associés</li>
+                                    <li>Obtenir des recommandations précises pour renforcer votre sécurité</li>
+                                    <li>Suivre vos progrès au fil du temps</li>
+                                </ul>
+                                
+                                <p>Cette documentation vous guidera à travers toutes les étapes nécessaires pour tirer le meilleur parti de nos outils, de l'installation initiale à l'interprétation des résultats et à la mise en œuvre des correctifs recommandés.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="doc-card">
+                            <div class="doc-card-icon">
+                                <i class="fas fa-map"></i>
+                            </div>
+                            <div class="doc-card-content">
+                                <h3>Vue d'ensemble de la plateforme</h3>
+                                <p>La plateforme CyberShield se compose de plusieurs éléments clés :</p>
+                                
+                                <h4>Scanners</h4>
+                                <p>Nos scanners sont disponibles pour Windows, Linux et macOS. Ils analysent vos systèmes à la recherche de vulnérabilités connues, de configurations incorrectes et d'autres problèmes de sécurité.</p>
+                                
+                                <h4>Interface web</h4>
+                                <p>Notre interface web vous permet de gérer vos scans, de visualiser les résultats et de suivre vos progrès en matière de sécurité au fil du temps.</p>
+                                
+                                <h4>API</h4>
+                                <p>Notre API RESTful permet d'intégrer CyberShield à vos outils et workflows existants, facilitant l'automatisation des tests de sécurité.</p>
+                                
+                                <h4>Base de connaissances</h4>
+                                <p>Notre base de connaissances fournit des informations détaillées sur les vulnérabilités détectées et des conseils pour les corriger.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="doc-card">
+                            <div class="doc-card-icon">
+                                <i class="fas fa-layer-group"></i>
+                            </div>
+                            <div class="doc-card-content">
+                                <h3>Versions disponibles</h3>
+                                <p>CyberShield est disponible en trois versions pour répondre à différents besoins :</p>
+                                
+                                <div class="doc-table-container">
+                                    <table class="doc-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Fonctionnalité</th>
+                                                <th>Version Gratuite</th>
+                                                <th>Version Pro</th>
+                                                <th>Version Entreprise</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Scan de vulnérabilités de base</td>
+                                                <td><i class="fas fa-check"></i></td>
+                                                <td><i class="fas fa-check"></i></td>
+                                                <td><i class="fas fa-check"></i></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Scan de configuration</td>
+                                                <td><i class="fas fa-check"></i></td>
+                                                <td><i class="fas fa-check"></i></td>
+                                                <td><i class="fas fa-check"></i></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Scan de vulnérabilités avancé</td>
+                                                <td><i class="fas fa-times"></i></td>
+                                                <td><i class="fas fa-check"></i></td>
+                                                <td><i class="fas fa-check"></i></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Scan réseau</td>
+                                                <td><i class="fas fa-times"></i></td>
+                                                <td><i class="fas fa-check"></i></td>
+                                                <td><i class="fas fa-check"></i></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Scan d'applications web</td>
+                                                <td><i class="fas fa-times"></i></td>
+                                                <td><i class="fas fa-times"></i></td>
+                                                <td><i class="fas fa-check"></i></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Rapports détaillés</td>
+                                                <td><i class="fas fa-times"></i></td>
+                                                <td><i class="fas fa-check"></i></td>
+                                                <td><i class="fas fa-check"></i></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Intégration API</td>
+                                                <td><i class="fas fa-times"></i></td>
+                                                <td><i class="fas fa-check"></i></td>
+                                                <td><i class="fas fa-check"></i></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Support technique</td>
+                                                <td>Communauté</td>
+                                                <td>Email</td>
+                                                <td>Dédié 24/7</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+                                <p>Pour plus de détails sur chaque version, consultez la <a href="#versions">section Versions</a>.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="installation" class="doc-section">
+                        <h2>Installation</h2>
+                        
+                        <div class="doc-card">
+                            <div class="doc-card-icon">
+                                <i class="fas fa-download"></i>
+                            </div>
+                            <div class="doc-card-content">
+                                <h3>Prérequis système</h3>
+                                <p>Avant d'installer nos scanners, assurez-vous que votre système répond aux exigences minimales suivantes :</p>
+                                
+                                <h4>Scanner Windows</h4>
+                                <ul>
+                                    <li>Windows 10 ou Windows Server 2016 (ou version ultérieure)</li>
+                                    <li>2 Go de RAM minimum (4 Go recommandés)</li>
+                                    <li>500 Mo d'espace disque disponible</li>
+                                    <li>Droits d'administrateur pour l'installation</li>
+                                    <li>.NET Framework 4.7.2 ou supérieur</li>
+                                </ul>
+                                
+                                <h4>Scanner Linux</h4>
+                                <ul>
+                                    <li>Ubuntu 18.04+, Debian 10+, CentOS 7+, ou distribution équivalente</li>
+                                    <li>2 Go de RAM minimum (4 Go recommandés)</li>
+                                    <li>500 Mo d'espace disque disponible</li>
+                                    <li>Privilèges sudo pour l'installation</li>
+                                    <li>Python 3.6 ou supérieur</li>
+                                </ul>
+                                
+                                <h4>Scanner macOS</h4>
+                                <ul>
+                                    <li>macOS 10.15 (Catalina) ou version ultérieure</li>
+                                    <li>2 Go de RAM minimum (4 Go recommandés)</li>
+                                    <li>500 Mo d'espace disque disponible</li>
+                                    <li>Droits d'administrateur pour l'installation</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="doc-card">
+                            <div class="doc-card-icon">
+                                <i class="fab fa-windows"></i>
+                            </div>
+                            <div class="doc-card-content">
+                                <h3>Installation sur Windows</h3>
+                                <ol>
+                                    <li>Téléchargez le scanner Windows depuis la <a href="../index.html#scanners">section Scanners</a> de notre site web.</li>
+                                    <li>Double-cliquez sur le fichier d'installation téléchargé (<code>CyberShield_Windows_Setup.exe</code>).</li>
+                                    <li>Si une alerte de sécurité Windows apparaît, cliquez sur "Plus d'informations" puis sur "Exécuter quand même".</li>
+                                    <li>Suivez les instructions de l'assistant d'installation.</li>
+                                    <li>Une fois l'installation terminée, lancez CyberShield depuis le menu Démarrer ou depuis le raccourci créé sur votre bureau.</li>
+                                </ol>
+                                
+                                <div class="doc-note">
+                                    <p><strong>Note :</strong> Pour la Version Pro, après l'installation, vous devrez activer votre licence en suivant les instructions fournies par email lors de votre achat.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="doc-card">
+                            <div class="doc-card-icon">
+                                <i class="fab fa-linux"></i>
+                            </div>
+                            <div class="doc-card-content">
+                                <h3>Installation sur Linux</h3>
+                                <ol>
+                                    <li>Téléchargez le scanner Linux depuis la <a href="../index.html#scanners">section Scanners</a> de notre site web.</li>
+                                    <li>Ouvrez un terminal et naviguez jusqu'au répertoire où vous avez téléchargé le fichier.</li>
+                                    <li>Rendez le script d'installation exécutable :</li>
+                                </ol>
+                                
+                                <div class="doc-code">
+                                    <pre><code>chmod +x cybershield_linux_installer.sh</code></pre>
+                                </div>
+                                
+                                <ol start="4">
+                                    <li>Exécutez le script d'installation :</li>
+                                </ol>
+                                
+                                <div class="doc-code">
+                                    <pre><code>sudo ./cybershield_linux_installer.sh</code></pre>
+                                </div>
+                                
+                                <ol start="5">
+                                    <li>Suivez les instructions à l'écran pour terminer l'installation.</li>
+                                    <li>Une fois l'installation terminée, vous pouvez lancer CyberShield en exécutant :</li>
+                                </ol>
+                                
+                                <div class="doc-code">
+                                    <pre><code>cybershield</code></pre>
+                                </div>
+                                
+                                <div class="doc-note">
+                                    <p><strong>Note :</strong> Pour la Version Pro, après l'installation, vous devrez activer votre licence en suivant les instructions fournies par email lors de votre achat.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="doc-card">
+                            <div class="doc-card-icon">
+                                <i class="fab fa-apple"></i>
+                            </div>
+                            <div class="doc-card-content">
+                                <h3>Installation sur macOS</h3>
+                                <ol>
+                                    <li>Téléchargez le scanner macOS depuis la <a href="../index.html#scanners">section Scanners</a> de notre site web.</li>
+                                    <li>Double-cliquez sur le fichier DMG téléchargé (<code>CyberShield_macOS.dmg</code>).</li>
+                                    <li>Faites glisser l'application CyberShield dans votre dossier Applications.</li>
+                                    <li>Lors du premier lancement, macOS peut vous avertir que l'application provient d'un développeur non identifié. Dans ce cas :</li>
+                                    <ul>
+                                        <li>Ouvrez les Préférences Système > Sécurité et confidentialité.</li>
+                                        <li>Cliquez sur "Ouvrir quand même" pour autoriser l'application.</li>
+                                    </ul>
+                                    <li>Suivez les instructions à l'écran pour terminer la configuration.</li>
+                                </ol>
+                                
+                                <div class="doc-note">
+                                    <p><strong>Note :</strong> Pour la Version Pro, après l'installation, vous devrez activer votre licence en suivant les instructions fournies par email lors de votre achat.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="doc-pagination">
+                        <a href="#" class="btn btn-outline"><i class="fas fa-chevron-left"></i> Précédent</a>
+                        <a href="#" class="btn btn-primary">Suivant <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="cyber-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <img src="../images/Logo.jpg" alt="CyberShield Logo" class="footer-logo">
+                    <h3>CyberShield Algeria</h3>
+                    <p>Votre partenaire de confiance en cybersécurité. Nous protégeons vos systèmes contre les menaces numériques avec des solutions innovantes et adaptées.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Liens rapides</h3>
+                    <ul>
+                        <li><a href="../index.html">Accueil</a></li>
+                        <li><a href="../index.html#features">Fonctionnalités</a></li>
+                        <li><a href="../index.html#scanners">Scanners</a></li>
+                        <li><a href="../index.html#pricing">Tarifs</a></li>
+                        <li><a href="../index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Ressources</h3>
+                    <ul>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="documentation.html">Documentation</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="support.html">Support</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Légal</h3>
+                    <ul>
+                        <li><a href="mentions-legales.html">Mentions légales</a></li>
+                        <li><a href="politique-confidentialite.html">Politique de confidentialité</a></li>
+                        <li><a href="conditions-utilisation.html">Conditions d'utilisation</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-social">
+                    <h3>Suivez-nous</h3>
+                    <div class="social-icons">
+                        <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 CyberShield Algeria. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/resources.js"></script>
+    <script src="js/documentation.js"></script>
+</body>
+</html>

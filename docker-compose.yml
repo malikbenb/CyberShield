@@ -1,0 +1,152 @@
+
+
+services:
+  # API FastAPI
+  api:
+    build: ./api
+    container_name: cybershield-api
+    restart: always
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./api:/app
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/cybershield
+      - SECRET_KEY=your-secret-key-here
+      - ALGORITHM=HS256
+      - ACCESS_TOKEN_EXPIRE_MINUTES=30
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+      - FLASK_APP=main:app
+    depends_on:
+      - db
+      - redis
+    networks:
+      - cybershield-network
+
+  # Base de données PostgreSQL
+  db:
+    image: postgres:13
+    platform: linux/amd64
+    container_name: cybershield-db
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=cybershield
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - cybershield-network
+
+  # Redis pour Celery
+  redis:
+    image: redis:6
+    platform: linux/amd64
+    container_name: cybershield-redis
+    restart: always
+    ports:
+      - "6379:6379"
+    networks:
+      - cybershield-network
+
+  # Celery Worker
+  worker:
+    build: ./api
+    container_name: cybershield-worker
+    restart: always
+    command: celery -A celery_app.celery worker --loglevel=info
+    volumes:
+      - ./api:/app
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/cybershield
+      - SECRET_KEY=your-secret-key-here
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+    depends_on:
+      - api
+      - redis
+    networks:
+      - cybershield-network
+
+  # Serveur web Nginx
+  nginx:
+    image: nginx:1.21
+    container_name: cybershield-nginx
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./frontend:/usr/share/nginx/html
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    depends_on:
+      - api
+    networks:
+      - cybershield-network
+
+  # Prometheus pour la collecte de métriques
+  prometheus:
+    image: prom/prometheus:v2.37.0
+    container_name: cybershield-prometheus
+    restart: always
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+    networks:
+      - cybershield-network
+
+  # Grafana pour la visualisation des métriques
+  grafana:
+    image: grafana/grafana:9.0.0
+    platform: linux/amd64
+    container_name: cybershield-grafana
+    restart: always
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+      - ./grafana/dashboards:/var/lib/grafana/dashboards
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=cybershield2025
+      - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_SERVER_ROOT_URL=http://localhost:3000
+      - GF_INSTALL_PLUGINS=grafana-piechart-panel
+    depends_on:
+      - prometheus
+    networks:
+      - cybershield-network
+
+  # Certbot pour les certificats SSL
+  certbot:
+    image: certbot/certbot
+    container_name: cybershield-certbot
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+    networks:
+      - cybershield-network
+
+networks:
+  cybershield-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  prometheus_data:
+  grafana_data:

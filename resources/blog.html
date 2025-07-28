@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - CyberShield Algeria</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/resources.css">
+    <link rel="icon" href="../images/Logo.jpg" type="image/jpg">
+    <style>
+        /* Styles spécifiques pour corriger les problèmes de blog.html */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .blog-card {
+            background-color: rgba(10, 25, 47, 0.5);
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .blog-image {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .blog-card:hover .blog-image img {
+            transform: scale(1.05);
+        }
+        
+        .blog-content {
+            padding: 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .blog-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+            color: var(--cyber-gray);
+            font-size: 0.9rem;
+        }
+        
+        .blog-meta span {
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .blog-meta i {
+            margin-right: 8px;
+            color: var(--cyber-accent);
+        }
+        
+        .blog-content h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--cyber-accent);
+            line-height: 1.4;
+        }
+        
+        .blog-content p {
+            margin-bottom: 20px;
+            line-height: 1.7;
+            color: var(--cyber-text);
+        }
+        
+        .blog-content .btn {
+            margin-top: auto;
+            align-self: flex-start;
+        }
+        
+        .blog-pagination {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 60px 0;
+        }
+        
+        .blog-pagination a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 40px;
+            height: 40px;
+            padding: 0 15px;
+            border-radius: 8px;
+            background-color: rgba(10, 25, 47, 0.5);
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            color: var(--cyber-text);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .blog-pagination a.active,
+        .blog-pagination a:hover {
+            background-color: var(--cyber-accent);
+            color: var(--cyber-dark);
+        }
+        
+        .blog-sidebar {
+            margin-top: 60px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .sidebar-widget {
+            background-color: rgba(10, 25, 47, 0.5);
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .sidebar-widget h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: var(--cyber-accent);
+            position: relative;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(100, 255, 218, 0.2);
+        }
+        
+        .category-list {
+            list-style: none;
+        }
+        
+        .category-list li {
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+            padding-bottom: 15px;
+        }
+        
+        .category-list li:last-child {
+            margin-bottom: 0;
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        
+        .category-list a {
+            display: flex;
+            justify-content: space-between;
+            color: var(--cyber-text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            padding: 5px 0;
+        }
+        
+        .category-list a:hover {
+            color: var(--cyber-accent);
+        }
+        
+        .popular-posts {
+            list-style: none;
+        }
+        
+        .popular-posts li {
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+            padding-bottom: 20px;
+        }
+        
+        .popular-posts li:last-child {
+            margin-bottom: 0;
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        
+        .popular-posts a {
+            display: flex;
+            flex-direction: column;
+            color: var(--cyber-text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .popular-posts a:hover {
+            color: var(--cyber-accent);
+        }
+        
+        .post-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+        
+        .post-date {
+            font-size: 0.9rem;
+            color: var(--cyber-gray);
+        }
+        
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .newsletter-form input {
+            padding: 12px 15px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            border-radius: 8px;
+            color: var(--cyber-text);
+        }
+        
+        .newsletter-form .btn {
+            width: 100%;
+        }
+        
+        /* Responsive design */
+        @media (min-width: 992px) {
+            .blog-grid {
+                grid-template-columns: 2fr 1fr;
+                gap: 60px;
+            }
+            
+            .blog-sidebar {
+                margin-top: 0;
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="cyber-header">
+        <div class="container">
+            <div class="logo-container">
+                <a href="../index.html">
+                    <img src="../images/Logo.jpg" alt="CyberShield Logo" class="logo">
+                </a>
+                <h1>CyberShield Algeria</h1>
+            </div>
+            <nav class="cyber-nav">
+                <ul>
+                    <li><a href="../index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                    <li><a href="../index.html#features"><i class="fas fa-shield-alt"></i> Fonctionnalités</a></li>
+                    <li><a href="../index.html#scanners"><i class="fas fa-download"></i> Scanners</a></li>
+                    <li><a href="../index.html#pricing"><i class="fas fa-tags"></i> Tarifs</a></li>
+                    <li><a href="../index.html#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="doc-hero">
+            <div class="container">
+                <h1>Blog CyberShield</h1>
+                <p>Actualités, conseils et tendances en cybersécurité</p>
+            </div>
+        </section>
+
+        <section class="doc-content">
+            <div class="container">
+                <div class="doc-main">
+                    <div class="blog-grid">
+                        <article class="blog-card">
+                            <div class="blog-image">
+                                <img src="../images/blog-ransomware.jpg" alt="Protection contre les ransomwares" onerror="this.src='https://via.placeholder.com/600x400?text=Cybersécurité'">
+                            </div>
+                            <div class="blog-content">
+                                <div class="blog-meta">
+                                    <span class="blog-date"><i class="far fa-calendar-alt"></i> 15 Mai 2025</span>
+                                    <span class="blog-author"><i class="far fa-user"></i> Ahmed Benali</span>
+                                    <span class="blog-category"><i class="fas fa-tag"></i> Ransomware</span>
+                                </div>
+                                <h2>5 Stratégies Essentielles pour Protéger Votre Entreprise Contre les Ransomwares</h2>
+                                <p>Les attaques par ransomware continuent d'être l'une des menaces les plus dévastatrices pour les entreprises algériennes. Dans cet article, nous explorons cinq stratégies essentielles que toute organisation devrait mettre en œuvre pour se protéger efficacement contre ces attaques coûteuses et perturbatrices.</p>
+                                <p>Nous aborderons l'importance des sauvegardes régulières, de la formation des employés, de la segmentation du réseau, des mises à jour de sécurité et des plans de réponse aux incidents.</p>
+                                <a href="#" class="btn btn-primary">Lire l'article complet</a>
+                            </div>
+                        </article>
+
+                        <article class="blog-card">
+                            <div class="blog-image">
+                                <img src="../images/blog-zero-trust.jpg" alt="Architecture Zero Trust" onerror="this.src='https://via.placeholder.com/600x400?text=Zero+Trust'">
+                            </div>
+                            <div class="blog-content">
+                                <div class="blog-meta">
+                                    <span class="blog-date"><i class="far fa-calendar-alt"></i> 28 Avril 2025</span>
+                                    <span class="blog-author"><i class="far fa-user"></i> Leila Hadj</span>
+                                    <span class="blog-category"><i class="fas fa-tag"></i> Architecture</span>
+                                </div>
+                                <h2>Adopter l'Architecture Zero Trust : Guide Pratique pour les Entreprises Algériennes</h2>
+                                <p>L'architecture Zero Trust représente un changement fondamental dans la façon dont les organisations abordent la sécurité. Contrairement aux approches traditionnelles qui font confiance aux utilisateurs à l'intérieur du réseau, le modèle Zero Trust part du principe que toute personne, qu'elle soit à l'intérieur ou à l'extérieur du réseau, est potentiellement malveillante.</p>
+                                <p>Dans ce guide pratique, nous expliquons comment les entreprises algériennes peuvent adopter progressivement cette approche pour renforcer significativement leur posture de sécurité.</p>
+                                <a href="#" class="btn btn-primary">Lire l'article complet</a>
+                            </div>
+                        </article>
+
+                        <article class="blog-card">
+                            <div class="blog-image">
+                                <img src="../images/blog-ai-security.jpg" alt="IA et Cybersécurité" onerror="this.src='https://via.placeholder.com/600x400?text=IA+Cybersécurité'">
+                            </div>
+                            <div class="blog-content">
+                                <div class="blog-meta">
+                                    <span class="blog-date"><i class="far fa-calendar-alt"></i> 10 Avril 2025</span>
+                                    <span class="blog-author"><i class="far fa-user"></i> Karim Meziane</span>
+                                    <span class="blog-category"><i class="fas fa-tag"></i> Intelligence Artificielle</span>
+                                </div>
+                                <h2>L'Intelligence Artificielle en Cybersécurité : Opportunités et Défis</h2>
+                                <p>L'intelligence artificielle (IA) transforme rapidement le paysage de la cybersécurité, offrant de nouvelles possibilités pour détecter et contrer les menaces, mais introduisant également de nouveaux risques et vulnérabilités.</p>
+                                <p>Cet article explore comment les entreprises peuvent tirer parti des technologies d'IA pour renforcer leur sécurité, tout en restant conscientes des défis éthiques et techniques associés à ces outils puissants.</p>
+                                <a href="#" class="btn btn-primary">Lire l'article complet</a>
+                            </div>
+                        </article>
+
+                        <article class="blog-card">
+                            <div class="blog-image">
+                                <img src="../images/blog-compliance.jpg" alt="Conformité réglementaire" onerror="this.src='https://via.placeholder.com/600x400?text=Conformité'">
+                            </div>
+                            <div class="blog-content">
+                                <div class="blog-meta">
+                                    <span class="blog-date"><i class="far fa-calendar-alt"></i> 22 Mars 2025</span>
+                                    <span class="blog-author"><i class="far fa-user"></i> Samira Taleb</span>
+                                    <span class="blog-category"><i class="fas fa-tag"></i> Réglementation</span>
+                                </div>
+                                <h2>Comprendre la Nouvelle Réglementation Algérienne sur la Protection des Données</h2>
+                                <p>La récente mise à jour de la législation algérienne sur la protection des données personnelles impose de nouvelles obligations aux entreprises opérant dans le pays. Cette évolution réglementaire s'inscrit dans une tendance mondiale visant à renforcer la protection des données des citoyens.</p>
+                                <p>Notre analyse détaille les principales dispositions de cette loi, les obligations qu'elle impose aux organisations et les mesures pratiques à mettre en œuvre pour assurer la conformité.</p>
+                                <a href="#" class="btn btn-primary">Lire l'article complet</a>
+                            </div>
+                        </article>
+
+                        <article class="blog-card">
+                            <div class="blog-image">
+                                <img src="../images/blog-phishing.jpg" alt="Attaques de phishing" onerror="this.src='https://via.placeholder.com/600x400?text=Phishing'">
+                            </div>
+                            <div class="blog-content">
+                                <div class="blog-meta">
+                                    <span class="blog-date"><i class="far fa-calendar-alt"></i> 5 Mars 2025</span>
+                                    <span class="blog-author"><i class="far fa-user"></i> Youcef Kader</span>
+                                    <span class="blog-category"><i class="fas fa-tag"></i> Social Engineering</span>
+                                </div>
+                                <h2>Les Nouvelles Techniques de Phishing Ciblant les Entreprises Algériennes</h2>
+                                <p>Les attaques de phishing évoluent constamment, devenant de plus en plus sophistiquées et difficiles à détecter. Ces derniers mois, nous avons observé une augmentation significative des campagnes ciblant spécifiquement les entreprises algériennes, avec des techniques adaptées au contexte local.</p>
+                                <p>Cet article présente les dernières tendances en matière de phishing, des exemples concrets d'attaques récentes, et des conseils pratiques pour former vos employés à reconnaître et éviter ces pièges.</p>
+                                <a href="#" class="btn btn-primary">Lire l'article complet</a>
+                            </div>
+                        </article>
+
+                        <article class="blog-card">
+                            <div class="blog-image">
+                                <img src="../images/blog-iot-security.jpg" alt="Sécurité IoT" onerror="this.src='https://via.placeholder.com/600x400?text=IoT+Sécurité'">
+                            </div>
+                            <div class="blog-content">
+                                <div class="blog-meta">
+                                    <span class="blog-date"><i class="far fa-calendar-alt"></i> 18 Février 2025</span>
+                                    <span class="blog-author"><i class="far fa-user"></i> Nadia Hamid</span>
+                                    <span class="blog-category"><i class="fas fa-tag"></i> IoT</span>
+                                </div>
+                                <h2>Sécuriser l'Internet des Objets (IoT) dans l'Environnement Industriel</h2>
+                                <p>L'adoption croissante de l'Internet des Objets (IoT) dans le secteur industriel algérien offre d'importantes opportunités d'optimisation et d'innovation, mais introduit également de nouveaux vecteurs d'attaque qui peuvent compromettre la sécurité des infrastructures critiques.</p>
+                                <p>Notre équipe d'experts partage des recommandations concrètes pour sécuriser les déploiements IoT industriels, de la conception à l'exploitation, en passant par la maintenance et la mise hors service.</p>
+                                <a href="#" class="btn btn-primary">Lire l'article complet</a>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="blog-pagination">
+                        <a href="#" class="active">1</a>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <span>...</span>
+                        <a href="#">10</a>
+                        <a href="#" class="next">Suivant <i class="fas fa-chevron-right"></i></a>
+                    </div>
+
+                    <div class="blog-sidebar">
+                        <div class="sidebar-widget">
+                            <h3>Catégories</h3>
+                            <ul class="category-list">
+                                <li><a href="#">Ransomware <span>(12)</span></a></li>
+                                <li><a href="#">Social Engineering <span>(8)</span></a></li>
+                                <li><a href="#">Intelligence Artificielle <span>(7)</span></a></li>
+                                <li><a href="#">Réglementation <span>(5)</span></a></li>
+                                <li><a href="#">Architecture <span>(4)</span></a></li>
+                                <li><a href="#">IoT <span>(3)</span></a></li>
+                                <li><a href="#">Cloud Security <span>(3)</span></a></li>
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-widget">
+                            <h3>Articles populaires</h3>
+                            <ul class="popular-posts">
+                                <li>
+                                    <a href="#">
+                                        <span class="post-title">Comment réaliser un audit de sécurité efficace</span>
+                                        <span class="post-date">3 Avril 2025</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="post-title">Les 10 vulnérabilités les plus exploitées en 2024</span>
+                                        <span class="post-date">17 Janvier 2025</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="post-title">Guide de sécurisation des applications web</span>
+                                        <span class="post-date">5 Décembre 2024</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="post-title">Cybersécurité et télétravail : bonnes pratiques</span>
+                                        <span class="post-date">20 Novembre 2024</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-widget">
+                            <h3>Newsletter</h3>
+                            <p>Abonnez-vous pour recevoir nos derniers articles et conseils en cybersécurité.</p>
+                            <form class="newsletter-form">
+                                <input type="email" placeholder="Votre adresse email" required>
+                                <button type="submit" class="btn btn-primary">S'abonner</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="cyber-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <img src="../images/Logo.jpg" alt="CyberShield Logo" class="footer-logo">
+                    <h3>CyberShield Algeria</h3>
+                    <p>Votre partenaire de confiance en cybersécurité. Nous protégeons vos systèmes contre les menaces numériques.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Liens rapides</h3>
+                    <ul>
+                        <li><a href="../index.html">Accueil</a></li>
+                        <li><a href="../index.html#features">Fonctionnalités</a></li>
+                        <li><a href="../index.html#scanners">Scanners</a></li>
+                        <li><a href="../index.html#pricing">Tarifs</a></li>
+                        <li><a href="../index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Ressources</h3>
+                    <ul>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="documentation.html">Documentation</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="support.html">Support</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Légal</h3>
+                    <ul>
+                        <li><a href="mentions-legales.html">Mentions légales</a></li>
+                        <li><a href="politique-confidentialite.html">Politique de confidentialité</a></li>
+                        <li><a href="conditions-utilisation.html">Conditions d'utilisation</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Rue des Développeurs, Alger, Algérie</p>
+                    <p><i class="fas fa-phone"></i> +213 XX XX XX XX</p>
+                    <p><i class="fas fa-envelope"></i> contact@cybershield-algeria.dz</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 CyberShield Algeria. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+    <script>
+        // Script pour éviter les effets de clignotement et améliorer la performance
+        document.addEventListener('DOMContentLoaded', function() {
+            // Précharger les images pour éviter le clignotement
+            const images = document.querySelectorAll('.blog-image img');
+            images.forEach(img => {
+                const src = img.getAttribute('src');
+                if (src) {
+                    const preloadImg = new Image();
+                    preloadImg.src = src;
+                }
+            });
+            
+            // Améliorer la transition des cartes de blog
+            const blogCards = document.querySelectorAll('.blog-card');
+            blogCards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+            });
+            
+            // Afficher progressivement les cartes avec un délai
+            setTimeout(() => {
+                blogCards.forEach((card, index) => {
+                    setTimeout(() => {
+                        card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, index * 100);
+                });
+            }, 300);
+        });
+    </main>
+
+    <footer class="cyber-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <img src="../images/Logo.jpg" alt="CyberShield Logo" class="footer-logo">
+                    <h3>CyberShield Algeria</h3>
+                    <p>Votre partenaire de confiance en cybersécurité. Nous protégeons vos systèmes contre les menaces numériques avec des solutions innovantes et adaptées.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Liens rapides</h3>
+                    <ul>
+                        <li><a href="../index.html">Accueil</a></li>
+                        <li><a href="../index.html#features">Fonctionnalités</a></li>
+                        <li><a href="../index.html#scanners">Scanners</a></li>
+                        <li><a href="../index.html#pricing">Tarifs</a></li>
+                        <li><a href="../index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Ressources</h3>
+                    <ul>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="documentation.html">Documentation</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="support.html">Support</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Légal</h3>
+                    <ul>
+                        <li><a href="mentions-legales.html">Mentions légales</a></li>
+                        <li><a href="politique-confidentialite.html">Politique de confidentialité</a></li>
+                        <li><a href="conditions-utilisation.html">Conditions d'utilisation</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Rue des Développeurs, Alger, Algérie</p>
+                    <p><i class="fas fa-phone"></i> +213 XX XX XX XX</p>
+                    <p><i class="fas fa-envelope"></i> contact@cybershield-algeria.dz</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 CyberShield Algeria. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+    <script src="../js/resources.js"></script>
+    <script src="js/blog.js"></script>
+</body>
+</html>l> menaces numériques avec des solutions innovantes et adaptées.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Liens rapides</h3>
+                    <ul>
+                        <li><a href="../index.html">Accueil</a></li>
+                        <li><a href="../index.html#features">Fonctionnalités</a></li>
+                        <li><a href="../index.html#scanners">Scanners</a></li>
+                        <li><a href="../index.html#pricing">Tarifs</a></li>
+                        <li><a href="../index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Ressources</h3>
+                    <ul>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="documentation.html">Documentation</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="support.html">Support</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Légal</h3>
+                    <ul>
+                        <li><a href="mentions-legales.html">Mentions légales</a></li>
+                        <li><a href="politique-confidentialite.html">Politique de confidentialité</a></li>
+                        <li><a href="conditions-utilisation.html">Conditions d'utilisation</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-social">
+                    <h3>Suivez-nous</h3>
+                    <div class="social-icons">
+                        <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 CyberShield Algeria. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/resources.js"></script>
+</body>
+</html>

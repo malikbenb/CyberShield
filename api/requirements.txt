@@ -1,0 +1,26 @@
+fastapi
+PyJWT
+starlette-prometheus
+uvicorn[standard]
+Flask
+Flask-Cors
+Flask-SQLAlchemy
+Flask-Login
+Werkzeug
+celery
+redis
+docker
+python-multipart
+python-jose[cryptography]
+passlib[bcrypt]
+psycopg2-binary # Pour PostgreSQL en production
+python-dotenv # Pour gérer les variables d\environnement
+aiosqlite # Pour la base de données async SQLite (si utilisée)
+gunicorn # Ajouté pour l\exécution en production
+pytest # Ajouté pour les tests
+mock # Pour mocker les dépendances dans les tests
+requests # Ajouté explicitement pour les appels API (ex: NVD)
+xmltodict # Pour parser facilement le XML Nmap
+python-gvm # Ajouté pour l\intégration future d\OpenVAS/GVM
+prometheus-flask-exporter # Ajouté pour le monitoring Prometheus
+email-validator

@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberShield Algeria - Plateforme de Pentesting</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/resources.css">
+    <link rel="stylesheet" href="css/ui_enhancements.css">
+    <link rel="stylesheet" href="css/about_section.css">
+    <link rel="icon" href="images/Logo.jpg" type="image/jpg">
+</head>
+<body>
+    <header class="cyber-header">
+        <div class="container">
+            <div class="logo-container">
+                <a href="index.html">
+                    <img src="images/Logo.jpg" alt="CyberShield Logo" class="logo">
+                </a>
+                <h1>CyberShield Algeria</h1>
+            </div>
+            <nav class="cyber-nav">
+                <ul>
+                    <li><a href="#home"><i class="fas fa-home"></i> Accueil</a></li>
+                    <li><a href="#about"><i class="fas fa-info-circle"></i> À propos</a></li>
+                    <li><a href="#features"><i class="fas fa-shield-alt"></i> Fonctionnalités</a></li>
+                    <li><a href="#scanners"><i class="fas fa-download"></i> Scanners</a></li>
+                    <li><a href="#pricing"><i class="fas fa-tags"></i> Tarifs</a></li>
+                    <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero-section">
+            <div class="cyber-grid-overlay"></div>
+            <div class="container">
+                <div class="hero-content">
+                    <h2>Sécurisez votre <span>infrastructure numérique</span></h2>
+                    <p class="subtitle">Plateforme de pentesting innovante pour entreprises et particuliers</p>
+                    
+                    <div class="about-cybershield">
+                        <h3>Qu'est-ce que CyberShield ?</h3>
+                        <p>CyberShield est une plateforme de pentesting qui vous permet d'évaluer et de renforcer la sécurité de vos systèmes informatiques. Notre approche "Do Your Own Assessment" vous donne les outils pour identifier et corriger les vulnérabilités avant qu'elles ne soient exploitées.</p>
+                        <p>Que vous soyez une grande entreprise, une PME ou un particulier, nos solutions s'adaptent à vos besoins spécifiques.</p>
+                    </div>
+                    
+                    <div class="cta-buttons">
+                        <a href="#scanners" class="btn cyber-btn">Télécharger <i class="fas fa-download"></i></a>
+                    </div>
+                </div>
+                
+                <div class="terminal-window">
+                    <div class="terminal-header">
+                        <div class="terminal-dots">
+                            <span class="red"></span>
+                            <span class="yellow"></span>
+                            <span class="green"></span>
+                        </div>
+                        <div class="terminal-title">scan_console.exe</div>
+                    </div>
+                    <div class="terminal-body" id="terminal-output"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <div class="container">
+                <h2 class="section-title">Qui sommes-nous ?</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>CyberShield Algeria est une startup algérienne innovante spécialisée dans le domaine du pentesting et de la cybersécurité. Notre approche révolutionnaire "Do Your Own Assessment" transforme radicalement la façon dont les entreprises et les particuliers abordent leur sécurité informatique.</p>
+                        
+                        <p>Contrairement aux solutions traditionnelles qui nécessitent l'intervention d'experts externes, notre plateforme vous permet de réaliser vos propres analyses de sécurité, même sans connaissances techniques préalables. Nos outils intelligents et intuitifs vous guident à travers chaque étape du processus, de la détection des vulnérabilités à leur résolution.</p>
+                        
+                        <p>Cette autonomie vous offre un contrôle total sur vos données sensibles tout en bénéficiant d'une expertise en cybersécurité intégrée dans nos solutions. Avec CyberShield Algeria, la sécurité informatique devient accessible à tous, sans compromis sur la qualité ou la profondeur des analyses.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features-section">
+            <div class="container">
+                <h2 class="section-title">Fonctionnalités</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h3>Scan Complet</h3>
+                        <p>Analyse approfondie de votre infrastructure pour détecter les vulnérabilités potentielles</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Proof of Concept (PoC)</h3>
+                        <p>Démonstration pratique de l'exploitation des vulnérabilités</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <h3>Rapports Détaillés</h3>
+                        <p>Rapports complets avec recommandations pour corriger les failles de sécurité</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Analyse de Risques</h3>
+                        <p>Évaluation des risques potentiels et de leur impact sur votre activité</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h3>Tableau de Bord Personnalisé</h3>
+                        <p>Votre vue globale : données, historiques et stats de scans, tout en un seul endroit</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <h3>Mises à Jour Automatiques</h3>
+                        <p>Base de données de vulnérabilités constamment mise à jour</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="scanners" class="scanners-section">
+            <div class="container">
+                <h2 class="section-title">Nos Scanners</h2>
+                
+                <!-- Bloc de consentement modal pour les réglementations -->
+                <div class="consent-modal" id="regulations-modal">
+                    <div class="consent-modal-content">
+                        <div class="consent-modal-header">
+                            <h2>Réglementations en Cybersécurité - Algérie</h2>
+                        </div>
+                        <div class="consent-modal-body">
+                            <p>L'utilisation de nos scanners de vulnérabilités doit être conforme aux lois et réglementations en vigueur en Algérie, notamment la Loi n° 09-04 relative aux règles de prévention et de lutte contre les infractions liées aux technologies de l'information.</p>
+                            <p>Assurez-vous d'obtenir les autorisations nécessaires avant de scanner tout système qui ne vous appartient pas. L'utilisation non autorisée peut entraîner des sanctions pénales.</p>
+                            <p>CyberShield Algeria décline toute responsabilité découlant d'une utilisation non conforme des scanners ou de l'absence d'autorisation préalable du particulier ou de l'entreprise détenteurs des droits de propriété et d'autorité sur les systèmes scannés.</p>
+                            <br>
+                            <a href="reglementations_cybersecurite.html" target="_blank" class="btn btn-outline">En savoir plus</a>
+                            <br>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="scanners-grid">
+                    <div class="scanner-card">
+                        <div class="scanner-icon">
+                            <i class="fab fa-windows"></i>
+                        </div>
+                        <h3>Scanner Windows</h3>
+                        <p>Compatible avec Windows 11 et les versions antérieurs (ainsi que les versions Windows Server)</p>
+                        <div class="scanner-buttons">
+                            <button class="btn cyber-btn download-btn" data-os="windows" data-version="free">Version Gratuite</button>
+                            <br>
+                            <br>
+                            <button class="btn cyber-btn download-btn" data-os="windows" data-version="pro">Version Pro/Entreprise</button>
+                        </div>
+                    </div>
+                    <div class="scanner-card">
+                        <div class="scanner-icon">
+                            <i class="fab fa-linux"></i>
+                        </div>
+                        <h3>Scanner Linux</h3>
+                        <p>Compatible avec Ubuntu, Linux Mint, Debian, Arch Linux, Fedora, Red Hat Enterprise Linux et autres distributions</p>
+                        <div class="scanner-buttons">
+                            <button class="btn cyber-btn download-btn" data-os="linux" data-version="free">Version Gratuite</button>
+                            <br>
+                            <br>
+                            <button class="btn cyber-btn download-btn" data-os="linux" data-version="pro">Version Pro/Entreprise</button>
+                        </div>
+                    </div>
+                    <div class="scanner-card">
+                        <div class="scanner-icon">
+                            <i class="fab fa-apple"></i>
+                        </div>
+                        <h3>Scanner macOS</h3>
+                        <p>Compatible avec macOS Sequoia (15.5) ainsi que les versions antérieurs</p>
+                        <div class="scanner-buttons">
+                            <button class="btn cyber-btn download-btn" data-os="macos" data-version="free">Version Gratuite</button>
+                            <br>
+                            <br>
+                            <button class="btn cyber-btn download-btn" data-os="macos" data-version="pro">Version Pro/Entreprise</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pricing" class="pricing-section">
+            <div class="container">
+                <h2 class="section-title">Tarifs</h2>
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <div class="pricing-icon">
+                                <i class="fas fa-user-shield"></i>
+                            </div>
+                            <h3>Gratuit</h3>
+                            <p class="pricing-description">Idéal pour les particuliers et les petites structures souhaitant découvrir les bases de la cybersécurité.</p>
+                            <div class="pricing-price">
+                                <span class="price">0<span class="currency">DA</span></span>
+                                <span class="period">/mois</span>
+                            </div>
+                        </div>
+                        <div class="pricing-features">
+                            <ul>
+                                <li><i class="fas fa-check"></i> Scan de base</li>
+                                <li><i class="fas fa-check"></i> Détection des vulnérabilités communes</li>
+                                <li><i class="fas fa-check"></i> Rapports simples au format HTML</li>
+                                <li><i class="fas fa-times"></i> Analyse approfondie</li>
+                                <li><i class="fas fa-times"></i> Support prioritaire</li>
+                            </ul>
+                            <div class="pricing-highlight">
+                                <i class="fas fa-info-circle"></i> Aucune carte de crédit requise
+                            </div>
+                        </div>
+                        <div class="pricing-footer">
+                            <a href="#scanners" class="btn cyber-btn">Télécharger</a>
+                        </div>
+                    </div>
+                    <div class="pricing-card featured">
+                        <div class="pricing-badge">Populaire</div>
+                        <div class="pricing-header">
+                            <div class="pricing-icon">
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                            <h3>Pro</h3>
+                            <p class="pricing-description">Solution complète pour les professionnels et PME exigeant une sécurité renforcée.</p>
+                            <div class="pricing-price">
+                                <span class="price">50.000<span class="currency">DA</span></span>
+                                <span class="period">/mois</span>
+                            </div>
+                        </div>
+                        <div class="pricing-features">
+                            <ul>
+                                <li><i class="fas fa-check"></i> Scan complet (1 adresse IP)</li>
+                                <li><i class="fas fa-check"></i> Détection avancée des vulnérabilités</li>
+                                <li><i class="fas fa-check"></i> Rapports détaillés et personnalisés</li>
+                                <li><i class="fas fa-check"></i> Analyse approfondie des failles</li>
+                                <li><i class="fas fa-check"></i> Support par email sous 24h</li>
+                            </ul>
+                            <div class="pricing-highlight">
+                                <i class="fas fa-star"></i> Inclut tableau de bord avec visualisation des historiques de scan
+                            </div>
+                        </div>
+                        <div class="pricing-footer">
+                            <a href="#scanners" class="btn cyber-btn">Acheter</a>
+                        </div>
+                    </div>
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <div class="pricing-icon">
+                                <i class="fas fa-building-shield"></i>
+                            </div>
+                            <h3>Entreprise</h3>
+                            <p class="pricing-description">Protection maximale pour les grandes organisations avec infrastructure complexe.</p>
+                            <div class="pricing-price">
+                                <span class="price">100.000<span class="currency">DA</span></span>
+                                <span class="period">/mois</span>
+                            </div>
+                        </div>
+                        <div class="pricing-features">
+                            <ul>
+                                <li><i class="fas fa-check"></i> Scan complet (jusqu'a 20 adresses IP)</li>
+                                <li><i class="fas fa-check"></i> Détection avancée des vulnérabilités</li>
+                                <li><i class="fas fa-check"></i> Rapports détaillés et personnalisés</li>
+                                <li><i class="fas fa-check"></i> Analyse approfondie multi-couches</li>
+                                <li><i class="fas fa-check"></i> Support prioritaire 24/7</li>
+                                <li><i class="fas fa-check"></i> Tableau de bord avec visualisation des historiques de scan</li>
+                            </ul>
+                            <div class="pricing-highlight">
+                                <i class="fas fa-building"></i> Integration prochaine de l'IA
+                            </div>
+                        </div>
+                        <div class="pricing-footer">
+                            <a href="#scanners" class="btn cyber-btn">Acheter</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <h2 class="section-title">Contact</h2>
+                <div class="contact-container">
+                    <div class="contact-form-container">
+                        <form class="contact-form">
+                            <div class="form-group">
+                                <label for="nom">Nom*</label>
+                                <input type="text" id="nom" name="nom" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="prenom">Prénom*</label>
+                                <input type="text" id="prenom" name="prenom" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="entreprise">Nom de l'entreprise*</label>
+                                <input type="text" id="entreprise" name="entreprise" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="telephone">Numéro de téléphone*</label>
+                                <input type="tel" id="telephone" name="telephone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email*</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message*</label>
+                                <textarea id="message" name="message" rows="5" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn cyber-btn">Envoyer</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="contact-info-container">
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div>
+                                    <h3>Adresse</h3>
+                                    <p>123 Rue des Développeurs, Alger, Algérie</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i>
+                                <div>
+                                    <h3>Téléphone</h3>
+                                    <p>+213 XX XX XX XX</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <div>
+                                    <h3>Email</h3>
+                                    <p>contact@cybershield-algeria.dz</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <i class="fas fa-clock"></i>
+                                <div>
+                                    <h3>Heures d'ouverture</h3>
+                                    <p>Sam - Jeu: 8h00 - 17h00</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="cyber-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <img src="images/Logo.jpg" alt="CyberShield Logo" class="footer-logo">
+                    <h3>CyberShield Algeria</h3>
+                    <p>Votre partenaire de confiance en cybersécurité. Nous protégeons vos systèmes contre les menaces numériques avec des solutions innovantes et adaptées.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Liens rapides</h3>
+                    <ul>
+                        <li><a href="#home">Accueil</a></li>
+                        <li><a href="#about">À propos</a></li>
+                        <li><a href="#features">Fonctionnalités</a></li>
+                        <li><a href="#scanners">Scanners</a></li>
+                        <li><a href="#pricing">Tarifs</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-resources">
+                    <h3>Ressources</h3>
+                    <ul>
+                        <li><a href="resources/blog.html">Blog</a></li>
+                        <li><a href="resources/documentation.html">Documentation</a></li>
+                        <li><a href="resources/faq.html">FAQ</a></li>
+                        <li><a href="resources/support.html">Support</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-newsletter">
+                    <h3>Newsletter</h3>
+                    <p>Abonnez-vous pour recevoir nos dernières actualités et mises à jour.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Votre email" required>
+                        <button type="submit" class="btn cyber-btn">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </form>
+                    
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 CyberShield Algeria. Tous droits réservés.</p>
+                <div class="footer-legal">
+                    <a href="mentions_legales.html">Mentions légales&nbsp;&nbsp;</a>
+                    <a href="politique_confidentialite.html">Politique de confidentialité&nbsp;&nbsp;</a>
+                    <a href="conditions_utilisation.html">Conditions d'utilisation</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script>
+        // Afficher la modale de réglementations au chargement de la page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Afficher la modale de réglementations
+            const regulationsModal = document.getElementById('regulations-modal');
+            regulationsModal.style.display = 'block';
+            
+            // Fermer la modale lorsqu'on clique sur le bouton de fermeture
+            const closeButton = document.querySelector('.consent-modal-close');
+            closeButton.addEventListener('click', function() {
+                regulationsModal.style.display = 'none';
+            });
+            
+            // Fermer la modale lorsqu'on clique en dehors de celle-ci
+            window.addEventListener('click', function(event) {
+                if (event.target === regulationsModal) {
+                    regulationsModal.style.display = 'none';
+                }
+            });
+        });
+    </script>
+    
+    <!-- Chargement des scripts dans le bon ordre -->
+    <script src="js/download.js"></script>
+    <script src="js/consent-modal.js"></script>
+</body>
+</html>
